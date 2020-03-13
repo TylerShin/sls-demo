@@ -16,7 +16,7 @@ const routesMap: RouteMap[] = [
     path: HOME_PATH,
     exact: true,
     component: loadable(() => import("../home"), {
-      fallback: <div />
+      fallback: <div>FAILED TO GET HOME</div>
     })
   }
 ];

@@ -15,9 +15,12 @@ const httpTrigger: AzureFunction = async function(
   context: Context,
   req: HttpRequest
 ): Promise<void> {
+  const url = new URL(req.url);
   const jsx = extractor.collectChunks(
     <ChunkExtractorManager extractor={extractor}>
-      <StaticRouter location={req.url}>
+      <StaticRouter location={url.pathname}>
+        <div>{JSON.stringify(process.env, null, 2)}</div>
+        <div>{url.pathname}</div>
         <Routes />
       </StaticRouter>
     </ChunkExtractorManager>
