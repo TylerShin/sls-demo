@@ -16,6 +16,13 @@
         "route": "/api/{*path}"
       },
       "backendUri": "https://dev-api.scinapse.io/{path}"
+    },
+    "assets": {
+      "matchCondition": {
+        "methods": ["GET"],
+        "route": "/assets/{*path}"
+      },
+      "backendUri": "https://scinapsefunction.blob.core.windows.net/client-assets/{path}"
     }
   }
 }

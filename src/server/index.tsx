@@ -1,15 +1,25 @@
+import fs from "fs";
+import path from "path";
 import React from "react";
 import { AzureFunction, Context, HttpRequest } from "@azure/functions";
 import ReactDOMServer from "react-dom/server";
 import { StaticRouter } from "react-router-dom";
 import { Helmet } from "react-helmet";
 import { ChunkExtractor, ChunkExtractorManager } from "@loadable/server";
-import path from "path";
 import Routes from "../components/routes";
 import { generateHTML } from "./helpers/generateHTML";
 
 const statsFile = path.resolve(__dirname, "assets", "loadable-stats.json");
-const extractor = new ChunkExtractor({ statsFile });
+const version = fs.readFileSync("./dist/version");
+const STAGE = process.env["NODE_ENV"] || "development";
+
+console.log("==================================================");
+console.log(STAGE);
+
+const extractor = new ChunkExtractor({
+  statsFile,
+  publicPath: `assets/${STAGE}/${version}`
+});
 
 const httpTrigger: AzureFunction = async function(
   context: Context,
@@ -19,8 +29,6 @@ const httpTrigger: AzureFunction = async function(
   const jsx = extractor.collectChunks(
     <ChunkExtractorManager extractor={extractor}>
       <StaticRouter location={url.pathname}>
-        <div>{JSON.stringify(process.env, null, 2)}</div>
-        <div>{url.pathname}</div>
         <Routes />
       </StaticRouter>
     </ChunkExtractorManager>
