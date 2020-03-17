@@ -9,11 +9,15 @@
     "watch-client": "NODE_ENV=local webpack-dev-server",
     "watch-server": "NODE_ENV=local webpack -w --config webpack.server.js",
     "build": "npm run clean && webpack && webpack --config webpack.server.js",
+    "build:dev": "npm run clean && NODE_ENV=development webpack && NODE_ENV=development webpack --config webpack.server.js",
     "build:prod": "npm run clean && NODE_ENV=production webpack && NODE_ENV=production webpack --config webpack.server.js",
     "build-scripts": "webpack --config webpack.script.js && node scripts-dist/uploadToBlobStorage.js",
+    "build-scripts:dev": "NODE_ENV=development webpack --config webpack.script.js && node scripts-dist/uploadToBlobStorage.js",
     "build-scripts:prod": "NODE_ENV=production webpack --config webpack.script.js && node scripts-dist/uploadToBlobStorage.js",
-    "deploy": "func azure functionapp publish scinapse-function",
-    "deploy:prod": "npm run build:prod && npm run build-scripts:prod && npm run deploy"
+    "publish": "func azure functionapp publish scinapse-function",
+    "publish:dev": "func azure functionapp publish scinapse-function --slot=dev",
+    "deploy:dev": "npm run build:dev && npm run build-scripts:dev && npm run publish:dev",
+    "deploy:prod": "npm run build:prod && npm run build-scripts:prod && npm run publish"
   },
   "repository": {
     "type": "git",

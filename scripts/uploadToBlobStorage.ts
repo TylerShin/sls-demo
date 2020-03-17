@@ -5,11 +5,11 @@ import mime from "mime";
 import { BlobServiceClient, BlockBlobClient } from "@azure/storage-blob";
 
 dotenv.config();
+const STAGE = process.env["NODE_ENV"] || "development";
 const AZURE_STORAGE_CONNECTION_STRING =
   process.env.AZURE_STORAGE_CONNECTION_STRING;
 const ASSET_CONTAINER_NAME = process.env.ASSET_CONTAINER_NAME;
 const VERSION = new Date().toISOString();
-const STAGE = process.env["NODE_ENV"] || "development";
 
 async function uploadStream(
   blockBlobClient: BlockBlobClient,
