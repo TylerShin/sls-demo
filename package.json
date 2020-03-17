@@ -4,12 +4,16 @@
   "description": "Academic search engine 'scinapse' web client repository",
   "sideEffects": false,
   "scripts": {
-    "build": "rm -rf dist && rm -rf scripts-dist && webpack && webpack --config webpack.server.js",
+    "clean": "rimraf dist && rimraf scripts-dist",
+    "start": "concurrently 'npm run clean' 'func start' 'npm:watch-*'",
+    "watch-client": "NODE_ENV=local webpack-dev-server",
+    "watch-server": "NODE_ENV=local webpack -w --config webpack.server.js",
+    "build": "npm run clean && webpack && webpack --config webpack.server.js",
+    "build:prod": "npm run clean && NODE_ENV=production webpack && NODE_ENV=production webpack --config webpack.server.js",
     "build-scripts": "webpack --config webpack.script.js && node scripts-dist/uploadToBlobStorage.js",
     "build-scripts:prod": "NODE_ENV=production webpack --config webpack.script.js && node scripts-dist/uploadToBlobStorage.js",
     "deploy": "func azure functionapp publish scinapse-function",
-    "watch": "tsc -w",
-    "prestart": "npm run build"
+    "deploy:prod": "npm run build:prod && npm run build-scripts:prod && npm run deploy"
   },
   "repository": {
     "type": "git",
@@ -86,6 +90,7 @@
     "babel-plugin-lodash": "3.3.4",
     "cache-loader": "3.0.0",
     "circular-dependency-plugin": "5.0.2",
+    "concurrently": "^5.1.0",
     "cookie": "0.3.1",
     "cookie-parser": "1.4.4",
     "css-loader": "2.1.1",
@@ -135,7 +140,7 @@
     "webpack": "4.29.6",
     "webpack-bundle-analyzer": "3.3.2",
     "webpack-cli": "3.2.3",
-    "webpack-dev-server": "3.1.14",
+    "webpack-dev-server": "^3.1.14",
     "webpack-jarvis": "0.2.2",
     "webpack-node-externals": "1.7.2",
     "workbox-webpack-plugin": "4.3.0"

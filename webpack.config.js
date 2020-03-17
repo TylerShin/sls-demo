@@ -7,7 +7,7 @@ const ForkTsCheckerWebpackPlugin = require("fork-ts-checker-webpack-plugin");
 const cpuLength = require("os").cpus().length;
 
 module.exports = {
-  mode: process.env.NODE_ENV ? process.env.NODE_ENV : "development",
+  mode: process.env.NODE_ENV === "production" ? "production" : "development",
   entry: ["@babel/polyfill", "./src/client/index.tsx"],
   output: {
     path: path.resolve(__dirname, "dist", "assets"),
@@ -103,5 +103,13 @@ module.exports = {
     }),
     new LoadablePlugin(),
     new webpack.IgnorePlugin(/^\.\/pdf.worker.js$/)
-  ]
+  ],
+  devServer: {
+    compress: true,
+    port: 8080,
+    https: true,
+    writeToDisk: filePath => {
+      return /loadable-stats\.json$/.test(filePath);
+    }
+  }
 };

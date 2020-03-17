@@ -22,7 +22,7 @@
         "methods": ["GET"],
         "route": "/assets/{*path}"
       },
-      "backendUri": "https://scinapsefunction.blob.core.windows.net/client-assets/{path}"
+      "backendUri": "https://scinapsewebclientassets.azureedge.net/client-assets/{path}"
     }
   }
 }

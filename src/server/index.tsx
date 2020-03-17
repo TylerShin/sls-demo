@@ -9,17 +9,17 @@ import { ChunkExtractor, ChunkExtractorManager } from "@loadable/server";
 import Routes from "../components/routes";
 import { generateHTML } from "./helpers/generateHTML";
 
-const statsFile = path.resolve(__dirname, "assets", "loadable-stats.json");
-const version = fs.readFileSync("./dist/version");
 const STAGE = process.env["NODE_ENV"] || "development";
-
-console.log("==================================================");
-console.log(STAGE);
-
-const extractor = new ChunkExtractor({
-  statsFile,
-  publicPath: `assets/${STAGE}/${version}`
-});
+const statsFile = path.resolve(__dirname, "assets", "loadable-stats.json");
+let version = "";
+try {
+  version = fs.readFileSync("./dist/version").toString();
+} catch (err) {
+  version = "";
+}
+const publicPath =
+  STAGE === "local" ? "https://localhost:8080" : `assets/${STAGE}/${version}`;
+const extractor = new ChunkExtractor({ statsFile, publicPath });
 
 const httpTrigger: AzureFunction = async function(
   context: Context,
