@@ -1,7 +1,7 @@
 import React, { FC } from "react";
-import axios from "axios";
-import { useSelector } from "react-redux";
 import Helmet from "react-helmet";
+import axios from "axios";
+import { LazyImage } from "@pluto_network/pluto-design-elements";
 import Footer from "../footer";
 import Icon from "../icons";
 // import { AppState } from '../../reducers';
@@ -15,7 +15,29 @@ import Icon from "../icons";
 const useStyles = require("isomorphic-style-loader/useStyles");
 const styles = require("./home.scss");
 
-const MAX_KEYWORD_SUGGESTION_LIST_COUNT = 5;
+const JOURNALS = [
+  "nature",
+  "science",
+  "ieee",
+  "cell",
+  "acs",
+  "aps",
+  "lancet",
+  "acm",
+  "jama",
+  "bmj",
+  "pnas",
+  "more-journals"
+];
+const MOBILE_JOURNALS = [
+  "nature",
+  "science",
+  "lancet",
+  "acm",
+  "ieee",
+  "cell",
+  "more-journal-mobile"
+];
 
 const HomeHelmet: FC = () => {
   const structuredData = {
@@ -109,6 +131,21 @@ const Home: React.FC = () => {
   //   };
   // }, []);
 
+  // const journalList = (isMobile ? MOBILE_JOURNALS : JOURNALS).map(
+  const journalList = JOURNALS.map((journal, index) => {
+    return (
+      <div className={styles.journalImageWrapper} key={index}>
+        <LazyImage
+          src={`https://assets.pluto.network/journals/${journal}.png`}
+          webpSrc={`https://assets.pluto.network/journals/${journal}.webp`}
+          imgClassName={styles.journalImage}
+          loading="lazy"
+          alt={`${journal}LogoImage`}
+        />
+      </div>
+    );
+  });
+
   return (
     <div className={styles.articleSearchFormContainer}>
       <HomeHelmet />
@@ -146,8 +183,15 @@ const Home: React.FC = () => {
           </div>
         </div>
         <div>
-          {/* <JournalsInfo isMobile={isMobile} />
-          <AffiliationsInfo /> */}
+          <div className={styles.journalsInfo}>
+            <div className={styles.title}>
+              Covering <span className={styles.bold}>48,000</span> journals and
+              counting
+            </div>
+            <div className={styles.contentBlockDivider} />
+            <div className={styles.journalListContainer}>{journalList}</div>
+          </div>
+          {/* <AffiliationsInfo /> */}
           <div className={styles.contentBlockDivider} />
         </div>
         <Footer />

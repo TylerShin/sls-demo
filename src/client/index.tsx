@@ -4,6 +4,8 @@ import { BrowserRouter } from "react-router-dom";
 import { ThemeProvider } from "@material-ui/core/styles";
 import Routes from "../components/routes";
 import theme from "../assets/muiTheme";
+import { Provider } from "react-redux";
+import store from "../store";
 const StyleContext = require("isomorphic-style-loader/StyleContext");
 
 // Prevent IE/Edge's Clicking SVG problem
@@ -28,11 +30,13 @@ const App: FC = () => {
 
   return (
     <ThemeProvider theme={theme}>
-      <StyleContext.Provider value={{ insertCss }}>
-        <BrowserRouter>
-          <Routes />
-        </BrowserRouter>
-      </StyleContext.Provider>
+      <Provider store={store}>
+        <StyleContext.Provider value={{ insertCss }}>
+          <BrowserRouter>
+            <Routes />
+          </BrowserRouter>
+        </StyleContext.Provider>
+      </Provider>
     </ThemeProvider>
   );
 };

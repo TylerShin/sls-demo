@@ -1,4 +1,5 @@
 import { HelmetData } from "react-helmet";
+import { AppState } from "../../store/rootReducer";
 const sprite = require("svg-sprite-loader/runtime/sprite.build");
 
 interface Params {
@@ -8,6 +9,7 @@ interface Params {
   scriptTags: string;
   muiCss: string;
   plutoCss: string;
+  preloadedState: AppState;
   helmet: HelmetData;
 }
 
@@ -18,6 +20,7 @@ export function generateHTML({
   linkTags,
   styleTags,
   muiCss,
+  preloadedState,
   plutoCss
 }: Params) {
   return `<!doctype html>
@@ -35,6 +38,10 @@ export function generateHTML({
   </head>
   <body>
     ${sprite.stringify()}
+    <script>window.__INITIAL_STATE__=${JSON.stringify(preloadedState).replace(
+      /</g,
+      "\\u003c"
+    )}</script>
     <div id="react-app">${jsx}</div>
   </body>
 </html>`;
