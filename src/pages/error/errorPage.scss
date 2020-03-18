@@ -1,0 +1,47 @@
+.errorPageContainer {
+  max-width: $container_width;
+  margin: $navbar_height auto 229.7px auto;
+  max-height: 100%;
+  text-align: center;
+}
+
+.errorNum {
+  margin-top: 160px;
+  font-size: 120px;
+  font-weight: bold;
+  letter-spacing: 8px;
+  color: $gray400;
+}
+
+.errorContent {
+  margin-top: 16px;
+  font-size: 30px;
+  font-weight: bold;
+  color: $gray800;
+}
+
+.goBackButton {
+  margin-top: 62px;
+  display: inline-block;
+  width: 120px;
+  height: 44px;
+  background-color: white;
+  color: $black0;
+  border-radius: 5px;
+  line-height: 44px;
+  border: 1px solid $gray400;
+  cursor: pointer;
+}
+
+.homeButton {
+  margin-left: 16px;
+  margin-top: 62px;
+  display: inline-block;
+  width: 120px;
+  height: 44px;
+  background-color: $main_blue0;
+  color: white;
+  border-radius: 5px;
+  line-height: 44px;
+  cursor: pointer;
+}

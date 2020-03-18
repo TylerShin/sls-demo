@@ -5,7 +5,7 @@
   "sideEffects": false,
   "scripts": {
     "clean": "rimraf dist && rimraf scripts-dist",
-    "start": "concurrently 'npm run clean' 'func start' 'npm:watch-*'",
+    "start": "concurrently 'func start' 'npm:watch-*'",
     "watch-client": "NODE_ENV=local webpack-dev-server",
     "watch-server": "NODE_ENV=local webpack -w --config webpack.server.js",
     "build": "npm run clean && webpack && webpack --config webpack.server.js",

@@ -3,6 +3,7 @@ import { Switch, Route, useLocation } from "react-router-dom";
 import loadable from "@loadable/component";
 import { HOME_PATH } from "../../constants/route";
 import DefaultHelmet from "../helmet";
+import ErrorPage from "../../pages/error/errorPage";
 
 interface RouteMap {
   path?: string;
@@ -15,10 +16,11 @@ const routesMap: RouteMap[] = [
   {
     path: HOME_PATH,
     exact: true,
-    component: loadable(() => import("../home"), {
+    component: loadable(() => import("../../pages/home"), {
       fallback: <div>FAILED TO GET HOME</div>
     })
-  }
+  },
+  { component: ErrorPage }
 ];
 
 const Routes: React.FC = () => {

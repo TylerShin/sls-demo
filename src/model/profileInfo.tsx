@@ -1,5 +1,5 @@
-import { schema, denormalize } from 'normalizr';
-import { AppState } from '../reducers';
+import { schema, denormalize } from "normalizr";
+import { AppState } from "../store/rootReducer";
 
 export type ProfileInfo = CVInfoType;
 
@@ -37,12 +37,14 @@ export interface Experience extends CvBaseInfo {
 }
 
 export const profileInfoSchema = new schema.Entity(
-  'profileInfoEntities',
+  "profileInfoEntities",
   {},
   {
-    idAttribute: 'profileSlug',
+    idAttribute: "profileSlug"
   }
 );
 
-export const selectHydratedProfileInfo = (state: AppState, id: string | undefined): ProfileInfo | undefined =>
-  denormalize(id, profileInfoSchema, state);
+export const selectHydratedProfileInfo = (
+  state: AppState,
+  id: string | undefined
+): ProfileInfo | undefined => denormalize(id, profileInfoSchema, state);

@@ -4,6 +4,7 @@ import store from "store";
 import EnvChecker from "../helpers/envChecker";
 import { CurrentUser } from "../model/currentUser";
 import { USER_ID_KEY } from "../constants/actionTicket";
+import { ACTION_TYPES } from "../actions/actionTypes";
 declare var Sentry: any;
 
 function setUserToTrackers(user: CurrentUser) {
@@ -37,22 +38,22 @@ function removeUserFromTrackers() {
 const setUserToTracker: Middleware = () => (next: any) => (action: any) => {
   try {
     switch (action.type) {
-      // case ACTION_TYPES.SIGN_IN_SUCCEEDED_TO_SIGN_IN:
-      // case ACTION_TYPES.AUTH_SUCCEEDED_TO_CHECK_LOGGED_IN: {
-      //   if (action.payload && action.payload.user) {
-      //     const user = action.payload.user as CurrentUser;
-      //     setUserToTrackers(user);
-      //   } else {
-      //     removeUserFromTrackers();
-      //   }
-      //   break;
-      // }
+      case ACTION_TYPES.SIGN_IN_SUCCEEDED_TO_SIGN_IN:
+      case ACTION_TYPES.AUTH_SUCCEEDED_TO_CHECK_LOGGED_IN: {
+        if (action.payload && action.payload.user) {
+          const user = action.payload.user as CurrentUser;
+          setUserToTrackers(user);
+        } else {
+          removeUserFromTrackers();
+        }
+        break;
+      }
 
-      // case ACTION_TYPES.AUTH_SUCCEEDED_TO_SIGN_OUT:
-      // case ACTION_TYPES.AUTH_FAILED_TO_CHECK_LOGGED_IN: {
-      //   removeUserFromTrackers();
-      //   break;
-      // }
+      case ACTION_TYPES.AUTH_SUCCEEDED_TO_SIGN_OUT:
+      case ACTION_TYPES.AUTH_FAILED_TO_CHECK_LOGGED_IN: {
+        removeUserFromTrackers();
+        break;
+      }
 
       default:
         break;

@@ -2,19 +2,16 @@ import React, { FC } from "react";
 import Helmet from "react-helmet";
 import axios from "axios";
 import { LazyImage } from "@pluto_network/pluto-design-elements";
-import Footer from "../footer";
-import Icon from "../icons";
-// import { AppState } from '../../reducers';
-// import SearchQueryInput from '../common/InputWithSuggestionList/searchQueryInput';
-// import TrendingPaper from './components/trendingPaper';
-// import JournalsInfo from './components/journalsInfo';
-// import AffiliationsInfo from './components/affiliationsInfo';
-// import HomeAPI from '../../api/home';
-// import { UserDevice } from '../layouts/reducer';
-// import { Institute } from '../../model/Institute';
+import { useSelector } from "react-redux";
+import SearchInput from "../../components/searchInput";
+import Footer from "../../components/footer";
+import Icon from "../../components/icons";
+import { AppState } from "../../store/rootReducer";
+import { UserDevice } from "../../reducers/layout";
 const useStyles = require("isomorphic-style-loader/useStyles");
 const styles = require("./home.scss");
 
+const MAX_KEYWORD_SUGGESTION_LIST_COUNT = 5;
 const JOURNALS = [
   "nature",
   "science",
@@ -111,9 +108,9 @@ const ScinapseFigureContent: React.FC<{ papersFoundCount: number }> = ({
 
 const Home: React.FC = () => {
   useStyles(styles);
-  // const isMobile = useSelector<AppState, boolean>(
-  //   (state: AppState) => state.layout.userDevice === UserDevice.MOBILE
-  // );
+  const isMobile = useSelector<AppState, boolean>(
+    (state: AppState) => state.layout.userDevice === UserDevice.MOBILE
+  );
   // const instituteInfo = useSelector<AppState, Institute | null>(
   //   (state: AppState) => state.currentUser.ipInstitute
   // );
@@ -130,21 +127,21 @@ const Home: React.FC = () => {
   //     cancelToken.current = axios.CancelToken.source();
   //   };
   // }, []);
-
-  // const journalList = (isMobile ? MOBILE_JOURNALS : JOURNALS).map(
-  const journalList = JOURNALS.map((journal, index) => {
-    return (
-      <div className={styles.journalImageWrapper} key={index}>
-        <LazyImage
-          src={`https://assets.pluto.network/journals/${journal}.png`}
-          webpSrc={`https://assets.pluto.network/journals/${journal}.webp`}
-          imgClassName={styles.journalImage}
-          loading="lazy"
-          alt={`${journal}LogoImage`}
-        />
-      </div>
-    );
-  });
+  const journalList = (isMobile ? MOBILE_JOURNALS : JOURNALS).map(
+    (journal, index) => {
+      return (
+        <div className={styles.journalImageWrapper} key={index}>
+          <LazyImage
+            src={`https://assets.pluto.network/journals/${journal}.png`}
+            webpSrc={`https://assets.pluto.network/journals/${journal}.webp`}
+            imgClassName={styles.journalImage}
+            loading="lazy"
+            alt={`${journal}LogoImage`}
+          />
+        </div>
+      );
+    }
+  );
 
   return (
     <div className={styles.articleSearchFormContainer}>
@@ -168,12 +165,12 @@ const Home: React.FC = () => {
               </div>
             )} */}
             <div tabIndex={0} className={styles.searchInputForm}>
-              {/* <SearchQueryInput
+              <SearchInput
                 maxCount={MAX_KEYWORD_SUGGESTION_LIST_COUNT}
                 actionArea="home"
                 autoFocus={!isMobile}
                 inputClassName={styles.searchInput}
-              /> */}
+              />
             </div>
             <div className={styles.searchTryKeyword} />
             <div className={styles.catchphrase}>
