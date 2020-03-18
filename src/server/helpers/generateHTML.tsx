@@ -6,6 +6,8 @@ interface Params {
   linkTags: string;
   styleTags: string;
   scriptTags: string;
+  muiCss: string;
+  plutoCss: string;
   helmet: HelmetData;
 }
 
@@ -14,7 +16,9 @@ export function generateHTML({
   helmet,
   scriptTags,
   linkTags,
-  styleTags
+  styleTags,
+  muiCss,
+  plutoCss
 }: Params) {
   return `<!doctype html>
 <html lang="en">
@@ -26,6 +30,8 @@ export function generateHTML({
     ${scriptTags}
     ${linkTags}
     ${styleTags}
+    <style id="jss-server-side">${muiCss}</style>
+    <style>${plutoCss}</style>
   </head>
   <body>
     ${sprite.stringify()}

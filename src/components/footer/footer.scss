@@ -1,0 +1,120 @@
+.footerWrapper {
+  background-color: $gray30;
+  box-shadow: inset 0 2px 8px -2px rgba(0, 0, 0, 0.07);
+}
+.footerContainer {
+  max-width: $container_width;
+  min-height: 200px;
+  position: relative;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  font-size: 13px;
+  line-height: 1.6;
+  color: $gray600;
+  padding: 32px 16px 16px 16px;
+}
+
+.scinapseInfoWrapper {
+  display: flex;
+  justify-content: space-between;
+}
+
+.scinapseInfo {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  .scinapseLogo {
+    display: flex;
+    flex-direction: column;
+
+    .logoIcon {
+      svg {
+        width: 145px;
+        height: 38px;
+      }
+    }
+
+    .logoContext {
+      font-size: 16px;
+      color: $gray600;
+    }
+  }
+}
+
+.rightBox {
+  display: flex;
+}
+
+.menu {
+  display: flex;
+  flex-direction: column;
+  width: 180px;
+
+  & + & {
+    margin-left: 24px;
+  }
+}
+
+.menuTitle {
+  font-size: 16px;
+  font-weight: 500;
+  color: $black1;
+  margin-bottom: 16px;
+}
+.menuItem {
+  font-size: 15px;
+  color: $black1;
+  cursor: pointer;
+
+  & + & {
+    margin-top: 10px;
+  }
+
+  &:hover {
+    color: $gray800;
+    transition: 0.2s ease-in-out;
+  }
+}
+
+.dialogPaper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.sourceVendorWrapper {
+  display: flex;
+  width: 600px;
+  height: 600px;
+  align-items: center;
+  flex-direction: column;
+  justify-content: space-evenly;
+
+  .sourceVendorItem {
+    img {
+      width: 202px;
+      height: 40px;
+      object-fit: contain;
+    }
+  }
+}
+
+@media (max-width: $mobile_width) {
+  .logoContext {
+    display: none;
+  }
+
+  .scinapseInfoWrapper {
+    flex-direction: column;
+  }
+
+  .rightBox {
+    margin-top: 32px;
+  }
+
+  .title {
+    margin-top: 44px;
+  }
+}
