@@ -203,6 +203,11 @@
   "peerDependencies": {
     "ajv": "6.0.0"
   },
+  "prettier": {
+    "printWidth": 120,
+    "trailingComma": "es5",
+    "singleQuote": true
+  },
   "browserslist": [
     "> 1%",
     "ie > 9"

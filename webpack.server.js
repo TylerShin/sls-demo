@@ -16,7 +16,8 @@ module.exports = {
   resolve: {
     extensions: [".ts", ".tsx", ".js", ".jsx"],
     alias: {
-      "react-pdf": "react-pdf/dist/esm/entry.webpack"
+      "react-pdf": "react-pdf/dist/esm/entry.webpack",
+      "@src": path.resolve(__dirname, "src")
     }
   },
   stats: "errors-only",

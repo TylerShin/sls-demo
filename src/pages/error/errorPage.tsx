@@ -11,8 +11,6 @@ const ErrorPage: FC = () => {
   const errorNum = isNaN(parseInt(path, 10)) ? 404 : parseInt(path, 10);
   const firstNumber = errorNum ? parseInt(String(errorNum).slice(0, 1), 10) : 4;
 
-  console.log(errorNum);
-
   let errorContent: string;
   switch (firstNumber) {
     case 4:

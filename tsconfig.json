@@ -4,6 +4,7 @@
     "target": "es2015",
     "outDir": "dist",
     "rootDir": ".",
+    "baseUrl": ".",
     "sourceMap": true,
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
@@ -15,7 +16,11 @@
     "allowJs": true,
     "experimentalDecorators": true,
     "skipLibCheck": true,
-    "strictNullChecks": true
+    "strictNullChecks": true,
+    "paths": {
+      "@src/*": ["src/*"]
+    }
   },
+  "include": ["src/**/*"],
   "exclude": ["node_modules/**/*", "temp/**/*"]
 }
