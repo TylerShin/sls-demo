@@ -1,0 +1,63 @@
+.title {
+  vertical-align: top;
+  font-size: 20px;
+  line-height: 1.4;
+  color: $navy0;
+  font-weight: 500;
+
+  b {
+    font-weight: 900;
+    vertical-align: top;
+  }
+
+  &:hover {
+    text-decoration: underline;
+  }
+
+  &:visited {
+    color: $purple0;
+  }
+}
+
+.externalIconWrapper {
+  display: inline-flex;
+  height: 24px;
+  margin-top: 2px;
+  margin-left: 2px;
+  justify-content: center;
+  align-items: center;
+  color: $navy0;
+
+  &:visited {
+    color: $purple0;
+  }
+
+  .externalIcon {
+    width: 20px;
+    height: 20px;
+
+    svg {
+      width: 20px;
+      height: 20px;
+    }
+  }
+
+  .newLabel {
+    font-size: 10px;
+    color: $main_blue0;
+    margin-left: 4px;
+  }
+}
+
+// Mobile
+@media (max-width: $mobile_width) {
+  .title {
+    font-size: 16px;
+    line-height: 1;
+    font-weight: 500;
+  }
+
+  .externalIconWrapper {
+    display: none;
+  }
+}

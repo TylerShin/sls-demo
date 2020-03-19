@@ -1,12 +1,12 @@
-import * as React from 'react';
+import React from 'react';
 import { Location } from 'history';
 import SearchQueryManager from '../../../../helpers/searchQueryManager';
-import DesktopPagination from '../../../common/desktopPagination';
-import MobilePagination from '../../../common/mobilePagination';
-import { getUrlDecodedQueryParamsObject } from '../../../../helpers/makeNewFilterLink';
-import { withStyles } from '../../../../helpers/withStylesHelper';
-import { UserDevice } from '../../../layouts/reducer';
-const styles = require('../../articleSearch.scss');
+import DesktopPagination from '@src/components/desktopPagination';
+import MobilePagination from '@src/components/mobilePagination';
+import { getUrlDecodedQueryParamsObject } from '@src/helpers/makeNewFilterLink';
+import { withStyles } from '@src/helpers/withStyles';
+import { UserDevice } from '@src/reducers/layout';
+const styles = require('../../search.scss');
 
 interface PaginationProps {
   location: Location;

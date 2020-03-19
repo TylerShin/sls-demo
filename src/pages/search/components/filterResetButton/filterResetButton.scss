@@ -1,0 +1,17 @@
+.resetButtonWrapper {
+  position: absolute;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  right: 0;
+  bottom: 0;
+  top: 2px;
+  font-size: 13px;
+  color: $gray600;
+  cursor: pointer;
+  font-weight: normal;
+
+  &:hover {
+    color: $gray500;
+  }
+}

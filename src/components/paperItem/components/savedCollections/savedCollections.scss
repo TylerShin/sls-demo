@@ -1,0 +1,46 @@
+.itemWrapper {
+  margin-bottom: 8px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid $gray200;
+}
+
+.bookmarkIcon {
+  display: inline-flex;
+  justify-content: center;
+  vertical-align: middle;
+  align-items: center;
+  width: 20px;
+  height: 20px;
+  margin-top: -4px;
+  margin-right: 4px;
+
+  svg {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    vertical-align: top;
+    color: $main_blue0;
+  }
+}
+
+.subContext {
+  color: $gray600;
+  font-size: 14px;
+  line-height: 20px;
+}
+
+.collectionTitle {
+  color: $gray700;
+  font-weight: 500;
+  font-size: 14px;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+@media (max-width: $mobile_width) {
+  .itemWrapper {
+    display: none;
+  }
+}

@@ -1,6 +1,7 @@
 import { AppThunkAction } from '@src/store';
-import { checkAuthStatus as checkAuth, SignInResult } from '@src/api/auth';
+import { checkAuthStatus as checkAuth } from '@src/api/auth';
 import { ACTION_TYPES } from '../actionTypes';
+import { SignInResult } from '@src/api/types/auth';
 
 export function checkAuthStatus(): AppThunkAction<Promise<SignInResult | undefined>> {
   return async (dispatch, _getState, { axios }) => {

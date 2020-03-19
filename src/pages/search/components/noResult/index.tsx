@@ -1,9 +1,9 @@
-import * as React from 'react';
-import { ArticleSearchState } from '../../records';
-import { withStyles } from '../../../../helpers/withStylesHelper';
-import Icon from '../../../../icons';
+import React from 'react';
+import { withStyles } from '@src/helpers/withStyles';
+import Icon from '@src/components/icons';
 import RequestPaperDialog from '../requestPaperDialog';
 import NoResultContent from './noResultContent';
+import { ArticleSearchState } from '@src/reducers/articleSearch';
 const styles = require('./noResult.scss');
 
 interface NoResultProps {

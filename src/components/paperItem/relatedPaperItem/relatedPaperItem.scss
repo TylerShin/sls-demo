@@ -1,0 +1,55 @@
+.paperItemWrapper + .paperItemWrapper {
+  margin-top: 16px;
+}
+
+.title {
+  display: block;
+  font-size: 16px;
+  line-height: 1.4;
+  color: $navy0;
+  margin-bottom: 4px;
+  font-weight: 500;
+  cursor: pointer;
+
+  &:hover {
+    text-decoration: underline;
+  }
+
+  &:visited {
+    color: $purple0;
+  }
+
+  &.notVisitedTitle {
+    &:visited {
+      color: $navy0;
+    }
+  }
+}
+
+.description {
+  font-size: 13px;
+  line-height: 1.4;
+  color: $gray500;
+}
+
+.authorLink,
+.journalLink {
+  color: $gray600;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+.author,
+.journal {
+  display: block;
+  margin-bottom: 2px;
+
+  svg {
+    width: 12px;
+    height: 12px;
+    margin-right: 4px;
+    margin-bottom: -2px;
+  }
+}

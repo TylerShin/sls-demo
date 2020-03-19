@@ -1,4 +1,4 @@
-import * as store from 'store';
+import store from 'store';
 import ActionTicketManager from '..';
 import ActionTicket, { ActionTicketParams, FinalActionTicket } from '../actionTicket';
 import { DEVICE_ID_KEY, SESSION_ID_KEY } from '../../../constants/actionTicket';

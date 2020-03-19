@@ -1,0 +1,15 @@
+.sourceHostInfo {
+  @extend %one-line-overflow-ellipsis;
+}
+
+@media (max-width: $mobile_width) {
+  .extSourceIcon {
+    display: none !important;
+  }
+}
+
+@media (max-width: 374px) {
+  .sourceHostInfo {
+    display: none;
+  }
+}

@@ -1,12 +1,12 @@
-import * as React from 'react';
-import * as store from 'store';
-import { Paper } from '../../../../model/paper';
-import { CurrentUser } from '../../../../model/currentUser';
-import { withStyles } from '../../../../helpers/withStylesHelper';
-import SearchPaperItem from '../../../common/paperItem/searchPaperItem';
-import ArticleSpinner from '../../../common/spinner/articleSpinner';
-import { RESEARCH_HISTORY_KEY, HistoryPaper } from '../../../researchHistory';
-import PaperAPI, { PaperSource } from '../../../../api/paper';
+import React from 'react';
+import store from 'store';
+import { Paper } from '@src/model/paper';
+import { CurrentUser } from '@src/model/currentUser';
+import { withStyles } from '@src/helpers/withStyles';
+import PaperAPI, { PaperSource } from '@src/api/paper';
+import SearchPaperItem from '@src/components/paperItem/searchPaperItem';
+import { HistoryPaper, RESEARCH_HISTORY_KEY } from '@src/components/researchHistory';
+import ArticleSpinner from '@src/components/spinner/articleSpinner';
 const styles = require('./searchList.scss');
 
 interface SearchListProps {
@@ -21,14 +21,11 @@ const SearchList: React.FC<SearchListProps> = props => {
   const historyPapers: HistoryPaper[] = store.get(RESEARCH_HISTORY_KEY) || [];
   const [sourceDomains, setSourceDomains] = React.useState<PaperSource[]>([]);
 
-  React.useEffect(
-    () => {
-      PaperAPI.getSources(papers.map(p => p.id)).then(domains => {
-        setSourceDomains(domains);
-      });
-    },
-    [papers]
-  );
+  React.useEffect(() => {
+    PaperAPI.getSources(papers.map(p => p.id)).then(domains => {
+      setSourceDomains(domains);
+    });
+  }, [papers]);
 
   if (!papers || !searchQueryText) return null;
 

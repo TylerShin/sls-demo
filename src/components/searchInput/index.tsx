@@ -1,42 +1,35 @@
-import React from "react";
-import Axios, { CancelTokenSource } from "axios";
-import classNames from "classnames";
-import ClickAwayListener from "@material-ui/core/ClickAwayListener";
-import { useLocation, useHistory } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
-import { Button } from "@pluto_network/pluto-design-elements";
-import {
-  fetchSuggestionKeyword,
-  CompletionKeyword
-} from "../../api/completion";
-import { AppState } from "../../store/rootReducer";
-import { PAPER_LIST_SORT_OPTIONS, FilterObject } from "../../constants/search";
-import { UserDevice } from "../../reducers/layout";
-import { useDebouncedFetch } from "../../hooks/useDebouncedFetch";
-import { getAxiosInstance } from "../../api/axios";
-import { ACTION_TYPES } from "../../actions/actionTypes";
+import React from 'react';
+import Axios, { CancelTokenSource } from 'axios';
+import classNames from 'classnames';
+import ClickAwayListener from '@material-ui/core/ClickAwayListener';
+import { useLocation, useHistory } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
+import { Button } from '@pluto_network/pluto-design-elements';
+import { fetchSuggestionKeyword, CompletionKeyword } from '../../api/completion';
+import { AppState } from '../../store/rootReducer';
+import { PAPER_LIST_SORT_OPTIONS, FilterObject } from '../../types/search';
+import { UserDevice } from '../../reducers/layout';
+import { useDebouncedFetch } from '../../hooks/useDebouncedFetch';
+import { getAxiosInstance } from '../../api/axios';
+import { ACTION_TYPES } from '../../actions/actionTypes';
 import {
   getRecentQueries,
   deleteQueryFromRecentList,
-  saveQueryToRecentHistory
-} from "../../helpers/recentQueryManager";
-import ActionTicketManager from "../../helpers/actionTicketManager";
-import { getCurrentPageType } from "../../helpers/getCurrentPageType";
-import { trackEvent } from "../../helpers/handleGA";
-import {
-  changeSearchInput,
-  closeMobileSearchBox,
-  openMobileSearchBox
-} from "../../reducers/searchInput";
-import Icon from "../icons";
-import { handleDropdownKeydown } from "../../helpers/handleInputKeydown";
-import { getRawHTMLWithBoldTag } from "../../helpers/getRawHTMLWithBoldTag";
-import SearchQueryManager from "../../helpers/searchQueryManager";
-const useStyles = require("isomorphic-style-loader/useStyles");
-const s = require("./searchInput.scss");
+  saveQueryToRecentHistory,
+} from '../../helpers/recentQueryManager';
+import ActionTicketManager from '../../helpers/actionTicketManager';
+import { getCurrentPageType } from '../../helpers/getCurrentPageType';
+import { trackEvent } from '../../helpers/handleGA';
+import { changeSearchInput, closeMobileSearchBox, openMobileSearchBox } from '../../reducers/searchInput';
+import Icon from '../icons';
+import { handleDropdownKeydown } from '../../helpers/handleDropdownKeydown';
+import { getRawHTMLWithBoldTag } from '../../helpers/getRawHTMLWithBoldTag';
+import SearchQueryManager from '../../helpers/searchQueryManager';
+const useStyles = require('isomorphic-style-loader/useStyles');
+const s = require('./searchInput.scss');
 
 type SearchQueryInputProps = React.InputHTMLAttributes<HTMLInputElement> & {
-  actionArea: "home" | "topBar" | "paperShow";
+  actionArea: 'home' | 'topBar' | 'paperShow';
   maxCount: number;
   currentFilter?: FilterObject;
   wrapperClassName?: string;
@@ -45,7 +38,7 @@ type SearchQueryInputProps = React.InputHTMLAttributes<HTMLInputElement> & {
   sort?: PAPER_LIST_SORT_OPTIONS;
 };
 
-type SearchSourceType = "history" | "suggestion" | "raw";
+type SearchSourceType = 'history' | 'suggestion' | 'raw';
 
 interface SubmitParams {
   from: SearchSourceType;
@@ -64,41 +57,30 @@ const SearchQueryInput: React.FC<SearchQueryInputProps> = props => {
   const dispatch = useDispatch();
   const location = useLocation();
   const history = useHistory();
-  const searchQuery = useSelector<AppState, string>(
-    state => state.searchInput.query
-  );
-  const isOpenMobileSearchBox = useSelector<AppState, boolean>(
-    state => state.searchInput.isOpenMobileBox
-  );
-  const isMobile = useSelector<AppState, boolean>(
-    state => state.layout.userDevice === UserDevice.MOBILE
-  );
+  const searchQuery = useSelector<AppState, string>(state => state.searchInput.query);
+  const isOpenMobileSearchBox = useSelector<AppState, boolean>(state => state.searchInput.isOpenMobileBox);
+  const isMobile = useSelector<AppState, boolean>(state => state.layout.userDevice === UserDevice.MOBILE);
   const [isOpen, setIsOpen] = React.useState(false);
   const [highlightIdx, setHighlightIdx] = React.useState(-1);
-  const [inputValue, setInputValue] = React.useState(searchQuery || "");
-  const cancelTokenSource = React.useRef<CancelTokenSource>(
-    Axios.CancelToken.source()
-  );
-  const { data: suggestionWords, setParams } = useDebouncedFetch<
-    string,
-    CompletionKeyword[]
-  >({
-    initialParams: "",
+  const [inputValue, setInputValue] = React.useState(searchQuery || '');
+  const cancelTokenSource = React.useRef<CancelTokenSource>(Axios.CancelToken.source());
+  const { data: suggestionWords, setParams } = useDebouncedFetch<string, CompletionKeyword[]>({
+    initialParams: '',
     fetchFunc: async (q: string) => {
       const res = await fetchSuggestionKeyword({
         query: q,
         cancelToken: cancelTokenSource.current.token,
-        axios: getAxiosInstance()
+        axios: getAxiosInstance(),
       });
       return res;
     },
     validateFunc: (query: string) => {
-      if (!query || query.length < 2) throw new Error("keyword is too short");
+      if (!query || query.length < 2) throw new Error('keyword is too short');
     },
-    wait: 200
+    wait: 200,
   });
 
-  const [genuineInputValue, setGenuineInputValue] = React.useState("");
+  const [genuineInputValue, setGenuineInputValue] = React.useState('');
   React.useEffect(() => {
     setRecentQueries(getRecentQueries(genuineInputValue));
   }, [genuineInputValue]);
@@ -109,19 +91,14 @@ const SearchQueryInput: React.FC<SearchQueryInputProps> = props => {
     setParams(searchQuery);
   }, [searchQuery, setParams]);
 
-  const [recentQueries, setRecentQueries] = React.useState(
-    getRecentQueries(genuineInputValue)
-  );
+  const [recentQueries, setRecentQueries] = React.useState(getRecentQueries(genuineInputValue));
   let keywordsToShow = recentQueries.slice(0, props.maxCount);
   if (suggestionWords && suggestionWords.length > 0) {
     const suggestionList = suggestionWords
       .filter(k => recentQueries.every(query => query.text !== k.keyword))
       .map(k => ({ text: k.keyword, removable: false }));
 
-    keywordsToShow = [...recentQueries, ...suggestionList].slice(
-      0,
-      props.maxCount
-    );
+    keywordsToShow = [...recentQueries, ...suggestionList].slice(0, props.maxCount);
   }
 
   React.useEffect(() => {
@@ -139,31 +116,30 @@ const SearchQueryInput: React.FC<SearchQueryInputProps> = props => {
       dispatch({
         type: ACTION_TYPES.GLOBAL_ALERT_NOTIFICATION,
         payload: {
-          type: "error",
-          message: "You should search more than 2 characters."
-        }
+          type: 'error',
+          message: 'You should search more than 2 characters.',
+        },
       });
       return;
     }
 
     ActionTicketManager.trackTicket({
       pageType: getCurrentPageType(),
-      actionType: "fire",
+      actionType: 'fire',
       actionArea: props.actionArea,
-      actionTag: "query",
-      actionLabel: searchKeyword
+      actionTag: 'query',
+      actionLabel: searchKeyword,
     });
-    if (from === "history" || from === "suggestion") {
+    if (from === 'history' || from === 'suggestion') {
       ActionTicketManager.trackTicket({
         pageType: getCurrentPageType(),
-        actionType: "fire",
+        actionType: 'fire',
         actionArea: props.actionArea,
-        actionTag:
-          from === "history" ? "searchHistoryQuery" : "searchSuggestionQuery",
-        actionLabel: searchKeyword
+        actionTag: from === 'history' ? 'searchHistoryQuery' : 'searchSuggestionQuery',
+        actionLabel: searchKeyword,
       });
     }
-    trackEvent({ category: "Search", action: "Query", label: searchKeyword });
+    trackEvent({ category: 'Search', action: 'Query', label: searchKeyword });
 
     saveQueryToRecentHistory(searchKeyword);
     dispatch(changeSearchInput({ query: searchKeyword }));
@@ -172,12 +148,12 @@ const SearchQueryInput: React.FC<SearchQueryInputProps> = props => {
     const currentPage = getCurrentPageType();
     const searchQuery = SearchQueryManager.stringifyPapersQuery({
       query: searchKeyword,
-      sort: props.sort || "RELEVANCE",
+      sort: props.sort || 'RELEVANCE',
       filter: props.currentFilter || {},
-      page: 1
+      page: 1,
     });
 
-    if (currentPage === "authorSearchResult") {
+    if (currentPage === 'authorSearchResult') {
       history.push(`/search/authors?${searchQuery}`);
     } else {
       history.push(`/search?${searchQuery}`);
@@ -185,12 +161,12 @@ const SearchQueryInput: React.FC<SearchQueryInputProps> = props => {
   }
 
   function clickSearchBtn() {
-    let from: SearchSourceType = "raw";
+    let from: SearchSourceType = 'raw';
     const matchKeyword = keywordsToShow.find(k => k.text === inputValue);
     if (matchKeyword && matchKeyword.removable) {
-      from = "history";
+      from = 'history';
     } else if (matchKeyword && !matchKeyword.removable) {
-      from = "suggestion";
+      from = 'suggestion';
     }
 
     handleSubmit({ query: genuineInputValue, from });
@@ -202,18 +178,18 @@ const SearchQueryInput: React.FC<SearchQueryInputProps> = props => {
         key={k.text + i}
         className={classNames({
           [s.listItem]: true,
-          [s.highlight]: highlightIdx === i
+          [s.highlight]: highlightIdx === i,
         })}
         onClick={() => {
           handleSubmit({
             query: k.text,
-            from: k.removable ? "history" : "suggestion"
+            from: k.removable ? 'history' : 'suggestion',
           });
         }}
       >
         <span
           dangerouslySetInnerHTML={{
-            __html: getRawHTMLWithBoldTag(k.text, genuineInputValue)
+            __html: getRawHTMLWithBoldTag(k.text, genuineInputValue),
           }}
         />
         {k.removable && (
@@ -240,24 +216,13 @@ const SearchQueryInput: React.FC<SearchQueryInputProps> = props => {
     if (!isOpenMobileSearchBox) setIsOpen(false);
   }, [isOpenMobileSearchBox]);
 
-  const listWrapperClassName = props.listWrapperClassName
-    ? props.listWrapperClassName
-    : s.list;
-  const keywordList = isOpen ? (
-    <ul className={listWrapperClassName}>{keywordItems}</ul>
-  ) : null;
-  const wrapperClassName = props.wrapperClassName
-    ? props.wrapperClassName
-    : s.wrapper;
+  const listWrapperClassName = props.listWrapperClassName ? props.listWrapperClassName : s.list;
+  const keywordList = isOpen ? <ul className={listWrapperClassName}>{keywordItems}</ul> : null;
+  const wrapperClassName = props.wrapperClassName ? props.wrapperClassName : s.wrapper;
   const inputClassName = props.inputClassName ? props.inputClassName : s.input;
-  const placeholder = isMobile
-    ? "Search papers by keyword"
-    : "Search papers by title, author, doi or keyword";
+  const placeholder = isMobile ? 'Search papers by keyword' : 'Search papers by title, author, doi or keyword';
   const backButton = isOpenMobileSearchBox ? (
-    <div
-      className={s.searchButtonWrapper}
-      style={{ left: "2px", right: "auto", top: "2px" }}
-    >
+    <div className={s.searchButtonWrapper} style={{ left: '2px', right: 'auto', top: '2px' }}>
       <Button
         elementType="button"
         aria-label="Go back button"
@@ -274,10 +239,7 @@ const SearchQueryInput: React.FC<SearchQueryInputProps> = props => {
   ) : null;
 
   const clearButton = isOpenMobileSearchBox ? (
-    <div
-      className={s.searchButtonWrapper}
-      style={{ right: "52px", top: "2px" }}
-    >
+    <div className={s.searchButtonWrapper} style={{ right: '52px', top: '2px' }}>
       <Button
         elementType="button"
         aria-label="Clear keyword button"
@@ -285,8 +247,8 @@ const SearchQueryInput: React.FC<SearchQueryInputProps> = props => {
         isLoading={false}
         color="gray"
         onClick={() => {
-          setInputValue("");
-          setGenuineInputValue("");
+          setInputValue('');
+          setGenuineInputValue('');
         }}
       >
         <Icon icon="X_BUTTON" />
@@ -312,25 +274,21 @@ const SearchQueryInput: React.FC<SearchQueryInputProps> = props => {
               currentIdx: highlightIdx,
               onMove: i => {
                 setHighlightIdx(i);
-                setInputValue(
-                  keywordsToShow[i] ? keywordsToShow[i].text : genuineInputValue
-                );
+                setInputValue(keywordsToShow[i] ? keywordsToShow[i].text : genuineInputValue);
               },
               onSelect: i => {
-                let from: SearchSourceType = "raw";
+                let from: SearchSourceType = 'raw';
                 if (keywordsToShow[i] && keywordsToShow[i].removable) {
-                  from = "history";
+                  from = 'history';
                 } else if (keywordsToShow[i] && !keywordsToShow[i].removable) {
-                  from = "suggestion";
+                  from = 'suggestion';
                 }
 
                 handleSubmit({
-                  query: keywordsToShow[i]
-                    ? keywordsToShow[i].text
-                    : genuineInputValue,
-                  from
+                  query: keywordsToShow[i] ? keywordsToShow[i].text : genuineInputValue,
+                  from,
                 });
-              }
+              },
             });
           }}
           onFocus={() => {
@@ -358,17 +316,9 @@ const SearchQueryInput: React.FC<SearchQueryInputProps> = props => {
           className={inputClassName}
         />
         {clearButton}
-        <div
-          className={s.searchButtonWrapper}
-          style={props.actionArea == "home" ? { top: "4px" } : { top: "2px" }}
-        >
-          {props.actionArea == "home" ? (
-            <Button
-              elementType="button"
-              aria-label="Search keyword button"
-              size="medium"
-              onClick={clickSearchBtn}
-            >
+        <div className={s.searchButtonWrapper} style={props.actionArea == 'home' ? { top: '4px' } : { top: '2px' }}>
+          {props.actionArea == 'home' ? (
+            <Button elementType="button" aria-label="Search keyword button" size="medium" onClick={clickSearchBtn}>
               <Icon icon="SEARCH" />
               <span>Search</span>
             </Button>

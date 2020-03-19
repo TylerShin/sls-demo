@@ -1,9 +1,9 @@
-import * as React from 'react';
-import { withStyles } from '../../../../helpers/withStylesHelper';
-import Icon from '../../../../icons';
+import React from 'react';
+import { withStyles } from '@src/helpers/withStyles';
+import Icon from '@src/components/icons';
 import { Link } from 'react-router-dom';
-import PapersQueryFormatter, { FilterObject } from '../../../../helpers/searchQueryManager';
-import * as classNames from 'classnames';
+import PapersQueryFormatter, { FilterObject } from '@src/helpers/searchQueryManager';
+import classNames from 'classnames';
 const styles = require('./noResultInSearch.scss');
 
 interface NoResultInSearchProps {

@@ -1,9 +1,9 @@
-import { stringify } from "qs";
-import { SearchPageQueryParams } from "../pages/search/types";
-import { SearchPapersParams } from "../api/types/paper";
-import SafeURIDecoder from "./safeURIDecoder";
-import { PAPER_LIST_SORT_OPTIONS } from "../constants/search";
-import { isEmpty } from "lodash";
+import { stringify } from 'qs';
+import { SearchPageQueryParams } from '../pages/search/types';
+import { SearchPapersParams } from '../api/types/paper';
+import SafeURIDecoder from './safeURIDecoder';
+import { PAPER_LIST_SORT_OPTIONS } from '../types/search';
+import { isEmpty } from 'lodash';
 
 export interface FilterObject {
   yearFrom: number | string;
@@ -29,37 +29,30 @@ export const DEFAULT_FILTER: FilterObject = {
   yearFrom: 0,
   yearTo: 0,
   fos: [],
-  journal: []
+  journal: [],
 };
 
 class SearchQueryManager {
-  public makeSearchQueryFromParamsObject(
-    queryParams: SearchPageQueryParams
-  ): SearchPapersParams {
-    const query = SafeURIDecoder.decode(
-      queryParams.query ? queryParams.query : ""
-    );
-    const searchPage =
-      parseInt(queryParams.page ? queryParams.page : "0", 10) - 1 || 0;
+  public makeSearchQueryFromParamsObject(queryParams: SearchPageQueryParams): SearchPapersParams {
+    const query = SafeURIDecoder.decode(queryParams.query ? queryParams.query : '');
+    const searchPage = parseInt(queryParams.page ? queryParams.page : '0', 10) - 1 || 0;
     const filter = queryParams.filter;
     const sort = queryParams.sort;
 
     return {
       query,
       page: searchPage,
-      filter: filter || "",
-      sort: sort || ""
+      filter: filter || '',
+      sort: sort || '',
     };
   }
 
   public stringifyPapersQuery(queryParamsObject: SearchPageQueryParamsObject) {
     if (queryParamsObject.filter) {
-      const formattedFilter = this.getStringifiedPaperFilterParams(
-        queryParamsObject.filter
-      );
+      const formattedFilter = this.getStringifiedPaperFilterParams(queryParamsObject.filter);
       const formattedQueryParamsObject = {
         ...queryParamsObject,
-        ...{ filter: formattedFilter, query: queryParamsObject.query }
+        ...{ filter: formattedFilter, query: queryParamsObject.query },
       };
 
       return stringify(formattedQueryParamsObject);
@@ -74,32 +67,32 @@ class SearchQueryManager {
     }
 
     const filter = filterString
-      .split(",")
+      .split(',')
       .map(filter => {
-        const keyValueArr = filter.split("=");
+        const keyValueArr = filter.split('=');
         const object: Partial<RawFilter> = { [keyValueArr[0]]: keyValueArr[1] };
         return object;
       })
       .reduce((prev, current) => {
         const mappedObject: Partial<FilterObject> = {};
         if (current.year) {
-          const yearSet = current.year.split(":");
+          const yearSet = current.year.split(':');
           let yearFrom: string | number = parseInt(yearSet[0], 10);
           let yearTo: string | number = parseInt(yearSet[1], 10);
           if (isNaN(yearFrom)) {
-            yearFrom = "";
+            yearFrom = '';
           }
           if (isNaN(yearTo)) {
-            yearTo = "";
+            yearTo = '';
           }
           mappedObject.yearFrom = yearFrom;
           mappedObject.yearTo = yearTo;
         }
         if (current.journal) {
-          mappedObject.journal = current.journal.split("|");
+          mappedObject.journal = current.journal.split('|');
         }
         if (current.fos) {
-          mappedObject.fos = current.fos.split("|");
+          mappedObject.fos = current.fos.split('|');
         }
 
         return { ...prev, ...mappedObject };
@@ -108,15 +101,10 @@ class SearchQueryManager {
     return filter;
   }
 
-  public getStringifiedPaperFilterParams({
-    yearFrom,
-    yearTo,
-    fos,
-    journal
-  }: Partial<FilterObject>) {
-    const resultQuery = `year=${yearFrom || ""}:${yearTo || ""},fos=${
-      fos ? fos.join("|") : ""
-    },journal=${journal ? journal.join("|") : ""}`;
+  public getStringifiedPaperFilterParams({ yearFrom, yearTo, fos, journal }: Partial<FilterObject>) {
+    const resultQuery = `year=${yearFrom || ''}:${yearTo || ''},fos=${fos ? fos.join('|') : ''},journal=${
+      journal ? journal.join('|') : ''
+    }`;
 
     return resultQuery;
   }

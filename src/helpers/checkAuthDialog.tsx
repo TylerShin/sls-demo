@@ -1,5 +1,6 @@
 import store from '@src/store';
 import ActionTicketManager from './actionTicketManager';
+import GlobalDialogManager from './globalDialogManager';
 import { ActionArea, PageType, ActionTagType } from '@src/constants/actionTicket';
 import { AppState } from '@src/store/rootReducer';
 import { checkAuthStatus } from '@src/actions/auth/checkAuthStatus';

@@ -1,8 +1,8 @@
-import * as React from "react";
-import Dialog from "@material-ui/core/Dialog";
-import Icon from "../icons";
-const useStyles = require("isomorphic-style-loader/useStyles");
-const styles = require("./footer.scss");
+import React from 'react';
+import Dialog from '@material-ui/core/Dialog';
+import Icon from '../icons';
+const useStyles = require('isomorphic-style-loader/useStyles');
+const styles = require('./footer.scss');
 
 interface FooterProps {
   containerStyle?: React.CSSProperties;
@@ -21,10 +21,7 @@ const Footer: React.FC<FooterProps> = props => {
         <div className={styles.scinapseInfoWrapper}>
           <div className={styles.scinapseInfo}>
             <div className={styles.scinapseLogo}>
-              <Icon
-                icon="SCINAPSE_IMPROVEMENT_LOGO"
-                className={styles.logoIcon}
-              />
+              <Icon icon="SCINAPSE_IMPROVEMENT_LOGO" className={styles.logoIcon} />
               <span className={styles.logoContext}>Academic Search Engine</span>
             </div>
           </div>
@@ -54,96 +51,47 @@ const Footer: React.FC<FooterProps> = props => {
                   setIsSourceOpen(false);
                 }}
                 classes={{
-                  paper: styles.dialogPaper
+                  paper: styles.dialogPaper,
                 }}
                 maxWidth="lg"
               >
                 <div className={styles.sourceVendorWrapper}>
                   <div className={styles.sourceVendorItem}>
-                    <a
-                      href="https://aka.ms/msracad"
-                      target="_blank"
-                      rel="noopener nofollow noreferrer"
-                    >
+                    <a href="https://aka.ms/msracad" target="_blank" rel="noopener nofollow noreferrer">
                       <picture>
-                        <source
-                          srcSet="https://assets.pluto.network/scinapse/ms-research.webp"
-                          type="image/webp"
-                        />
-                        <source
-                          srcSet="https://assets.pluto.network/scinapse/ms-research.jpg"
-                          type="image/jpeg"
-                        />
-                        <img
-                          src="https://assets.pluto.network/scinapse/ms-research.jpg"
-                          alt="circle"
-                        />
+                        <source srcSet="https://assets.pluto.network/scinapse/ms-research.webp" type="image/webp" />
+                        <source srcSet="https://assets.pluto.network/scinapse/ms-research.jpg" type="image/jpeg" />
+                        <img src="https://assets.pluto.network/scinapse/ms-research.jpg" alt="circle" />
                       </picture>
                     </a>
                   </div>
                   <div className={styles.sourceVendorItem}>
-                    <a
-                      href="https://www.semanticscholar.org/"
-                      target="_blank"
-                      rel="noopener nofollow noreferrer"
-                    >
+                    <a href="https://www.semanticscholar.org/" target="_blank" rel="noopener nofollow noreferrer">
                       <picture>
                         <source
                           srcSet="https://assets.pluto.network/scinapse/semantic-scholar.webp"
                           type="image/webp"
                         />
-                        <source
-                          srcSet="https://assets.pluto.network/scinapse/semantic-scholar.jpg"
-                          type="image/jpeg"
-                        />
-                        <img
-                          src="https://assets.pluto.network/scinapse/semantic-scholar.jpg"
-                          alt="circle"
-                        />
+                        <source srcSet="https://assets.pluto.network/scinapse/semantic-scholar.jpg" type="image/jpeg" />
+                        <img src="https://assets.pluto.network/scinapse/semantic-scholar.jpg" alt="circle" />
                       </picture>
                     </a>
                   </div>
                   <div className={styles.sourceVendorItem}>
-                    <a
-                      href="https://www.springernature.com/gp/"
-                      target="_blank"
-                      rel="noopener nofollow noreferrer"
-                    >
+                    <a href="https://www.springernature.com/gp/" target="_blank" rel="noopener nofollow noreferrer">
                       <picture>
-                        <source
-                          srcSet="https://assets.pluto.network/scinapse/springer-nature.webp"
-                          type="image/webp"
-                        />
-                        <source
-                          srcSet="https://assets.pluto.network/scinapse/springer-nature.jpg"
-                          type="image/jpeg"
-                        />
-                        <img
-                          src="https://assets.pluto.network/scinapse/springer-nature.jpg"
-                          alt="circle"
-                        />
+                        <source srcSet="https://assets.pluto.network/scinapse/springer-nature.webp" type="image/webp" />
+                        <source srcSet="https://assets.pluto.network/scinapse/springer-nature.jpg" type="image/jpeg" />
+                        <img src="https://assets.pluto.network/scinapse/springer-nature.jpg" alt="circle" />
                       </picture>
                     </a>
                   </div>
                   <div className={styles.sourceVendorItem}>
-                    <a
-                      href="https://www.ncbi.nlm.nih.gov/pubmed/"
-                      target="_blank"
-                      rel="noopener nofollow noreferrer"
-                    >
+                    <a href="https://www.ncbi.nlm.nih.gov/pubmed/" target="_blank" rel="noopener nofollow noreferrer">
                       <picture>
-                        <source
-                          srcSet="https://assets.pluto.network/scinapse/pub-med.webp"
-                          type="image/webp"
-                        />
-                        <source
-                          srcSet="https://assets.pluto.network/scinapse/pub-med.jpg"
-                          type="image/jpeg"
-                        />
-                        <img
-                          src="https://assets.pluto.network/scinapse/pub-med.jpg"
-                          alt="circle"
-                        />
+                        <source srcSet="https://assets.pluto.network/scinapse/pub-med.webp" type="image/webp" />
+                        <source srcSet="https://assets.pluto.network/scinapse/pub-med.jpg" type="image/jpeg" />
+                        <img src="https://assets.pluto.network/scinapse/pub-med.jpg" alt="circle" />
                       </picture>
                     </a>
                   </div>
@@ -179,16 +127,10 @@ const Footer: React.FC<FooterProps> = props => {
             </div>
             <div className={styles.menu}>
               <div className={styles.menuTitle}>Terms</div>
-              <a
-                href="https://scinapse.io/terms-of-service"
-                className={styles.menuItem}
-              >
+              <a href="https://scinapse.io/terms-of-service" className={styles.menuItem}>
                 Terms of service
               </a>
-              <a
-                href="https://scinapse.io/privacy-policy"
-                className={styles.menuItem}
-              >
+              <a href="https://scinapse.io/privacy-policy" className={styles.menuItem}>
                 Privacy Policy
               </a>
             </div>

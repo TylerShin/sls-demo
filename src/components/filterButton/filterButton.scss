@@ -1,0 +1,81 @@
+%base-filter-button {
+  height: 35px;
+  border-radius: 4px;
+  padding: 8px 8px 8px 12px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 500;
+  cursor: pointer;
+  transition: width 150ms, font-size 150ms, background-color 150ms;
+  transition-timing-function: ease;
+
+  &:hover {
+    border-color: $gray500;
+  }
+}
+
+.filterBtn {
+  @extend %base-filter-button;
+
+  border: solid 1px #d8dde7;
+  color: $black1;
+  font-weight: 500;
+  font-size: 15px;
+}
+
+.active {
+  @extend %base-filter-button;
+
+  border: 1px solid $main_blue0;
+  color: white;
+  background-color: $main_blue0;
+
+  &:hover {
+    border-color: $main_blue0;
+  }
+
+  &.selected {
+    color: white;
+  }
+}
+
+.selected {
+  color: $main_blue0;
+}
+
+.arrowIcon {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 14px;
+  height: 14px;
+  margin-left: 4px;
+
+  svg {
+    display: inline-block;
+    vertical-align: top;
+    width: 14px;
+    height: 14px;
+    transition: transform 150ms ease;
+  }
+
+  &.activeIcon {
+    svg {
+      transform: rotate(180deg);
+      color: white;
+    }
+
+    &.selected {
+      svg {
+        color: white;
+      }
+    }
+  }
+
+  &.selected {
+    svg {
+      color: $main_blue0;
+    }
+  }
+}

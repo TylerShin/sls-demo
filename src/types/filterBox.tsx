@@ -1,0 +1,1 @@
+export type FILTER_BOX_TYPE = 'PUBLISHED_YEAR' | 'FOS' | 'JOURNAL';

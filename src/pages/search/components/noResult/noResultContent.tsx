@@ -1,6 +1,6 @@
-import * as React from 'react';
-import { withStyles } from '../../../../helpers/withStylesHelper';
-import FilterResetButton from '../../../filterContainer/filterResetButton';
+import React from 'react';
+import { withStyles } from '@src/helpers/withStyles';
+import FilterResetButton from '../filterResetButton';
 const styles = require('./noResult.scss');
 
 interface NoResultContentProps {

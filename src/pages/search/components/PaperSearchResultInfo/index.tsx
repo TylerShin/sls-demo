@@ -1,9 +1,9 @@
-import * as React from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
-import { withStyles } from '../../../../helpers/withStylesHelper';
+import { withStyles } from '../../../../helpers/withStyles';
 import PaperSearchQueryFormatter from '../../../../helpers/searchQueryManager';
 import formatNumber from '../../../../helpers/formatNumber';
-const styles = require('../../articleSearch.scss');
+const styles = require('../../search.scss');
 
 interface PaperSearchResultInfoProps {
   suggestionKeyword: string;

@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 
 interface IconProps extends React.SVGAttributes<SVGElement> {
   icon: string;

@@ -1,11 +1,11 @@
 import React from 'react';
 import { Button } from '@pluto_network/pluto-design-elements';
 import { useDispatch } from 'react-redux';
-import { withStyles } from '../../../../helpers/withStylesHelper';
-import { setSignUpModalEmail } from '../../../../reducers/signUpModal';
-import ActionTicketManager from '../../../../helpers/actionTicketManager';
-import { getCurrentPageType } from '../../../locationListener';
-import GlobalDialogManager from '../../../../helpers/globalDialogManager';
+import { withStyles } from '@src/helpers/withStyles';
+import { setSignUpModalEmail } from '@src/reducers/signUpModal';
+import ActionTicketManager from '@src/helpers/actionTicketManager';
+import GlobalDialogManager from '@src/helpers/globalDialogManager';
+import { getCurrentPageType } from '@src/helpers/getCurrentPageType';
 
 const s = require('./emailBanner.scss');
 

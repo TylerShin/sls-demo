@@ -1,0 +1,34 @@
+.abstract {
+  display: block;
+  margin-top: 8px;
+  font-size: 14px;
+  line-height: 1.4;
+  color: $gray800;
+  word-break: break-word;
+  overflow-wrap: break-word;
+
+  .searchQuery {
+    font-weight: 900;
+    color: $black1;
+  }
+}
+
+.moreOrLess {
+  color: $navy0;
+  font-weight: 500;
+  margin-left: 4px;
+
+  &:hover {
+    cursor: pointer;
+    text-decoration: underline;
+  }
+}
+
+// Mobile
+@media (max-width: $mobile_width) {
+  .abstract {
+    margin-top: 12px;
+    font-size: 14px;
+    color: $black0;
+  }
+}

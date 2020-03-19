@@ -1,23 +1,23 @@
-import * as React from 'react';
-import * as Cookies from 'js-cookie';
-import * as classNames from 'classnames';
+import React from 'react';
+import Cookies from 'js-cookie';
+import classNames from 'classnames';
 import { Dispatch } from 'redux';
 import { connect } from 'react-redux';
 import { Formik, FormikErrors, Form, Field } from 'formik';
 import { RouteComponentProps, withRouter } from 'react-router-dom';
 import FeedbackManager from '@pluto_network/scinapse-feedback';
 import Dialog from '@material-ui/core/Dialog';
-import { CurrentUser } from '../../../../model/currentUser';
-import { withStyles } from '../../../../helpers/withStylesHelper';
-import { AppState } from '../../../../reducers';
-import validateEmail from '../../../../helpers/validateEmail';
-import ScinapseFormikInput from '../../../common/scinapseInput/scinapseFormikInput';
-import ReduxAutoSizeTextarea from '../../../common/autoSizeTextarea/reduxAutoSizeTextarea';
-import { ACTION_TYPES } from '../../../../actions/actionTypes';
-import ActionTicketManager from '../../../../helpers/actionTicketManager';
-import Icon from '../../../../icons';
-import { LAST_SUCCEEDED_EMAIL_KEY } from '../../../../constants/paperRequestDialog';
-import { FEEDBACK_SOURCE, FEEDBACK_PRIORITY, FEEDBACK_STATUS } from '../../../../constants/feedback';
+import { CurrentUser } from '@src/model/currentUser';
+import { ACTION_TYPES } from '@src/actions/actionTypes';
+import ActionTicketManager from '@src/helpers/actionTicketManager';
+import { AppState } from '@src/store/rootReducer';
+import { withStyles } from '@src/helpers/withStyles';
+import ScinapseFormikInput from '@src/components/scinapseInput/scinapseFormikInput';
+import { LAST_SUCCEEDED_EMAIL_KEY } from '@src/constants/paperRequestDialog';
+import validateEmail from '@src/helpers/validateEmail';
+import { FEEDBACK_STATUS, FEEDBACK_PRIORITY, FEEDBACK_SOURCE } from '@src/constants/feedback';
+import Icon from '@src/components/icons';
+import ReduxAutoSizeTextarea from '@src/components/autoSizeTextarea/reduxAutoSizeTextarea';
 
 const styles = require('./requestPaperDialog.scss');
 

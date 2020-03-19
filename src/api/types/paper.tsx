@@ -1,6 +1,6 @@
-import { CancelToken } from "axios";
-import { Paper } from "../../model/paper";
-import { PAPER_LIST_SORT_OPTIONS } from "../../constants/search";
+import { CancelToken } from 'axios';
+import { Paper } from '../../model/paper';
+import { PAPER_LIST_SORT_OPTIONS } from '../../types/search';
 
 export interface SearchPapersParams {
   sort: string;

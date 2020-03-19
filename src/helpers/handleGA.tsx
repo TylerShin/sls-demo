@@ -1,13 +1,7 @@
-import * as ReactGA from "react-ga";
-import EnvChecker from "./envChecker";
-import {
-  DEV_GA_ID,
-  LOCAL_GA_ID,
-  LOCAL_OPTIMIZE_ID,
-  PROD_GA_ID,
-  PROD_OPTIMIZE_ID
-} from "../constants/ga";
-import envChecker from "./envChecker";
+import ReactGA from 'react-ga';
+import EnvChecker from './envChecker';
+import { DEV_GA_ID, LOCAL_GA_ID, LOCAL_OPTIMIZE_ID, PROD_GA_ID, PROD_OPTIMIZE_ID } from '../constants/ga';
+import envChecker from './envChecker';
 
 export function getGAId() {
   if (EnvChecker.isProdBrowser()) {
@@ -34,7 +28,7 @@ export function trackAndOpenLink(from: string) {
   if (EnvChecker.isProdBrowser()) {
     ReactGA.outboundLink(
       {
-        label: from
+        label: from,
       },
       () => {}
     );

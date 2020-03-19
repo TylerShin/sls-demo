@@ -1,0 +1,101 @@
+.inputBox {
+  position: relative;
+  border-radius: 5px;
+
+  input {
+    display: block;
+    width: 100%;
+    border: 0;
+    padding: 8px 32px 8px 8px;
+    margin: 0;
+    border-radius: 5px;
+    border: solid 1px $gray400;
+    background-color: transparent;
+    font-family: Roboto;
+
+    &.error {
+      border: solid 1px $red0;
+    }
+  }
+
+  ::placeholder {
+    color: $gray500;
+  }
+}
+
+.errorMessage {
+  color: $red0;
+  font-size: 13px;
+}
+
+.icon {
+  position: absolute;
+  right: 10px;
+  top: 0;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: $gray800;
+  cursor: pointer;
+
+  i,
+  svg {
+    display: inline-block;
+    vertical-align: top;
+    width: 16px;
+    height: 16px;
+  }
+}
+
+select {
+  font-family: Roboto;
+  color: $gray800;
+}
+
+select:invalid {
+  color: rgba(30, 42, 53, 0.5) !important;
+}
+
+.inputWrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+  border-radius: 5px;
+  width: 100%;
+
+  input {
+    display: block;
+    width: 100%;
+    border: 0;
+    padding: 8px 32px 8px 8px;
+    margin: 0;
+    border-radius: 5px;
+    border: solid 1px $gray400;
+    background-color: transparent;
+
+    &.error {
+      border: solid 1px $red0;
+    }
+  }
+
+  ::placeholder {
+    color: $gray500;
+  }
+
+  .errorMessage {
+    color: $red0;
+    font-size: 13px;
+    display: inline-flex;
+    margin-top: 8px;
+    margin-left: 8px;
+  }
+
+  .iconWrapper {
+    position: absolute;
+    width: 16px;
+    right: 0;
+    margin-right: 8px;
+  }
+}

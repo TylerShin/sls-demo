@@ -1,0 +1,266 @@
+.rootWrapper {
+  background-color: $gray30;
+  position: relative;
+  min-height: 100vh;
+  padding-bottom: 202px;
+}
+
+.articleSearchContainer {
+  padding: 0 16px;
+  margin: 0 auto;
+  position: relative;
+  max-width: $container_width;
+  display: flex;
+
+  .innerContainer {
+    flex: $search_container_width;
+    max-width: $search_container_width;
+  }
+}
+
+.loadingContainer {
+  display: flex;
+  margin-top: 120px;
+  width: $search_container_width;
+  padding: 24px 0;
+  min-height: 98px;
+  flex-direction: column;
+  align-items: center;
+
+  .loadingSpinner {
+    div {
+      background-color: $gray400;
+    }
+  }
+
+  .loadingContent {
+    margin-top: 27.5px;
+    font-size: 15px;
+    line-height: 2.4;
+    color: $black0;
+  }
+}
+
+.noAuthorRightBoxWrapper {
+  display: flex;
+  flex: 1 1;
+  max-width: 354px;
+  height: 100%;
+  flex-direction: column;
+  margin-left: 22px;
+  margin-top: 60px;
+}
+
+.rightBoxWrapper {
+  @extend .noAuthorRightBoxWrapper;
+  margin-top: 273px;
+}
+
+.searchSummary {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  font-size: 15px;
+  line-height: 28px;
+  margin: 16px 0;
+
+  .searchResult {
+    color: $main_blue0;
+  }
+
+  .separatorLine {
+    height: 25px;
+    border-left: solid 1px $gray400;
+    margin-left: 12px;
+    margin-right: 12px;
+  }
+}
+
+.count {
+  font-size: 14px;
+  line-height: 18px;
+  min-width: 80px;
+}
+
+.countDivider {
+  display: inline-block;
+  margin: 0 12px;
+}
+
+.additionalContent {
+  display: inline-block;
+  font-size: 14px;
+  line-height: 1.4;
+  color: $gray800;
+  margin-right: 8px;
+
+  .boldQuery {
+    font-weight: 500;
+  }
+
+  .matchingPhrasesContent {
+    margin-left: 8px;
+  }
+
+  .boldMatchingPhrases {
+    color: $gray800;
+    font-weight: bold;
+  }
+
+  .wrongQuery {
+    color: $red0;
+    font-weight: 500;
+  }
+
+  .suggestionKeyword {
+    color: $main-blue1;
+    font-weight: 500;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  .weirdQuery {
+    font-weight: 500;
+  }
+
+  .suggestionLink {
+    color: $gray800;
+    font-weight: 500;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+.categoryHeader {
+  font-size: 20px;
+  font-weight: bold;
+  margin-right: 8px;
+  color: $black0;
+  margin-bottom: 4px;
+}
+
+.categoryCount {
+  display: flex;
+  align-items: baseline;
+  font-size: 14px;
+  color: $gray600;
+}
+
+.authorItemsHeader {
+  position: relative;
+  padding: 24px 0 16px 0;
+
+  .moreAuthorLink {
+    display: inline;
+    align-items: center;
+    position: absolute;
+    top: 32px;
+    line-height: 24px;
+    text-align: center;
+    bottom: 0;
+    right: 0;
+    font-size: 14px;
+    color: $main_blue1;
+
+    &:hover {
+      color: $main_blue_light0;
+      cursor: pointer;
+    }
+  }
+}
+
+.rightItemWrapper + .rightItemWrapper {
+  margin-top: 16px;
+}
+
+.authorItemSectionWrapper {
+  @extend .innerContainer;
+
+  padding-bottom: 16px;
+}
+
+// content-like width
+@media (max-width: 1200px) {
+  .articleSearchContainer {
+    padding: 0 16px 16px 16px;
+    justify-content: center;
+  }
+
+  .leftBoxWrapper {
+    width: 100%;
+  }
+
+  .innerContainer {
+    margin: 0 auto;
+  }
+
+  .noAuthorRightBoxWrapper {
+    display: none;
+  }
+}
+
+// Mobile
+@media (max-width: $mobile_width) {
+  .articleSearchContainer {
+    padding: 0 12px 12px 12px;
+    justify-content: center;
+  }
+
+  .rootWrapper {
+    padding-bottom: 332px;
+  }
+
+  .authorItemSectionWrapper {
+    width: 100%;
+  }
+
+  .searchSummary {
+    font-size: 14px;
+    color: $gray400;
+    flex-flow: column;
+    align-items: start;
+  }
+
+  .loadingContainer {
+    width: 100%;
+  }
+
+  .inflowRouteContainer {
+    padding-top: 18px;
+    padding-left: 15px;
+    padding-right: 15px;
+    margin-bottom: 0;
+
+    .inflowRoute {
+      font-size: 16px;
+    }
+
+    .citedIconWrapper {
+      margin-right: 12px;
+
+      svg {
+        width: 8px;
+        height: 14px;
+      }
+    }
+
+    .inflowArticleInfo {
+      margin-top: 12px;
+      font-size: 12px;
+    }
+  }
+
+  .categoryCount {
+    display: block;
+    margin-bottom: 8px;
+  }
+
+  .additionalContent {
+    display: inline;
+  }
+}
