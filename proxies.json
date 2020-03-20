@@ -6,7 +6,8 @@
         "methods": ["GET", "POST", "DELETE", "HEAD", "PATCH", "PUT", "OPTIONS", "TRACE"],
         "route": "/api/{*path}"
       },
-      "backendUri": "https://api.scinapse.io/{path}"
+      "backendUri": "https://api.scinapse.io/{path}",
+      "debug": true
     },
     "favicon": {
       "matchCondition": {

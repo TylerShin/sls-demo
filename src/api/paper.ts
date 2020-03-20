@@ -1,4 +1,4 @@
-import { AxiosResponse, CancelToken } from 'axios';
+import Axios, { AxiosResponse, CancelToken } from 'axios';
 import PlutoAxios from './pluto';
 import { Paper, PaperPdf } from '../model/paper';
 import { PaperAuthor } from '../model/author';
@@ -103,7 +103,16 @@ class PaperAPI extends PlutoAxios {
   }
 
   public async getSources(paperIds: string[]): Promise<PaperSource[]> {
+    const mockRes = await Axios.get('https://api.scinapse.io/papers/sources', {
+      params: {
+        paper_ids: paperIds.join(','),
+      },
+    });
+
+    console.log(mockRes);
+
     const res = await this.get('/papers/sources', {
+      headers: { 'Proxy-Trace-Enabled': true },
       params: {
         paper_ids: paperIds.join(','),
       },
