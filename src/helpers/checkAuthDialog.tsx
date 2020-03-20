@@ -3,7 +3,7 @@ import ActionTicketManager from './actionTicketManager';
 import GlobalDialogManager from './globalDialogManager';
 import { ActionArea, PageType, ActionTagType } from '@src/constants/actionTicket';
 import { AppState } from '@src/store/rootReducer';
-import { checkAuthStatus } from '@src/actions/auth/checkAuthStatus';
+import { checkAuthStatus } from '@src/actions/auth';
 import { getCurrentPageType } from './getCurrentPageType';
 
 export enum AUTH_LEVEL {

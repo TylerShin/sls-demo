@@ -9,3 +9,8 @@ export enum AvailableCitationType {
   CHICAGO,
   ACS,
 }
+
+export enum AvailableExportCitationType {
+  BIBTEX,
+  RIS,
+}
