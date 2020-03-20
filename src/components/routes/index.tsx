@@ -2,7 +2,6 @@ import React from 'react';
 import { Switch, Route, useLocation } from 'react-router-dom';
 import loadable from '@loadable/component';
 import { HOME_PATH, SEARCH_RESULT_PATH } from '../../constants/route';
-import DefaultHelmet from '../helmet';
 import ErrorPage from '../../pages/error/errorPage';
 import ArticleSpinner from '../spinner/articleSpinner';
 
@@ -43,14 +42,11 @@ const Routes: React.FC = () => {
   const location = useLocation();
 
   return (
-    <>
-      <DefaultHelmet />
-      <Switch location={location}>
-        {routesMap.map(route => (
-          <Route {...route} key={route.path || 'errorPage'} />
-        ))}
-      </Switch>
-    </>
+    <Switch location={location}>
+      {routesMap.map(route => (
+        <Route {...route} key={route.path || 'errorPage'} />
+      ))}
+    </Switch>
   );
 };
 

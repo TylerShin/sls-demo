@@ -6,27 +6,34 @@ import rootReducer, { AppState } from './rootReducer';
 import { getAxiosInstance } from '../api/axios';
 import ReduxNotifier from '../middlewares/notifier';
 import setUserToTracker from '../middlewares/trackUser';
+import EnvChecker from '@src/helpers/envChecker';
 
-const preloadedState = (window as any).__INITIAL_STATE__;
-delete (window as any).__INITIAL_STATE__;
+function getStore() {
+  let preloadedState: any = {};
+  if (!EnvChecker.isOnServer()) {
+    preloadedState = (window as any).__INITIAL_STATE__;
+    delete (window as any).__INITIAL_STATE__;
+  }
+  const loggerMiddleware = createLogger({ collapsed: true });
 
-const loggerMiddleware = createLogger({ collapsed: true });
+  const defaultMiddleware = getDefaultMiddleware<AppState, { thunk: { extraArgument: { axios: AxiosInstance } } }>({
+    thunk: { extraArgument: { axios: getAxiosInstance() } },
+  });
+  const middleware: Array<Middleware<{}, AppState> | ThunkMiddleware<AppState, AnyAction, { axios: AxiosInstance }>> = [
+    ...defaultMiddleware,
+    ReduxNotifier,
+    setUserToTracker,
+    loggerMiddleware,
+  ];
 
-const defaultMiddleware = getDefaultMiddleware<AppState, { thunk: { extraArgument: { axios: AxiosInstance } } }>({
-  thunk: { extraArgument: { axios: getAxiosInstance() } },
-});
-const middleware: Array<Middleware<{}, AppState> | ThunkMiddleware<AppState, AnyAction, { axios: AxiosInstance }>> = [
-  ...defaultMiddleware,
-  ReduxNotifier,
-  setUserToTracker,
-  loggerMiddleware,
-];
+  return configureStore({
+    reducer: rootReducer,
+    preloadedState,
+    middleware,
+  });
+}
 
-const store = configureStore({
-  reducer: rootReducer,
-  preloadedState,
-  middleware,
-});
+const store = getStore();
 
 if (process.env.NODE_ENV === 'development' && module.hot) {
   module.hot.accept('./rootReducer', () => {

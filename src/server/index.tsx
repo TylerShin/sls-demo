@@ -1,38 +1,34 @@
-import fs from "fs";
-import path from "path";
-import React, { useEffect } from "react";
-import { AzureFunction, Context, HttpRequest } from "@azure/functions";
-import ReactDOMServer from "react-dom/server";
-import { StaticRouter } from "react-router-dom";
-import { Helmet } from "react-helmet";
-import { ServerStyleSheets, ThemeProvider } from "@material-ui/core/styles";
-import { ChunkExtractor, ChunkExtractorManager } from "@loadable/server";
-import getServerStore from "../store/serverStore";
-import Routes from "../components/routes";
-import { generateHTML } from "./helpers/generateHTML";
-import theme from "../assets/muiTheme";
-import { Provider } from "react-redux";
-import { getAxiosInstance } from "../api/axios";
-const StyleContext = require("isomorphic-style-loader/StyleContext");
+import fs from 'fs';
+import path from 'path';
+import React from 'react';
+import { AzureFunction, Context, HttpRequest } from '@azure/functions';
+import ReactDOMServer from 'react-dom/server';
+import { StaticRouter } from 'react-router-dom';
+import { Helmet } from 'react-helmet';
+import { ServerStyleSheets, ThemeProvider } from '@material-ui/core/styles';
+import { ChunkExtractor, ChunkExtractorManager } from '@loadable/server';
+import getServerStore from '../store/serverStore';
+import App from '../components/app';
+import { generateHTML } from './helpers/generateHTML';
+import theme from '../assets/muiTheme';
+import { Provider } from 'react-redux';
+import { getAxiosInstance } from '../api/axios';
+const StyleContext = require('isomorphic-style-loader/StyleContext');
 
-const STAGE = process.env["NODE_ENV"] || "development";
+const STAGE = process.env['NODE_ENV'] || 'development';
 
-const statsFile = path.resolve(__dirname, "assets", "loadable-stats.json");
-let version = "";
+const statsFile = path.resolve(__dirname, 'assets', 'loadable-stats.json');
+let version = '';
 try {
-  version = fs.readFileSync("./dist/version").toString();
+  version = fs.readFileSync('./dist/version').toString();
 } catch (err) {
-  version = "";
+  version = '';
 }
 
-const publicPath =
-  STAGE === "local" ? "https://localhost:8080" : `assets/${STAGE}/${version}`;
+const publicPath = STAGE === 'local' ? process.env.ASSET_PATH : `assets/${STAGE}/${version}`;
 const extractor = new ChunkExtractor({ statsFile, publicPath });
 
-const httpTrigger: AzureFunction = async function(
-  context: Context,
-  req: HttpRequest
-): Promise<void> {
+const httpTrigger: AzureFunction = async function(context: Context, req: HttpRequest): Promise<void> {
   const url = new URL(req.url);
 
   // normalize header keys
@@ -46,20 +42,19 @@ const httpTrigger: AzureFunction = async function(
 
   const axios = getAxiosInstance({
     headers: {
-      cookie: headers.cookie || "",
-      "user-agent": headers["user-agent"] || "",
-      "x-forwarded-for": headers["x-forwarded-for"] || "",
-      referer: headers.referer || "",
-      "x-from-ssr": true
-    }
+      cookie: headers.cookie || '',
+      'user-agent': headers['user-agent'] || '',
+      'x-forwarded-for': headers['x-forwarded-for'] || '',
+      referer: headers.referer || '',
+      'x-from-ssr': true,
+    },
   });
 
   const store = getServerStore({ axios });
 
   // set styles made by Pluto
   const plutoCss = new Set();
-  const insertCss = (...styles: any[]) =>
-    styles.forEach(style => plutoCss.add(style._getCss()));
+  const insertCss = (...styles: any[]) => styles.forEach(style => plutoCss.add(style._getCss()));
 
   // set styles from Material-ui
   const sheets = new ServerStyleSheets();
@@ -70,7 +65,7 @@ const httpTrigger: AzureFunction = async function(
         <ThemeProvider theme={theme}>
           <StyleContext.Provider value={{ insertCss }}>
             <StaticRouter location={url.pathname}>
-              <Routes />
+              <App />
             </StaticRouter>
           </StyleContext.Provider>
         </ThemeProvider>
@@ -96,12 +91,12 @@ const httpTrigger: AzureFunction = async function(
     helmet,
     muiCss,
     preloadedState,
-    plutoCss: [...plutoCss].join("")
+    plutoCss: [...plutoCss].join(''),
   });
 
   context.res = {
-    headers: { "Content-Type": "text/html; charset=utf-8" },
-    body: html
+    headers: { 'Content-Type': 'text/html; charset=utf-8' },
+    body: html,
   };
 };
 

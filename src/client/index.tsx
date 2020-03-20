@@ -2,7 +2,7 @@ import React, { FC, useEffect } from "react";
 import ReactDom from "react-dom";
 import { BrowserRouter } from "react-router-dom";
 import { ThemeProvider } from "@material-ui/core/styles";
-import Routes from "../components/routes";
+import App from "../components/app";
 import theme from "../assets/muiTheme";
 import { Provider } from "react-redux";
 import store from "../store";
@@ -20,7 +20,7 @@ const insertCss = (...styles: any[]) => {
   return () => removeCss.forEach(dispose => dispose());
 };
 
-const App: FC = () => {
+const ClientApp: FC = () => {
   useEffect(() => {
     const jssStyles = document.querySelector("#jss-server-side");
     if (jssStyles && jssStyles.parentElement) {
@@ -33,7 +33,7 @@ const App: FC = () => {
       <Provider store={store}>
         <StyleContext.Provider value={{ insertCss }}>
           <BrowserRouter>
-            <Routes />
+            <App />
           </BrowserRouter>
         </StyleContext.Provider>
       </Provider>
@@ -41,4 +41,4 @@ const App: FC = () => {
   );
 };
 
-ReactDom.hydrate(<App />, document.getElementById("react-app"));
+ReactDom.hydrate(<ClientApp />, document.getElementById("react-app"));

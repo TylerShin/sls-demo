@@ -3,26 +3,17 @@
   "proxies": {
     "api_server": {
       "matchCondition": {
-        "methods": [
-          "GET",
-          "POST",
-          "DELETE",
-          "HEAD",
-          "PATCH",
-          "PUT",
-          "OPTIONS",
-          "TRACE"
-        ],
+        "methods": ["GET", "POST", "DELETE", "HEAD", "PATCH", "PUT", "OPTIONS", "TRACE"],
         "route": "/api/{*path}"
       },
-      "backendUri": "https://dev-api.scinapse.io/{path}"
+      "backendUri": "https://api.scinapse.io/{path}"
     },
-    "assets": {
+    "favicon": {
       "matchCondition": {
         "methods": ["GET"],
-        "route": "/assets/{*path}"
+        "route": "/favicon.ico"
       },
-      "backendUri": "https://scinapsewebclientassets.azureedge.net/client-assets/{path}"
+      "backendUri": "https://assets.pluto.network/scinapse/favicon.ico"
     }
   }
 }
