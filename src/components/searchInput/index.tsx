@@ -10,7 +10,6 @@ import { AppState } from '../../store/rootReducer';
 import { PAPER_LIST_SORT_OPTIONS, FilterObject } from '../../types/search';
 import { UserDevice } from '../../reducers/layout';
 import { useDebouncedFetch } from '../../hooks/useDebouncedFetch';
-import { getAxiosInstance } from '../../api/axios';
 import { ACTION_TYPES } from '../../actions/actionTypes';
 import {
   getRecentQueries,
@@ -70,7 +69,6 @@ const SearchQueryInput: React.FC<SearchQueryInputProps> = props => {
       const res = await fetchSuggestionKeyword({
         query: q,
         cancelToken: cancelTokenSource.current.token,
-        axios: getAxiosInstance(),
       });
       return res;
     },

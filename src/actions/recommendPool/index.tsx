@@ -4,16 +4,15 @@ import {
   RECOMMENDED_PAPER_LOGGING_FOR_NON_USER,
 } from '@src/constants/constants';
 import { RecommendationActionParams } from '@src/api/types/recommendation';
-import { checkAuthStatus } from '@src/api/auth';
-import { AppThunkAction } from '@src/store';
-
+import { AppThunkAction, AppDispatch } from '@src/store';
+import { checkAuthStatus } from '../auth';
 const store = require('store');
 
 export const addPaperToRecommendPool = (recAction: RecommendationActionParams): AppThunkAction => {
-  return async (dispatch, _getState, { axios }) => {
+  return async dispatch => {
     const recTempPool = store.get(RECOMMENDED_PAPER_LOGGING_FOR_NON_USER) || [];
 
-    const auth = await dispatch(checkAuthStatus(axios));
+    const auth = await (dispatch as AppDispatch)(checkAuthStatus());
     const isLoggedIn = auth && auth.loggedIn;
 
     if (!isLoggedIn) {

@@ -2,8 +2,9 @@ import React from 'react';
 import { withStyles } from '@src/helpers/withStyles';
 import Icon from '@src/components/icons';
 import { Link } from 'react-router-dom';
-import PapersQueryFormatter, { FilterObject } from '@src/helpers/searchQueryManager';
+import PapersQueryFormatter from '@src/helpers/searchQueryManager';
 import classNames from 'classnames';
+import { FilterObject } from '@src/types/search';
 const styles = require('./noResultInSearch.scss');
 
 interface NoResultInSearchProps {

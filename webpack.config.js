@@ -16,8 +16,8 @@ module.exports = {
   entry: ['@babel/polyfill', './src/client/index.tsx'],
   output: {
     path: path.resolve(__dirname, 'dist', 'assets'),
-    filename: '[name].js',
-    chunkFilename: '[name].chunk.js',
+    filename: '[name].[contenthash].js',
+    chunkFilename: '[name].[contenthash].chunk.js',
     publicPath: ASSET_PATH,
   },
   devtool: process.env.NODE_ENV === 'production' ? 'source-map' : 'eval-source-map',

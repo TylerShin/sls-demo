@@ -8,7 +8,7 @@ import NoSsr from '@material-ui/core/NoSsr';
 import { RouteComponentProps, withRouter, Link } from 'react-router-dom';
 import { bindActionCreators } from 'redux';
 import { withStyles } from '../../helpers/withStyles';
-import SearchQueryManager, { FilterObject } from '../../helpers/searchQueryManager';
+import SearchQueryManager from '../../helpers/searchQueryManager';
 import NoResult from './components/noResult';
 import NoResultInSearch from './components/noResultInSearch';
 import TabNavigationBar from '@src/components/tabNavigationBar';
@@ -33,6 +33,7 @@ import { AppState } from '../../store/rootReducer';
 import { MatchAuthor } from '@src/api/types/search';
 import CreateKeywordAlertDialog from '@src/components/createKeywordAlertDialog';
 import { AppDispatch } from '@src/store';
+import { FilterObject } from '@src/types/search';
 const styles = require('./search.scss');
 
 type Props = ReturnType<typeof mapStateToProps> &

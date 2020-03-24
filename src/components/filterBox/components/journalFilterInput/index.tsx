@@ -10,7 +10,6 @@ import reducer, { journalFilterInputInitialState } from './reducer';
 import { handleDropdownKeydown } from '@src/helpers/handleDropdownKeydown';
 import JournalItem from '../journalFilterItem';
 import { AggregationJournal } from '@src/model/aggregation';
-import { getAxiosInstance } from '@src/api/axios';
 const s = require('./journalFilterInput.scss');
 
 interface JournalFilterInputProps {
@@ -41,7 +40,6 @@ const JournalFilterInput: React.FC<JournalFilterInputProps> = props => {
       const res = await fetchJournalSuggestion({
         query: q,
         cancelToken: cancelTokenSource.current.token,
-        axios: getAxiosInstance(),
       });
       return res;
     },

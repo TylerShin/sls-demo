@@ -1,0 +1,52 @@
+.authContainer {
+  display: flex;
+  width: 100%;
+}
+
+.authFormWrapper {
+  width: 384px;
+}
+
+.formWrapper {
+  padding: 22px 32px 32px 24px;
+}
+
+.googleIconWrapper {
+  position: absolute;
+  left: 14px;
+  width: 24px;
+  height: 24px;
+}
+
+.errorContent {
+  height: 14px;
+  font-size: 12px;
+  color: $red0;
+  margin-top: 6px;
+  margin-left: 4px;
+}
+
+.dialogCloseBtnWrapper {
+  position: absolute;
+  bottom: -32px;
+  right: 12px;
+  cursor: pointer;
+}
+
+.authButtonWrapper {
+  margin-top: 8px;
+}
+
+.dashSeparatorBox {
+  margin: 12px 0;
+}
+
+@media (max-width: $mobile_width) {
+  .authFormWrapper {
+    max-width: 100%;
+  }
+
+  .googleIconWrapper {
+    display: none;
+  }
+}

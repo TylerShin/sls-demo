@@ -1,0 +1,194 @@
+.signUpContainer {
+  max-width: $container_width;
+  margin: 0 auto;
+  padding: 22px 32px 32px 24px;
+
+  .formContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0 auto;
+    border-radius: 1.7px;
+    background-color: #fff;
+    border: solid 1px #d8dde7;
+  }
+}
+
+.nameInputBox {
+  display: flex;
+  width: 331px;
+}
+
+.authNavBar {
+  display: flex;
+  text-align: center;
+  margin-bottom: 30px;
+
+  .signInLink {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 200px;
+    height: 72.5px;
+    border-radius: 1.4px;
+    background-color: #f5f7fb;
+    font-size: 15.6px;
+    font-weight: 500;
+    letter-spacing: 2.1px;
+    cursor: pointer;
+    color: #d8dde7;
+  }
+
+  .signUpLink {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 200px;
+    height: 72.5px;
+    border-radius: 1.4px;
+    background-color: #fff;
+    font-size: 15.6px;
+    font-weight: 500;
+    letter-spacing: 2.1px;
+    color: $main_blue0;
+    cursor: pointer;
+  }
+}
+
+.submitButton {
+  margin-top: 10.2px;
+  @include common-button($main_blue0);
+}
+
+.buttonSpinner {
+  position: absolute;
+  left: 20px;
+}
+
+.loadingSubmitButton {
+  margin-top: 10.2px;
+  @include common-button($gray400);
+  cursor: wait;
+  position: relative;
+}
+
+.orSeparatorBox {
+  display: flex;
+  align-items: center;
+  margin-top: 10.2px;
+
+  .dashedSeparator {
+    width: 156.5px;
+    height: 1.2px;
+    border-top: dashed 0.8px $gray400;
+    margin-left: 3.9px;
+    margin-right: 3.9px;
+  }
+
+  .orContent {
+    width: 11px;
+    height: 14px;
+    font-size: 12px;
+    text-align: center;
+    color: #d8dde7;
+    color: $gray400;
+  }
+}
+
+.facebookLogin {
+  @include common-button(#3859ab, 331px, 47px, 13px);
+  position: relative;
+  margin-top: 18.5px;
+
+  .iconWrapper {
+    position: absolute;
+    left: 19.3px;
+    width: 7.2px;
+    height: 14.4px;
+  }
+}
+
+.googleLogin {
+  @include common-button(#dc5240, 331px, 47px, 13px);
+  position: relative;
+  margin-top: 11.2px;
+
+  .iconWrapper {
+    position: absolute;
+    left: 18.7px;
+    width: 13.5px;
+    height: 13.2px;
+  }
+}
+
+.orcidLogin {
+  @include common-button(#a5d027, 331px, 47px, 13px);
+  position: relative;
+  margin-top: 11.2px;
+  margin-bottom: 33.7px;
+
+  .iconWrapper {
+    position: absolute;
+    left: 17.1px;
+    width: 14.6px;
+    height: 15.6px;
+  }
+}
+
+.goBackButton {
+  @include common-button($gray300);
+  margin-top: 10.2px;
+  margin-bottom: 28.7px;
+}
+
+.fixedFormBox {
+  display: flex;
+  flex-direction: row;
+  align-content: flex-start;
+  align-items: center;
+  width: 331px;
+  height: 47px;
+  border-radius: 3px;
+  padding: 0 10px;
+  background-color: white;
+  border: solid 1px $gray400;
+  overflow: hidden;
+  margin: 10px auto 0;
+
+  .iconWrapper {
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+
+    svg {
+      width: 12.2px;
+      height: 9.8px;
+      color: #9aa3b5;
+    }
+  }
+}
+
+.additionalInformation {
+  font-size: 15px;
+  font-weight: 500;
+  letter-spacing: 2.7px;
+  color: $gray800;
+  margin-top: -4px;
+  margin-bottom: 11.3px;
+}
+
+.subHeader {
+  font-size: 15px;
+  font-weight: 400;
+  color: $gray800;
+  margin-top: -4px;
+  margin-bottom: 11.3px;
+}
+
+.errorContent {
+  height: 14px;
+  font-size: 12px;
+  color: $red0;
+  margin-top: 6px;
+  width: 234px;
+}

@@ -1,1 +1,5 @@
-export type OAUTH_VENDOR = "ORCID" | "FACEBOOK" | "GOOGLE";
+export type OAUTH_VENDOR = 'ORCID' | 'FACEBOOK' | 'GOOGLE';
+
+export const MINIMUM_PASSWORD_LENGTH = 8;
+
+export const FACEBOOK_APP_ID = 149975229038179;

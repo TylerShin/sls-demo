@@ -1,0 +1,67 @@
+.collectionItem {
+  position: relative;
+  border-radius: 5px;
+  border: solid 1px $gray400;
+  padding: 16px 24px;
+  height: 75px;
+  cursor: pointer;
+
+  &:hover {
+    background-color: $gray30;
+  }
+
+  &.selected {
+    background-color: $main_blue0;
+    border: 0;
+
+    .collectionTitle {
+      color: white;
+    }
+
+    .paperCount {
+      color: white;
+    }
+  }
+
+  .collectionTitle {
+    font-size: 18px;
+    font-weight: bold;
+    line-height: 1.33;
+    color: $black0;
+    margin-bottom: 2px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 365px;
+    width: 100%;
+  }
+
+  .paperCount {
+    font-size: 12px;
+    line-height: 1.33;
+    color: $gray800;
+  }
+
+  .collectionIconWrapper {
+    position: absolute;
+    top: 30px;
+    right: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 16px;
+    height: 16px;
+
+    svg {
+      display: inline-block;
+      vertical-align: top;
+      width: 16px;
+      height: 16px;
+      color: $gray500;
+    }
+  }
+}
+
+.collectionItem + .collectionItem {
+  margin-top: 8px;
+}

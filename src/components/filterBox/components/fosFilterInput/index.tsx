@@ -38,7 +38,6 @@ const FOSFilterInput: React.FC<FOSFilterInputProps> = props => {
       const res = await fetchFOSSuggestion({
         query: q,
         cancelToken: cancelTokenSource.current.token,
-        axios: getAxiosInstance(),
       });
       return res;
     },

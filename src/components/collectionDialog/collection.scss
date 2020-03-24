@@ -1,0 +1,264 @@
+%dialog-footer-button {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 64px;
+  height: 40px;
+  border-radius: 5px;
+  font-size: 14px;
+  font-weight: bold;
+  line-height: 1.43;
+  cursor: pointer;
+}
+
+.dialogWrapper {
+  position: relative;
+  width: 504px;
+  min-height: 446px;
+  border-radius: 10px;
+  padding: 0 16px;
+}
+
+.closeButton {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: 16px;
+  right: 16px;
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+
+  .closeIcon {
+    display: inline-block;
+    vertical-align: top;
+    width: 20px;
+    height: 20px;
+    color: $black0;
+    opacity: 0.5;
+  }
+}
+
+.dialogHeader {
+  font-size: 20px;
+  font-weight: bold;
+  color: $black0;
+  padding: 18px 0;
+}
+
+.contentBox {
+  height: 300px;
+  overflow-y: auto;
+  padding-right: 16px;
+  margin-right: -16px;
+}
+
+.collectionListWrapper {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  height: 100%;
+}
+
+.emptyList {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 18px;
+  line-height: 1.6;
+  height: 100%;
+  color: $gray700;
+}
+
+.ufoIcon {
+  display: inline-block;
+  vertical-align: top;
+  width: 64px;
+  height: 59px;
+  margin-bottom: 16px;
+
+  svg {
+    width: 100%;
+    height: 100%;
+  }
+}
+
+.dialogFooter {
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-between;
+
+  .newCollectionButtonWrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 190px;
+    height: 40px;
+    border-radius: 5px;
+    border: solid 1px $main_blue0;
+    cursor: pointer;
+
+    .plusIcon {
+      display: inline-block;
+      vertical-align: top;
+      width: 16px;
+      height: 16px;
+      margin-right: 12px;
+      color: $main_blue1;
+
+      svg {
+        display: inline-block;
+        vertical-align: top;
+      }
+    }
+
+    button {
+      padding: 0;
+      margin: 0;
+      font-size: 14px;
+      font-weight: bold;
+      line-height: 1.43;
+      color: $main_blue1;
+      background: transparent;
+      cursor: pointer;
+    }
+
+    &:hover {
+      background-color: $main_blue0;
+
+      .plusIcon {
+        color: white;
+      }
+
+      button {
+        color: white;
+      }
+    }
+
+    &.opened {
+      background-color: $gray400;
+      border: 0;
+
+      .plusIcon {
+        opacity: 0.25;
+        color: $black0;
+      }
+
+      button {
+        opacity: 0.25;
+        color: $black0;
+      }
+    }
+  }
+
+  .cancelButton {
+    @extend %dialog-footer-button;
+    background-color: white;
+    opacity: 0.25;
+    color: $black0;
+    margin-right: 8px;
+  }
+
+  .nextButton {
+    @extend %dialog-footer-button;
+    background-color: $main_blue0;
+    color: white;
+  }
+}
+
+.newCollectionForm {
+  width: 313px;
+  height: 216px;
+  border-radius: 3px;
+  background-color: white;
+  box-shadow: 0 8px 16px 0 rgba(12, 0, 51, 0.1);
+  padding: 16px 16px 12px 16px;
+
+  label {
+    display: block;
+    font-size: 12px;
+    line-height: 1.33;
+    color: $gray800;
+    margin-bottom: 5px;
+  }
+
+  input {
+    display: block;
+    width: 100%;
+    height: 40px;
+    border-radius: 5px;
+    padding: 0 8px;
+    border: solid 1px $gray500;
+  }
+
+  textarea {
+    display: block;
+    width: 100%;
+    height: 70px;
+    padding: 8px;
+    border-radius: 5px;
+    border: solid 1px $gray500;
+    resize: vertical;
+  }
+
+  .submitBtnWrapper {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 10px;
+  }
+
+  button {
+    width: 56px;
+    height: 20px;
+    line-height: 20px;
+    font-size: 14px;
+    font-weight: bold;
+    text-align: center;
+    color: $main_blue1;
+    cursor: pointer;
+    background-color: transparent;
+  }
+
+  .formControl + .formControl {
+    margin-top: 8px;
+  }
+}
+
+.rightBox {
+  display: flex;
+}
+
+@media (max-width: $tablet_width) {
+  .dialogWrapper {
+    max-width: 504px;
+    width: 100%;
+    padding: 0 16px 16px 16px;
+  }
+
+  .dialogHeader {
+    font-size: 18px;
+  }
+
+  .dialogFooter {
+    flex-direction: column;
+
+    .newCollectionButtonWrapper {
+      width: 100%;
+    }
+
+    .rightBox {
+      margin-top: 8px;
+    }
+
+    .cancelButton {
+      width: 50%;
+      margin: 0;
+    }
+
+    .nextButton {
+      width: 50%;
+    }
+  }
+}

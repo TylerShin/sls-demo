@@ -1,0 +1,27 @@
+.container {
+  width: 100%;
+  max-width: 792px;
+  height: 100%;
+  min-height: 44px;
+  border-radius: 4px;
+  background-color: $gray30;
+}
+
+.contentWrapper {
+  padding: 12px 32px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  .contentText {
+    font-size: 14px;
+    line-height: 1.43;
+    color: $black0;
+  }
+}
+
+@media (max-width: $mobile_width) {
+  .container {
+    display: none;
+  }
+}

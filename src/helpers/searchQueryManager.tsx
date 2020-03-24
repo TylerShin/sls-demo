@@ -1,22 +1,9 @@
 import { stringify } from 'qs';
+import { isEmpty } from 'lodash';
 import { SearchPageQueryParams } from '../pages/search/types';
 import { SearchPapersParams } from '../api/types/paper';
 import SafeURIDecoder from './safeURIDecoder';
-import { PAPER_LIST_SORT_OPTIONS } from '../types/search';
-import { isEmpty } from 'lodash';
-
-export interface FilterObject {
-  yearFrom: number | string;
-  yearTo: number | string;
-  fos: string[];
-  journal: string[];
-}
-
-interface RawFilter {
-  year: string;
-  fos: string;
-  journal: string;
-}
+import { PAPER_LIST_SORT_OPTIONS, FilterObject, RawFilter } from '../types/search';
 
 export interface SearchPageQueryParamsObject {
   query: string;

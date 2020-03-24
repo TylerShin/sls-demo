@@ -31,9 +31,9 @@ const CiteButton: React.FC<CiteButtonProps> = ({ paper, pageType, actionArea, cl
         size="small"
         variant={isMobile ? 'contained' : 'outlined'}
         color={isMobile ? 'black' : 'blue'}
-        onClick={async () => {
-          dispatch(addPaperToRecommendPool({ paperId: paper.id, action: 'citePaper' }));
+        onClick={() => {
           GlobalDialogManager.openCitationDialog(paper.id);
+          dispatch(addPaperToRecommendPool({ paperId: paper.id, action: 'citePaper' }));
           ActionTicketManager.trackTicket({
             pageType,
             actionType: 'fire',

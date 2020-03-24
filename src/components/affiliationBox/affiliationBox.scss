@@ -1,0 +1,142 @@
+.affiliationSelectBox {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.selectBoxWrapper {
+  position: absolute;
+  left: 0;
+  right: 0;
+  max-height: 200px;
+  background-color: white;
+  overflow-y: auto;
+  border: solid 1px #e9ecf2;
+  border-radius: 3px;
+  z-index: 2;
+}
+
+.selectBox {
+  height: 40px;
+  padding: 6px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 14px;
+  color: $black0;
+  border-bottom: solid 1px #e9ecf2;
+  cursor: pointer;
+
+  .contentBox {
+    @include one-line-elipsis-truncate(230px);
+    width: 230px;
+    height: 20px;
+  }
+
+  &:hover {
+    color: $main_blue1;
+  }
+
+  &:last-of-type {
+    border: 0;
+  }
+}
+
+.inputWrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+  border-radius: 5px;
+  width: 100%;
+
+  input {
+    display: block;
+    width: 100%;
+    border: 0;
+    padding: 8px 32px 8px 8px;
+    margin: 0;
+    border-radius: 5px;
+    border: solid 1px $gray400;
+    background-color: transparent;
+
+    &.error {
+      border: solid 1px $red0;
+    }
+  }
+
+  &::placeholder {
+    color: $gray500;
+  }
+
+  .errorMessage {
+    color: $red0;
+    font-size: 12px;
+    display: inline-flex;
+  }
+
+  .iconWrapper {
+    position: absolute;
+    width: 16px;
+    right: 0;
+    margin-right: 8px;
+  }
+
+  .deleteIcon {
+    position: absolute;
+    top: 0;
+    right: 10px;
+    width: 16px;
+    height: 100%;
+    color: $gray500;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+
+    svg {
+      width: 12px;
+      height: 12px;
+      transform: rotate(180deg);
+    }
+  }
+}
+
+.enterAffiliationItemContext {
+  display: flex;
+  align-items: center;
+  font-size: 12px;
+  color: $gray800;
+  height: 30px;
+  padding: 8px;
+
+  b {
+    color: $main_blue1;
+    font-weight: bold;
+  }
+
+  .plusIcon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 16px;
+    height: 16px;
+    margin-right: 4px;
+    color: $gray600;
+
+    svg {
+      width: 9px;
+      height: 9px;
+    }
+  }
+}
+
+.affiliationSelectBox {
+  display: inline-flex;
+}
+
+.inputWrapper {
+  .errorMessage {
+    margin-top: 4px;
+  }
+}

@@ -1,8 +1,8 @@
 import { Location } from 'history';
-import PapersQueryFormatter, { FilterObject, SearchPageQueryParamsObject } from './searchQueryManager';
+import PapersQueryFormatter, { SearchPageQueryParamsObject } from './searchQueryManager';
 import getQueryParamsObject from './getQueryParamsObject';
 import SafeURIStringHandler from './safeURIDecoder';
-import { PAPER_LIST_SORT_OPTIONS } from '@src/types/search';
+import { PAPER_LIST_SORT_OPTIONS, FilterObject } from '@src/types/search';
 
 interface RawQueryParams {
   query: string;

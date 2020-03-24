@@ -1,4 +1,5 @@
-import { AxiosResponse, CancelToken, AxiosInstance } from 'axios';
+import { AxiosResponse, CancelToken } from 'axios';
+import { getAxiosInstance } from './axios';
 
 export interface CompletionKeyword
   extends Readonly<{
@@ -25,18 +26,20 @@ export interface JournalSuggestion {
 interface FetchKeywordParams {
   query: string;
   cancelToken: CancelToken;
-  axios: AxiosInstance;
 }
 
-export async function fetchSuggestionKeyword({ query, cancelToken, axios }: FetchKeywordParams) {
-  const getCompleteKeywordResponse: AxiosResponse = await axios.get('/complete', { params: { q: query }, cancelToken });
+export async function fetchSuggestionKeyword({ query, cancelToken }: FetchKeywordParams) {
+  const getCompleteKeywordResponse: AxiosResponse = await getAxiosInstance().get('/complete', {
+    params: { q: query },
+    cancelToken,
+  });
 
   const completionKeywords: CompletionKeyword[] = getCompleteKeywordResponse.data.data;
   return completionKeywords;
 }
 
-export async function fetchFOSSuggestion({ query, cancelToken, axios }: FetchKeywordParams) {
-  const res: AxiosResponse = await axios.get('/complete/fos', {
+export async function fetchFOSSuggestion({ query, cancelToken }: FetchKeywordParams) {
+  const res: AxiosResponse = await getAxiosInstance().get('/complete/fos', {
     params: {
       q: query,
     },
@@ -50,8 +53,8 @@ export async function fetchFOSSuggestion({ query, cancelToken, axios }: FetchKey
   return fosList;
 }
 
-export async function fetchJournalSuggestion({ query, cancelToken, axios }: FetchKeywordParams) {
-  const res: AxiosResponse = await axios.get('/complete/journal', {
+export async function fetchJournalSuggestion({ query, cancelToken }: FetchKeywordParams) {
+  const res: AxiosResponse = await getAxiosInstance().get('/complete/journal', {
     params: {
       q: query,
     },

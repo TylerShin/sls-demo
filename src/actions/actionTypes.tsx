@@ -9,7 +9,6 @@ import { PaperInCollection } from '../model/paperInCollection';
 import { OAuthCheckParams } from '../api/types/auth';
 import { SignUpConversionExpTicketContext } from '../constants/abTest';
 import { FILTER_BUTTON_TYPE } from '../components/filterButton';
-import { FilterObject } from '../helpers/searchQueryManager';
 import { AggregationJournal, AggregationFos } from '../model/aggregation';
 import { Member } from '../model/member';
 import { Institute } from '../model/Institute';
@@ -17,7 +16,7 @@ import { PaperProfile } from '../model/profile';
 import { GLOBAL_DIALOG_TYPE } from '@src/reducers/globalDialog/types';
 import { SIGN_UP_STEP } from '@src/components/signup/types';
 import { SearchResult } from '@src/api/types/search';
-import { PAPER_LIST_SORT_OPTIONS } from '@src/types/search';
+import { PAPER_LIST_SORT_OPTIONS, FilterObject } from '@src/types/search';
 import { ActionTagType } from '@src/constants/actionTicket';
 import { PendingPaper } from '@src/model/pendingPaper';
 
