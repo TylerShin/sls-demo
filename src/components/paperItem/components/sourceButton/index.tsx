@@ -52,6 +52,7 @@ const SourceButton: React.FC<SourceButtonProps> = ({ paperSource, pageType, acti
         }}
       >
         <img
+          loading="lazy"
           src={`https://www.google.com/s2/favicons?domain=${paperSource.source}`}
           alt={`${paperSource.host} favicon`}
         />

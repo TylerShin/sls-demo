@@ -44,7 +44,9 @@ const Footer: React.FC<FooterProps> = props => {
               >
                 FAQ
               </a>
-              <div className={styles.menuItem}>Data Sources</div>
+              <div onClick={() => setIsSourceOpen(true)} className={styles.menuItem}>
+                Data Sources
+              </div>
               <Dialog
                 open={isSourceOpen}
                 onClose={() => {
@@ -61,7 +63,13 @@ const Footer: React.FC<FooterProps> = props => {
                       <picture>
                         <source srcSet="https://assets.pluto.network/scinapse/ms-research.webp" type="image/webp" />
                         <source srcSet="https://assets.pluto.network/scinapse/ms-research.jpg" type="image/jpeg" />
-                        <img src="https://assets.pluto.network/scinapse/ms-research.jpg" alt="circle" />
+                        <img
+                          width={202}
+                          height={40}
+                          loading="lazy"
+                          src="https://assets.pluto.network/scinapse/ms-research.jpg"
+                          alt="circle"
+                        />
                       </picture>
                     </a>
                   </div>
@@ -73,7 +81,13 @@ const Footer: React.FC<FooterProps> = props => {
                           type="image/webp"
                         />
                         <source srcSet="https://assets.pluto.network/scinapse/semantic-scholar.jpg" type="image/jpeg" />
-                        <img src="https://assets.pluto.network/scinapse/semantic-scholar.jpg" alt="circle" />
+                        <img
+                          width={202}
+                          height={40}
+                          loading="lazy"
+                          src="https://assets.pluto.network/scinapse/semantic-scholar.jpg"
+                          alt="circle"
+                        />
                       </picture>
                     </a>
                   </div>
@@ -82,7 +96,13 @@ const Footer: React.FC<FooterProps> = props => {
                       <picture>
                         <source srcSet="https://assets.pluto.network/scinapse/springer-nature.webp" type="image/webp" />
                         <source srcSet="https://assets.pluto.network/scinapse/springer-nature.jpg" type="image/jpeg" />
-                        <img src="https://assets.pluto.network/scinapse/springer-nature.jpg" alt="circle" />
+                        <img
+                          width={202}
+                          height={40}
+                          loading="lazy"
+                          src="https://assets.pluto.network/scinapse/springer-nature.jpg"
+                          alt="circle"
+                        />
                       </picture>
                     </a>
                   </div>
@@ -91,7 +111,13 @@ const Footer: React.FC<FooterProps> = props => {
                       <picture>
                         <source srcSet="https://assets.pluto.network/scinapse/pub-med.webp" type="image/webp" />
                         <source srcSet="https://assets.pluto.network/scinapse/pub-med.jpg" type="image/jpeg" />
-                        <img src="https://assets.pluto.network/scinapse/pub-med.jpg" alt="circle" />
+                        <img
+                          width={202}
+                          height={40}
+                          loading="lazy"
+                          src="https://assets.pluto.network/scinapse/pub-med.jpg"
+                          alt="circle"
+                        />
                       </picture>
                     </a>
                   </div>

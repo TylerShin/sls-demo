@@ -20,7 +20,7 @@ module.exports = {
     chunkFilename: '[name].chunk.js',
     publicPath: ASSET_PATH,
   },
-  devtool: 'eval',
+  devtool: process.env.NODE_ENV === 'production' ? 'source-map' : 'eval-source-map',
   stats: 'minimal',
   resolve: {
     extensions: ['.ts', '.tsx', '.js', '.jsx'],

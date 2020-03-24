@@ -1,16 +1,17 @@
-import React, { FC, useEffect } from "react";
-import ReactDom from "react-dom";
-import { BrowserRouter } from "react-router-dom";
-import { ThemeProvider } from "@material-ui/core/styles";
-import App from "../components/app";
-import theme from "../assets/muiTheme";
-import { Provider } from "react-redux";
-import store from "../store";
-const StyleContext = require("isomorphic-style-loader/StyleContext");
+import React, { FC, useEffect } from 'react';
+import { loadableReady } from '@loadable/component';
+import ReactDom from 'react-dom';
+import { BrowserRouter } from 'react-router-dom';
+import { ThemeProvider } from '@material-ui/core/styles';
+import App from '../components/app';
+import theme from '../assets/muiTheme';
+import { Provider } from 'react-redux';
+import store from '../store';
+const StyleContext = require('isomorphic-style-loader/StyleContext');
 
 // Prevent IE/Edge's Clicking SVG problem
 // https://stackoverflow.com/questions/38648307/add-blur-method-to-svg-elements-in-ie-edge
-if (typeof (SVGElement.prototype as any).blur === "undefined") {
+if (typeof (SVGElement.prototype as any).blur === 'undefined') {
   // tslint:disable-next-line:no-empty
   (SVGElement.prototype as any).blur = () => {};
 }
@@ -22,7 +23,7 @@ const insertCss = (...styles: any[]) => {
 
 const ClientApp: FC = () => {
   useEffect(() => {
-    const jssStyles = document.querySelector("#jss-server-side");
+    const jssStyles = document.querySelector('#jss-server-side');
     if (jssStyles && jssStyles.parentElement) {
       jssStyles.parentElement.removeChild(jssStyles);
     }
@@ -41,4 +42,6 @@ const ClientApp: FC = () => {
   );
 };
 
-ReactDom.hydrate(<ClientApp />, document.getElementById("react-app"));
+loadableReady(() => {
+  ReactDom.hydrate(<ClientApp />, document.getElementById('react-app'));
+});

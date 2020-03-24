@@ -20,7 +20,12 @@ const EmailBanner: React.FC = () => {
     <div className={s.wrapper}>
       <div className={s.title}>{title}</div>
       <div className={s.subtitle}>{subtitle}</div>
-      <img className={s.bannerImage} src="//assets.scinapse.io/emailBanner.png" alt="email banner image" />
+      <img
+        loading="lazy"
+        className={s.bannerImage}
+        src="//assets.scinapse.io/emailBanner.png"
+        alt="email banner image"
+      />
       <form
         onSubmit={e => {
           e.preventDefault();

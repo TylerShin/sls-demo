@@ -18,7 +18,6 @@ export default class PlutoAxios {
     if (EnvChecker.isOnServer()) {
       console.log(`HTTP REQUEST - GET : ${getAPIHost() + path}`);
     }
-    console.log(path, config);
     return getAxiosInstance().get(path, config);
   }
 
