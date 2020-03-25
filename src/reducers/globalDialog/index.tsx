@@ -7,7 +7,7 @@ import { PaperProfile } from '../../model/profile';
 import { GLOBAL_DIALOG_TYPE } from './types';
 import { AvailableCitationType } from '@src/types/citeFormat';
 import { ActionTagType } from '@src/constants/actionTicket';
-import { SIGN_UP_STEP } from '@src/components/signup/types';
+import { SIGN_UP_STEP } from '@src/components/signUp/types';
 import { PendingPaper } from '@src/model/pendingPaper';
 
 export interface DialogState

@@ -1,3 +1,4 @@
+import 'intersection-observer';
 import React, { FC, useEffect } from 'react';
 import { loadableReady } from '@loadable/component';
 import ReactDom from 'react-dom';

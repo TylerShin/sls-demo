@@ -1,0 +1,28 @@
+.loadingSection {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 350px;
+}
+
+.titleWrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 12px;
+}
+
+.title {
+  font-size: 18px;
+  font-weight: 500;
+  color: $black_light_0;
+  margin-bottom: 12px;
+}
+
+.itemWrapper {
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.05);
+}
+
+.itemWrapper + .itemWrapper {
+  margin-top: 12px;
+}

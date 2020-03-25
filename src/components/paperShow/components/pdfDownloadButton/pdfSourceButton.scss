@@ -1,0 +1,104 @@
+.downloadButton {
+  position: relative;
+  display: flex;
+  align-items: center;
+  height: 40px;
+  font-size: 14px;
+  font-weight: 500;
+  color: $main_blue0;
+  line-height: 1.43;
+  border-radius: 4px;
+
+  &.reverseDownloadBtn {
+    color: white;
+  }
+
+  .arrowIcon {
+    @include flex-center-vertical-horizontal(flex);
+    color: $gray600;
+
+    svg {
+      width: 16px;
+      height: 16px;
+    }
+  }
+
+  .sourceIcon,
+  .pdfIconWrapper {
+    @include flex-center-vertical-horizontal(inline-flex);
+    width: 16px;
+    height: 16px;
+    margin-left: 10px;
+    margin-right: 4px;
+
+    svg {
+      width: 100%;
+      height: 100%;
+    }
+  }
+}
+
+.pdfDownloadBtn {
+  @extend .downloadButton;
+  background-color: $main_blue1;
+  color: white;
+  width: 140px;
+  height: 36px;
+  font-size: 14px;
+  font-weight: bold;
+
+  &:hover {
+    background-color: $main_blue0;
+  }
+}
+
+.reverseDownloadBtn {
+  @extend .downloadButton;
+
+  .dropdownBtn,
+  .linkClassName {
+    background-color: $main_blue1;
+    border: none;
+
+    &:hover {
+      background-color: $main_blue0;
+    }
+
+    &:active {
+      filter: brightness(95%);
+    }
+  }
+
+  .arrowIcon {
+    color: white;
+    opacity: 0.6;
+  }
+}
+
+.dropdownBtn,
+.linkClassName {
+  background-color: white;
+  border: solid 1px $gray400;
+  border-right: none;
+
+  &:hover {
+    background-color: $gray30;
+  }
+
+  &:active {
+    filter: brightness(95%);
+  }
+}
+
+.sourceButtonTextWrapper {
+  width: 94px;
+  margin-right: 10px;
+  text-align: center;
+}
+
+@media (max-width: 1024px) {
+  .linkClassName {
+    width: 100%;
+    justify-content: center;
+  }
+}

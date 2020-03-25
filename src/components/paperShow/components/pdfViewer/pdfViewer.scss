@@ -1,0 +1,96 @@
+:global {
+  .react-pdf__Page + .react-pdf__Page {
+    margin-top: 8px;
+  }
+
+  .react-pdf__Page__canvas {
+    margin-top: 0;
+  }
+}
+
+.contentWrapper {
+  position: relative;
+  background-color: $gray50;
+  padding: 32px 0;
+}
+
+.loadingContainerWrapper {
+  @extend .contentWrapper;
+  padding: 32px 0 84px 0;
+}
+
+.loadingContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 996px;
+  height: 484px;
+  box-shadow: 0 4px 12px 0 rgba(0, 0, 0, 0.1);
+  margin-bottom: 84px;
+  background-color: white;
+  color: $main_blue1;
+  margin: 0 auto;
+}
+
+.loadingContent {
+  position: absolute;
+}
+
+.arrowIcon {
+  display: inline-flex;
+  justify-content: center;
+  vertical-align: middle;
+  align-items: center;
+  width: 24px;
+  height: 24px;
+
+  svg {
+    transform: rotate(180deg);
+    width: 16px;
+    height: 16px;
+  }
+}
+
+.downloadIcon {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  width: 20px;
+  height: 20px;
+  margin-right: 4px;
+
+  svg {
+    width: 100%;
+    height: 100%;
+  }
+}
+
+.downloadBtnWrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.pageLayer {
+  width: 996px;
+  margin: auto;
+  height: auto;
+  overflow-y: hidden;
+  box-shadow: 0 4px 12px 0 rgba(0, 0, 0, 0.1);
+}
+
+.page {
+  margin: 0 auto;
+}
+
+// RegularDisplay (1024~1200)
+@media (max-width: $regular_width) {
+  .contentWrapper {
+    display: none;
+  }
+
+  .afterDownloadContainer {
+    display: none;
+  }
+}

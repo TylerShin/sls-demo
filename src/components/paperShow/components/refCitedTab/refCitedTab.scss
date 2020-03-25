@@ -1,0 +1,127 @@
+.paperContentBlockHeaderTabs {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  border-top: solid 1px $gray200;
+  border-bottom: solid 1px $gray200;
+
+  &.stick {
+    position: fixed;
+    top: $header-height;
+    width: 100%;
+    background-color: white;
+    border-bottom: 1px solid $gray50;
+    margin: 0;
+    z-index: 99;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+
+    .rightBtnBox {
+      margin-top: 0;
+    }
+  }
+
+  .paperContentBlockHeaderTabContentWrapper {
+    width: 100%;
+    display: flex;
+    max-width: 1200px;
+    margin: 0 auto;
+    justify-content: space-between;
+    align-items: flex-end;
+    padding: 0 16px;
+  }
+
+  .headerTabList {
+    font-size: 0;
+    .headerTabItem + .headerTabItem {
+      margin-left: 8px;
+    }
+    .headerTabItem {
+      display: inline-block;
+      font-size: 16px;
+      font-weight: 500;
+      line-height: 48px;
+      color: $gray600;
+      padding: 0 8px;
+      cursor: pointer;
+
+      &.active {
+        color: $black1;
+        font-weight: 700;
+        border-bottom: 2px solid $black1;
+      }
+    }
+  }
+
+  .scrollTop {
+    display: inline-block;
+
+    .scrollButton {
+      padding: 4px 8px;
+      border-radius: 9999px;
+      font-size: 12px;
+      color: $main_blue0;
+
+      &:hover {
+        background-color: $gray50;
+      }
+
+      &:active {
+        filter: brightness(95%);
+      }
+    }
+  }
+}
+
+.rightBtnBox {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px 0;
+
+  .actionItem {
+    display: inline-block;
+    vertical-align: top;
+    margin-left: 8px;
+
+    & + & {
+      margin-left: 8px;
+    }
+  }
+
+  // RegularDisplay (1024~1200)
+  @media (max-width: $regular_width) {
+    .paperContentBlockHeaderTabs {
+      padding: 12px 12px 0 12px;
+
+      &.stick {
+        padding: 12px;
+      }
+    }
+
+    .rightBtnBox {
+      display: none;
+    }
+  }
+}
+
+@media (max-width: $mobile_width) {
+  .paperContentBlockHeaderTabContentWrapper {
+    align-items: flex-start !important;
+    flex-direction: column;
+    padding: 0 4px !important;
+  }
+
+  .headerTabList {
+    .headerTabItem + .headerTabItem {
+      margin-left: 4px !important;
+    }
+    .headerTabItem {
+      padding: 0 4px !important;
+    }
+  }
+
+  .rightBtnBox {
+    width: 100%;
+    justify-content: flex-end !important;
+  }
+}

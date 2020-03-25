@@ -1,0 +1,243 @@
+$action-bar-height: 55px;
+$ref-cited-bar-height: 50px;
+$side-navigation-bottom-padding: 24px;
+
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+button {
+  outline: none;
+  border: none;
+  cursor: pointer;
+
+  &.smallButton {
+    background-color: $gray50;
+    border-radius: 8px;
+    color: $main_blue1;
+    &:hover {
+      background-color: $gray300;
+    }
+    svg {
+      width: 16px;
+      height: 16px;
+      vertical-align: middle;
+    }
+    span {
+      line-height: 16px;
+      color: $main_blue0;
+      font-size: 12px;
+      vertical-align: middle;
+    }
+  }
+}
+
+%navbar-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 176px;
+  height: 40px;
+  border-radius: 5px;
+  margin-right: 8px;
+}
+
+.container {
+  margin: 0 auto;
+  margin-top: $header-height;
+  display: flex;
+  flex-direction: column;
+}
+
+.paperShow-Content {
+  padding-bottom: 96px;
+}
+
+article.paperShow {
+  width: $paper-show-width;
+  margin: 0 auto;
+  font-size: 16px;
+  color: $black_light_0;
+  height: fit-content;
+
+  .paperContentBlockHeader {
+    width: 100%;
+    font-size: 21px;
+    font-weight: 500;
+    padding-bottom: 4px;
+    margin-bottom: 8px;
+    position: relative;
+  }
+
+  .paperContentBlockDivider {
+    width: 100%;
+    height: 1px;
+    background-color: $gray50;
+    margin-top: $paper-show-interblock-divider-margin;
+    margin-bottom: $paper-show-interblock-divider-margin;
+  }
+
+  .abstractContent {
+    word-break: break-word;
+    overflow-wrap: break-word;
+    letter-spacing: 0.3px;
+
+    b {
+      font-weight: 700;
+    }
+  }
+
+  .paperTitle {
+    max-width: 792px;
+    font-family: Georgia;
+    font-size: 36px;
+    line-height: 1.5;
+    font-weight: 500;
+    color: $black_light_0;
+    margin-top: 32px;
+    margin-bottom: 16px;
+
+    b {
+      font-weight: 900;
+    }
+  }
+
+  .paperInfo {
+    display: flex;
+    justify-content: space-between;
+
+    & > div + div {
+      margin-left: 24px;
+    }
+  }
+
+  .paperContent {
+    position: relative;
+    font-size: 18px;
+    color: $black_light_0;
+    line-height: 1.6;
+    margin-bottom: 64px;
+  }
+
+  .otherPapers {
+    margin-top: 24px;
+
+    .paperItem + .paperItem {
+      margin-top: 12px;
+    }
+    .paperItem {
+      img {
+        width: 100%;
+      }
+    }
+  }
+}
+
+.citedWrapper,
+.referenceWrapper {
+  padding: 16px 0;
+}
+
+.paperContentBlockHeaderTabsHeight {
+  height: 69px;
+}
+
+.refCitedTabWrapper {
+  min-height: $ref-cited-bar-height;
+  box-sizing: content-box;
+}
+
+.sectionTitle {
+  font-size: 21px;
+  font-weight: 500;
+  color: $black_light_0;
+}
+
+.sectionCount {
+  font-family: Roboto;
+  font-size: 21px;
+  color: $main_blue0;
+  margin-left: 12px;
+}
+
+.sectionDivider {
+  width: 100%;
+  height: 80px;
+  background-color: $gray50;
+  box-shadow: inset 0px 0px 5px 2px rgba(0, 0, 0, 0.02);
+}
+
+.footerWrapper {
+  background-color: $gray50;
+}
+
+.backBtn {
+  padding-top: 24px;
+}
+
+// RegularDisplay (1024~1200)
+@media (max-width: $regular_width) {
+  .container {
+    article.paperShow {
+      .paperInfo {
+        display: block;
+
+        & > div {
+          width: $mobile-paper-info-layout-width;
+
+          & + div {
+            margin-left: 0;
+            margin-top: 24px;
+          }
+        }
+      }
+    }
+  }
+}
+
+// SmallDisplay (768~1024)
+@media (max-width: $tablet_width) {
+  .container {
+    article.paperShow {
+      width: calc(100vw - 24px * 2);
+    }
+
+    .rightBox {
+      display: none;
+    }
+  }
+
+  .refCitedTabWrapper {
+    width: 100%;
+  }
+}
+
+// Mobile (0~768)
+@media (max-width: $mobile_width) {
+  .container {
+    display: block;
+    width: $mobile-container-width;
+    margin-left: 0;
+    margin-right: 0;
+
+    article.paperShow {
+      width: $mobile-content-width;
+      margin: 0 auto;
+      .paperTitle {
+        padding-top: 32px;
+      }
+      .paperInfo {
+        display: block;
+        & > div {
+          width: $mobile-paper-info-layout-width;
+          & + div {
+            margin-left: 0;
+            margin-top: 24px;
+          }
+        }
+      }
+    }
+  }
+}

@@ -3,7 +3,7 @@ import path from 'path';
 import React from 'react';
 import { AzureFunction, Context, HttpRequest } from '@azure/functions';
 import ReactDOMServer from 'react-dom/server';
-import { StaticRouter } from 'react-router-dom';
+import { StaticRouter, matchPath } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
 import { ServerStyleSheets, ThemeProvider } from '@material-ui/core/styles';
 import { ChunkExtractor, ChunkExtractorManager } from '@loadable/server';
@@ -13,6 +13,10 @@ import { generateHTML } from './helpers/generateHTML';
 import theme from '../assets/muiTheme';
 import { Provider } from 'react-redux';
 import { getAxiosInstance } from '../api/axios';
+import { routesMap } from '@src/components/routes';
+import getQueryParamsObject from '@src/helpers/getQueryParamsObject';
+import { ACTION_TYPES } from '@src/actions/actionTypes';
+import PlutoAxios from '@src/api/pluto';
 const StyleContext = require('isomorphic-style-loader/StyleContext');
 
 const STAGE = process.env['NODE_ENV'] || 'development';
@@ -51,6 +55,37 @@ const httpTrigger: AzureFunction = async function(context: Context, req: HttpReq
   });
 
   const store = getServerStore({ axios });
+
+  // Load data from API server
+  const promises: Promise<any>[] = [];
+  try {
+    routesMap.some(route => {
+      const match = matchPath(url.pathname, route);
+      if (!!match && !!route.loadData) {
+        promises.push(
+          route.loadData({
+            dispatch: store.dispatch,
+            match,
+            queryParams: getQueryParamsObject(req),
+            pathname: url.pathname,
+          })
+        );
+      }
+      return !!match;
+    });
+  } catch (_err) {}
+
+  await Promise.all(promises)
+    .then(() => {
+      store.dispatch({
+        type: ACTION_TYPES.GLOBAL_SUCCEEDED_TO_INITIAL_DATA_FETCHING,
+      });
+    })
+    .catch(err => {
+      console.trace(err);
+      const error = PlutoAxios.getGlobalError(err);
+      console.error(`Fetching data error at server - ${error.message}`);
+    });
 
   // set styles made by Pluto
   const plutoCss = new Set();

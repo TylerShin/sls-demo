@@ -1,0 +1,54 @@
+.sortBoxWrapper {
+  display: flex;
+  align-items: center;
+}
+
+.currentOption {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  color: $gray800;
+  margin-right: 8px;
+
+  span {
+    display: inline-block;
+    vertical-align: top;
+  }
+}
+
+.downArrow {
+  display: inline-block;
+  vertical-align: top;
+  width: 16px;
+  height: 16px;
+  object-fit: contain;
+
+  svg {
+    display: inline-block;
+    vertical-align: top;
+    transform: rotate(180deg);
+    width: 100%;
+    height: 100%;
+  }
+}
+
+.sortByText {
+  font-size: 14px;
+  color: $gray600;
+  margin-right: 8px;
+}
+
+.sortOptionText {
+  font-size: 14px;
+  margin-right: 8px;
+}
+
+body .menuItem {
+  @extend %default-sort-dropdown-menuitem;
+}
+
+@media (max-width: $mobile_width) {
+  .sortByText {
+    visibility: hidden;
+  }
+}

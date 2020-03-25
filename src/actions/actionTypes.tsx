@@ -14,7 +14,7 @@ import { Member } from '../model/member';
 import { Institute } from '../model/Institute';
 import { PaperProfile } from '../model/profile';
 import { GLOBAL_DIALOG_TYPE } from '@src/reducers/globalDialog/types';
-import { SIGN_UP_STEP } from '@src/components/signup/types';
+import { SIGN_UP_STEP } from '@src/components/signUp/types';
 import { SearchResult } from '@src/api/types/search';
 import { PAPER_LIST_SORT_OPTIONS, FilterObject } from '@src/types/search';
 import { ActionTagType } from '@src/constants/actionTicket';

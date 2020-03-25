@@ -7,6 +7,8 @@ import { reducer as paperShow } from '../reducers/paperShow';
 import { reducer as entities } from '../reducers/entity';
 import { reducer as dialog } from '../reducers/globalDialog';
 import { reducer as emailVerification } from '../reducers/emailVerification';
+import { reducer as relatedPapersState } from '../reducers/relatedPapers';
+import { reducer as PDFViewerState } from '../reducers/pdfViewer';
 import layout from '../reducers/layout';
 import currentUser from '../reducers/currentUser';
 import searchInput from '../reducers/searchInput';
@@ -21,6 +23,7 @@ import profilePaperListState from '../reducers/profilePaperList';
 import importPaperDialogState from '../reducers/importPaperDialog';
 import profileOnboardingState from '../reducers/profileOnboarding';
 import profileEntities from '../reducers/profileEntity';
+import findInLibraryDialogState from '../reducers/findInLibraryDialog';
 
 const rootReducer = combineReducers({
   layout,
@@ -44,6 +47,9 @@ const rootReducer = combineReducers({
   profilePaperListState,
   importPaperDialogState,
   profileOnboardingState,
+  relatedPapersState,
+  PDFViewerState,
+  findInLibraryDialogState,
   profileEntities,
 });
 

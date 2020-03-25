@@ -1,0 +1,90 @@
+.bannerContainer {
+  height: 80px;
+  width: 100%;
+  z-index: 100;
+  position: fixed;
+  display: flex;
+  bottom: 0;
+  background-color: $black0;
+}
+
+.bannerWrapper {
+  max-width: 1200px;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  align-items: center;
+  margin: 0 auto;
+  padding: 0 48px;
+}
+
+.titleContext {
+  font-size: 12px;
+  letter-spacing: 1.5px;
+  color: $gray400;
+  margin-bottom: 2px;
+}
+
+.mainContext {
+  font-size: 20px;
+  color: white;
+}
+.buttonWrapper {
+  display: flex;
+  align-items: center;
+}
+
+.subContext {
+  font-size: 16px;
+  color: $gray600;
+  margin-right: 16px;
+  cursor: pointer;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+.signUpBtn {
+  width: 128px;
+  height: 52px;
+  border-radius: 4px;
+  background-color: $main_blue1;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.25;
+  color: white;
+  cursor: pointer;
+
+  &:hover {
+    background-color: $main_blue_light0;
+    transition: $button-hover-transition;
+  }
+}
+
+.closeBtn {
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  right: 12px;
+  top: 12px;
+  cursor: pointer;
+
+  i {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  svg {
+    width: 20px;
+    height: 20px;
+    color: $gray600;
+  }
+}
+
+@media (max-width: $tablet_width) {
+  .bannerContainer {
+    display: none;
+  }
+}
