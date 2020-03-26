@@ -12,6 +12,7 @@ import {
   COLLECTION_LIST_PATH,
   AUTH_PATH,
   USER_SETTINGS_PATH,
+  KEYWORD_SETTINGS_PATH,
 } from '../../constants/route';
 import ErrorPage from '../../pages/error/errorPage';
 import ArticleSpinner from '../spinner/articleSpinner';
@@ -121,6 +122,12 @@ export const routesMap: RouteMap[] = [
   {
     path: USER_SETTINGS_PATH,
     component: loadable(() => import('../../pages/userSettings'), {
+      fallback: <LoadingSpinner />,
+    }),
+  },
+  {
+    path: KEYWORD_SETTINGS_PATH,
+    component: loadable(() => import('../../pages/keywordSettings'), {
       fallback: <LoadingSpinner />,
     }),
   },
