@@ -10,6 +10,7 @@ import {
   COLLECTION_SHOW_PATH,
   JOURNAL_SHOW_PATH,
   COLLECTION_LIST_PATH,
+  AUTH_PATH,
 } from '../../constants/route';
 import ErrorPage from '../../pages/error/errorPage';
 import ArticleSpinner from '../spinner/articleSpinner';
@@ -109,6 +110,12 @@ export const routesMap: RouteMap[] = [
       await Promise.all([getCollections(params)]);
     },
     exact: true,
+  },
+  {
+    path: AUTH_PATH,
+    component: loadable(() => import('../../pages/auth'), {
+      fallback: <LoadingSpinner />,
+    }),
   },
   { component: ErrorPage },
 ];
