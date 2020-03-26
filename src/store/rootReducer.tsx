@@ -9,6 +9,7 @@ import { reducer as dialog } from '../reducers/globalDialog';
 import { reducer as emailVerification } from '../reducers/emailVerification';
 import { reducer as relatedPapersState } from '../reducers/relatedPapers';
 import { reducer as PDFViewerState } from '../reducers/pdfViewer';
+import { reducer as authorSearch } from '../reducers/authorSearch';
 import layout from '../reducers/layout';
 import currentUser from '../reducers/currentUser';
 import searchInput from '../reducers/searchInput';
@@ -41,6 +42,7 @@ const rootReducer = combineReducers({
   signUpModalState,
   myCollections,
   paperShow,
+  authorSearch,
   entities,
   profilePendingPaperListState,
   profileRepresentativePaperListState,

@@ -9,6 +9,8 @@ import PlutoAxios from '@src/api/pluto';
 import { CommonError } from '@src/types/error';
 import { FILTER_BUTTON_TYPE } from '@src/components/filterButton';
 import { Paper } from '@src/model/paper';
+import { GetAuthorsParam } from '@src/api/types/author';
+import { Author } from '@src/model/author/author';
 
 export function searchPapers(params: SearchPapersParams): AppThunkAction<Promise<Paper[] | undefined>> {
   return async dispatch => {
@@ -71,5 +73,39 @@ export function setActiveFilterButton(button: FILTER_BUTTON_TYPE | null): SetAct
   return {
     type: ACTION_TYPES.ARTICLE_SEARCH_SET_ACTIVE_FILTER_BOX_BUTTON,
     payload: { button },
+  };
+}
+
+export function fetchSearchAuthors(params: GetAuthorsParam): AppThunkAction<Promise<Author[] | undefined>> {
+  return async dispatch => {
+    dispatch({
+      type: ACTION_TYPES.ARTICLE_SEARCH_START_TO_GET_AUTHORS,
+      payload: {
+        query: params.query,
+        sort: params.sort,
+      },
+    });
+
+    try {
+      const res = await SearchAPI.searchAuthor(params);
+      dispatch({
+        type: ACTION_TYPES.ARTICLE_SEARCH_SUCCEEDED_TO_GET_AUTHORS,
+        payload: res,
+      });
+
+      return res.data.content;
+    } catch (err) {
+      if (!Axios.isCancel(err)) {
+        const error = PlutoAxios.getGlobalError(err);
+
+        dispatch({
+          type: ACTION_TYPES.ARTICLE_SEARCH_FAILED_TO_GET_AUTHORS,
+          payload: {
+            statusCode: (error as CommonError).status,
+          },
+        });
+        throw err;
+      }
+    }
   };
 }

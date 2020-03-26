@@ -10,7 +10,7 @@ import { bindActionCreators } from 'redux';
 import { withStyles } from '../../helpers/withStyles';
 import SearchQueryManager from '../../helpers/searchQueryManager';
 import NoResult from './components/noResult';
-import NoResultInSearch from './components/noResultInSearch';
+import NoResultInSearch from '../../components/noResultInSearch';
 import TabNavigationBar from '@src/components/tabNavigationBar';
 import PaperSearchResultInfo from './components/PaperSearchResultInfo';
 import ErrorPage from '../error/errorPage';

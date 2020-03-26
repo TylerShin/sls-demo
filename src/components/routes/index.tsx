@@ -1,7 +1,7 @@
 import React from 'react';
 import { Switch, Route, useLocation } from 'react-router-dom';
 import loadable from '@loadable/component';
-import { HOME_PATH, SEARCH_RESULT_PATH, PAPER_SHOW_PATH } from '../../constants/route';
+import { HOME_PATH, SEARCH_RESULT_PATH, PAPER_SHOW_PATH, AUTHOR_SEARCH_RESULT_PATH } from '../../constants/route';
 import ErrorPage from '../../pages/error/errorPage';
 import ArticleSpinner from '../spinner/articleSpinner';
 import { LoadDataParams } from '@src/types/routes';
@@ -39,6 +39,13 @@ export const routesMap: RouteMap[] = [
   {
     path: SEARCH_RESULT_PATH,
     component: loadable(() => import('../../pages/search'), {
+      fallback: <LoadingSpinner />,
+    }),
+    exact: true,
+  },
+  {
+    path: AUTHOR_SEARCH_RESULT_PATH,
+    component: loadable(() => import('../../pages/authorSearch'), {
       fallback: <LoadingSpinner />,
     }),
     exact: true,
