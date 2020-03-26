@@ -1,0 +1,351 @@
+.container {
+  margin: 0 auto;
+  max-width: $small-container-width;
+  display: flex;
+  flex-direction: column;
+}
+
+.headerBox {
+  background-color: $gray30;
+  padding-top: 32px;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1);
+}
+
+.contentWrapper {
+  display: flex;
+}
+
+.leftContentWrapper {
+  display: inline-block;
+  vertical-align: top;
+  width: 691px;
+}
+
+.nameBox {
+  display: flex;
+}
+
+.nameHeaderBox {
+  width: 100%;
+  flex: 1;
+}
+
+.usernameWrapper {
+  align-items: center;
+  display: flex;
+}
+
+.username {
+  @extend %one-line-overflow-ellipsis;
+  font-size: 24px;
+  height: 36px;
+  font-weight: bold;
+  line-height: 1.5;
+  color: $black0;
+  display: inline-block;
+  max-width: 400px;
+}
+
+.affiliation {
+  @extend %one-line-overflow-ellipsis;
+  height: 24px;
+  font-size: 16px;
+  line-height: 1.5;
+  color: $gray800;
+}
+
+.metricWrapper {
+  display: inline;
+  margin-right: 24px;
+}
+
+.metricValue {
+  display: inline-block;
+  vertical-align: top;
+  font-size: 18px;
+  font-weight: bold;
+  line-height: 1.33;
+  color: $black0;
+  margin-right: 6px;
+}
+
+.metricLabel {
+  display: inline-block;
+  font-size: 16px;
+  line-height: 1.5;
+  color: $gray800;
+}
+
+.metricLabel + .metricValue {
+  margin-left: 23px;
+}
+
+.metricInformation {
+  margin-top: 16px;
+  margin-bottom: 32px;
+}
+
+.bioSection {
+  white-space: pre-wrap;
+  font-size: 16px;
+  line-height: 1.5;
+  color: $gray800;
+  margin-bottom: 16px;
+  word-break: break-word;
+  overflow-wrap: break-word;
+}
+
+.contactSection {
+  display: inline-flex;
+  align-items: center;
+  height: 24px;
+  font-size: 14px;
+  line-height: 1.71;
+  color: $gray800;
+  flex-direction: row;
+  margin-bottom: 24px;
+  margin-right: 16px;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+.contactIconWrapper {
+  display: inline-flex;
+  width: 24px;
+  height: 24px;
+  justify-content: center;
+  align-items: center;
+  margin-right: 8px;
+
+  .occupiedIcon {
+    display: inline-block;
+    vertical-align: top;
+    width: 16px;
+    height: 16px;
+  }
+
+  .emailIcon {
+    @extend .occupiedIcon;
+    color: $gray600;
+  }
+
+  .externalSource {
+    @extend .emailIcon;
+    margin-left: 8px;
+  }
+}
+
+.moreOrLess {
+  color: #277eff;
+  cursor: pointer;
+}
+
+.verificationTooltip {
+  background-color: $gray300 !important;
+  color: $black0 !important;
+  font-size: 12px;
+}
+
+.fosList {
+  line-height: 1.5;
+}
+
+.fosItem {
+  font-size: 13px;
+  color: $gray600;
+
+  &::before {
+    content: ' · ';
+  }
+
+  &:first-of-type {
+    &::before {
+      content: '';
+    }
+  }
+}
+
+.rightContentWrapper {
+  margin-top: 8px;
+  padding-left: 22px;
+}
+
+.profileDescription {
+  color: $gray800;
+  text-align: center;
+  margin-top: 8px;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.profileInformationDialog {
+  padding: 0;
+}
+
+.profileInformationContent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+
+  .profileInformationHeaderCloseButton {
+    position: absolute;
+    right: 8px;
+    top: 8px;
+  }
+
+  .profileInformationHighlightTitle {
+    font-size: 28px;
+    font-weight: 700;
+    letter-spacing: 2px;
+  }
+
+  .profileInformationTitle {
+    font-size: 20px;
+    color: $black1;
+    letter-spacing: 1px;
+    line-height: 1.75;
+    padding: 36px 0 18px 0;
+    text-align: center;
+  }
+}
+
+.profileInformationContentText {
+  padding: 0 36px 36px 36px;
+
+  .profileInformationContextHeader {
+    color: $gray700;
+    text-align: center;
+  }
+
+  .profileInformationFeatureItemWrapper {
+    display: flex;
+    padding: 42px 0;
+  }
+
+  .profileInformationFeatureItem {
+    text-align: center;
+    color: $gray600;
+
+    .profileInformationFeatureIconWrapper {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100px;
+      height: 100px;
+      margin: 0 auto;
+      background-color: $main_blue_light0;
+      border-radius: 50%;
+      box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.25);
+
+      .profileInformationFeatureIcon {
+        display: inline-flex;
+        width: 50px;
+        height: 50px;
+        color: white;
+
+        svg {
+          width: 50px;
+          height: 50px;
+        }
+      }
+    }
+
+    .profileInformationFeatureGuide {
+      font-size: 14px;
+      margin-top: 12px;
+    }
+  }
+
+  .profileInformationFeatureItem + .profileInformationFeatureItem {
+    margin-left: 8px;
+  }
+
+  .profileInformationGuideContext {
+    font-size: 14px;
+    color: $gray600;
+    text-align: center;
+    margin-top: 16px;
+
+    .profileInformationGuideHighlightContext {
+      color: $main_blue0;
+      text-decoration: underline;
+    }
+  }
+
+  .profileInformationDialogCloseButtonWrapper {
+    margin-top: 16px;
+  }
+}
+
+@media (max-width: $tablet_width) {
+  .container {
+    padding: 0 12px;
+  }
+
+  .mobileMetricInformation {
+    display: inline-flex;
+    justify-content: space-between;
+    margin-top: 24px;
+    margin-bottom: 16px;
+    min-width: 296px;
+
+    .metricWrapper {
+      max-width: 100px;
+      display: inline-grid;
+    }
+  }
+}
+// Mobile (0~768)
+@media (max-width: $mobile_width) {
+  .container {
+    display: block;
+    width: $mobile-container-width;
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  .headerBox {
+    padding-top: 24px;
+  }
+
+  .nameHeaderBox {
+    overflow: hidden;
+  }
+
+  .leftContentWrapper {
+    width: $mobile-container-width;
+  }
+
+  .profileInformationSection {
+    margin-bottom: 12px;
+  }
+
+  .bioSection {
+    margin-bottom: 24px;
+  }
+
+  .contactSection {
+    margin-bottom: 4px;
+    display: block;
+  }
+
+  .externalSource {
+    margin-left: 0 !important;
+  }
+
+  .contentWrapper {
+    flex-direction: column;
+  }
+
+  .rightContentWrapper {
+    padding: 0;
+    margin: 12px 0;
+
+    button {
+      width: 100%;
+    }
+  }
+}

@@ -1,12 +1,12 @@
 import { CancelToken } from 'axios';
 import { Paper } from '../../model/paper';
 import { PageObjectV2 } from '@src/types/pagination';
-import { PAPER_LIST_SORT_OPTIONS } from '@src/types/search';
+import { AUTHOR_PAPER_LIST_SORT_OPTIONS } from '@src/types/search';
 
 export interface GetAuthorPapersParams {
   authorId: string;
   page: number;
-  sort: PAPER_LIST_SORT_OPTIONS;
+  sort: AUTHOR_PAPER_LIST_SORT_OPTIONS;
   cancelToken?: CancelToken;
   query?: string;
   size?: number;

@@ -8,6 +8,8 @@ import App from '../components/app';
 import theme from '../assets/muiTheme';
 import { Provider } from 'react-redux';
 import store from '../store';
+import { ACTION_TYPES } from '@src/actions/actionTypes';
+import { getCurrentPageType } from '@src/helpers/getCurrentPageType';
 const StyleContext = require('isomorphic-style-loader/StyleContext');
 
 // Prevent IE/Edge's Clicking SVG problem
@@ -44,5 +46,10 @@ const ClientApp: FC = () => {
 };
 
 loadableReady(() => {
-  ReactDom.hydrate(<ClientApp />, document.getElementById('react-app'));
+  ReactDom.hydrate(<ClientApp />, document.getElementById('react-app'), () => {
+    store.dispatch({
+      type: ACTION_TYPES.GLOBAL_SUCCEEDED_TO_RENDER_AT_THE_CLIENT_SIDE,
+      payload: { initialPageType: getCurrentPageType() },
+    });
+  });
 });

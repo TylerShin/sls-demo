@@ -16,7 +16,7 @@ import { PaperProfile } from '../model/profile';
 import { GLOBAL_DIALOG_TYPE } from '@src/reducers/globalDialog/types';
 import { SIGN_UP_STEP } from '@src/components/signUp/types';
 import { SearchResult } from '@src/api/types/search';
-import { PAPER_LIST_SORT_OPTIONS, FilterObject } from '@src/types/search';
+import { PAPER_LIST_SORT_OPTIONS, FilterObject, AUTHOR_PAPER_LIST_SORT_OPTIONS } from '@src/types/search';
 import { ActionTagType } from '@src/constants/actionTicket';
 import { PendingPaper } from '@src/model/pendingPaper';
 
@@ -353,7 +353,13 @@ export const ActionCreators = {
     return createAction({ type: ACTION_TYPES.AUTHOR_SHOW_FAILED_TO_GET_PAPERS });
   },
 
-  getAuthorPapers(payload: GetMultiPapers) {
+  getAuthorPapers(
+    payload: PageObjectV2 & {
+      paperIds: string[];
+      sort?: AUTHOR_PAPER_LIST_SORT_OPTIONS;
+      query?: string;
+    }
+  ) {
     return createAction({
       type: ACTION_TYPES.AUTHOR_SHOW_SUCCEEDED_TO_GET_PAPERS,
       payload,

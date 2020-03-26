@@ -1,7 +1,13 @@
 import React from 'react';
 import { Switch, Route, useLocation } from 'react-router-dom';
 import loadable from '@loadable/component';
-import { HOME_PATH, SEARCH_RESULT_PATH, PAPER_SHOW_PATH, AUTHOR_SEARCH_RESULT_PATH } from '../../constants/route';
+import {
+  HOME_PATH,
+  SEARCH_RESULT_PATH,
+  PAPER_SHOW_PATH,
+  AUTHOR_SEARCH_RESULT_PATH,
+  AUTHOR_SHOW_PATH,
+} from '../../constants/route';
 import ErrorPage from '../../pages/error/errorPage';
 import ArticleSpinner from '../spinner/articleSpinner';
 import { LoadDataParams } from '@src/types/routes';
@@ -11,6 +17,7 @@ import {
   fetchPaperShowData,
   fetchRefCitedPaperDataAtServer as fetchRefCitedPaperData,
 } from '@src/pages/paperShow/sideEffect';
+import { AuthorShowMatchParams } from '@src/pages/authorShow/types';
 
 interface RouteMap {
   path?: string;
@@ -55,6 +62,16 @@ export const routesMap: RouteMap[] = [
     component: PaperShow,
     loadData: async (params: LoadDataParams<PaperShowMatchParams>) => {
       await Promise.all([fetchPaperShowData(params), fetchRefCitedPaperData(params)]);
+    },
+  },
+  {
+    path: AUTHOR_SHOW_PATH,
+    component: loadable(() => import('../../pages/authorShow'), {
+      fallback: <LoadingSpinner />,
+    }),
+    loadData: async (params: LoadDataParams<AuthorShowMatchParams>) => {
+      const { fetchAuthorShowPageData } = await import('../../pages/authorShow/sideEffect');
+      await Promise.all([fetchAuthorShowPageData(params)]);
     },
   },
   { component: ErrorPage },
