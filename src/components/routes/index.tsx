@@ -11,6 +11,7 @@ import {
   JOURNAL_SHOW_PATH,
   COLLECTION_LIST_PATH,
   AUTH_PATH,
+  USER_SETTINGS_PATH,
 } from '../../constants/route';
 import ErrorPage from '../../pages/error/errorPage';
 import ArticleSpinner from '../spinner/articleSpinner';
@@ -114,6 +115,12 @@ export const routesMap: RouteMap[] = [
   {
     path: AUTH_PATH,
     component: loadable(() => import('../../pages/auth'), {
+      fallback: <LoadingSpinner />,
+    }),
+  },
+  {
+    path: USER_SETTINGS_PATH,
+    component: loadable(() => import('../../pages/userSettings'), {
       fallback: <LoadingSpinner />,
     }),
   },

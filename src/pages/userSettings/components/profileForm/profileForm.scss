@@ -1,0 +1,61 @@
+@import '../../userSettings';
+
+.title {
+  font-weight: 600;
+  line-height: 1.83;
+  letter-spacing: -0.67px;
+  font-size: 24px;
+  color: $black0;
+  margin-bottom: 24px;
+}
+
+.formRow {
+  display: flex;
+}
+
+.formWrapper {
+  width: 100%;
+}
+
+.formWrapper + .formWrapper {
+  margin-left: 21px;
+}
+
+.inputForm {
+  @extend %base-input-style;
+
+  &:disabled {
+    background-color: transparent;
+    border-color: $gray400;
+    color: $gray500;
+  }
+}
+
+.formLabel {
+  @extend %base-label;
+}
+
+.affiliationFormWrapper {
+  margin-top: 44px;
+  margin-bottom: 36px;
+}
+
+.errorMsg {
+  font-family: $fallback;
+  font-size: 13px;
+  color: $red0;
+  margin: 8px 0 0 8px;
+}
+
+.affiliationErrorMsg {
+  font-family: $fallback;
+  font-size: 13px;
+  color: $red0;
+  margin-top: 8px;
+}
+
+.divider {
+  @extend %base-divider;
+
+  margin: 40px 0 16px 0;
+}

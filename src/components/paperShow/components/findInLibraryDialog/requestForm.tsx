@@ -2,7 +2,7 @@ import React from 'react';
 import { Field, Formik, Form, FormikErrors } from 'formik';
 import classNames from 'classnames';
 import { Button } from '@pluto_network/pluto-design-elements';
-import AffiliationSelectBox from '@src/components/affiliationBox';
+import AffiliationSelectBox from '@src/components/affiliationSelectBox';
 import { Affiliation } from '@src/model/affiliation';
 import { SuggestAffiliation } from '@src/api/suggest';
 import FormikInput from '@src/components/scinapseInput/scinapseFormikInput';

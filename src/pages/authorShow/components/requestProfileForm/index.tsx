@@ -16,7 +16,7 @@ import { UserDevice } from '@src/reducers/layout';
 import { AppState } from '@src/store/rootReducer';
 import FormikInput from '@src/components/scinapseInput/scinapseFormikInput';
 import { ProfileRequestKey } from '@src/constants/profileRequest';
-import AffiliationSelectBox from '@src/components/affiliationBox';
+import AffiliationSelectBox from '@src/components/affiliationSelectBox';
 const useStyles = require('isomorphic-style-loader/useStyles');
 const s = require('./requestProfileForm.scss');
 

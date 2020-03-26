@@ -13,7 +13,6 @@ import { GLOBAL_DIALOG_TYPE } from '@src/reducers/globalDialog/types';
 import validateEmail from '@src/helpers/validateEmail';
 import { MINIMUM_PASSWORD_LENGTH } from '@src/constants/auth';
 import { checkDuplicatedEmail } from '@src/actions/auth';
-// import AffiliationBox from '@src/components/';
 const s = require('./style.scss');
 
 interface SignUpFormProps {

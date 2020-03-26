@@ -14,6 +14,8 @@ import {
   VerifyEmailResult,
   SignInWithEmailParams,
   SignUpWithEmailParams,
+  ChangePasswordParams,
+  UpdateUserInformationParams,
 } from '@src/api/types/auth';
 import { OAUTH_VENDOR } from '@src/constants/auth';
 import { RecommendationActionParams } from '@src/api/types/recommendation';
@@ -281,3 +283,61 @@ export function signUpWithEmail(params: SignUpWithEmailParams): AppThunkAction {
     }
   };
 }
+
+export const changePassword = (params: ChangePasswordParams): AppThunkAction => {
+  return async dispatch => {
+    try {
+      await AuthAPI.changePassword(params);
+      await dispatch(checkAuthStatus());
+      dispatch({
+        type: ACTION_TYPES.GLOBAL_ALERT_NOTIFICATION,
+        payload: {
+          type: 'success',
+          message: 'Successfully changed password.',
+        },
+      });
+    } catch (err) {
+      const error = PlutoAxios.getGlobalError(err);
+      console.log(error);
+      dispatch({
+        type: ACTION_TYPES.GLOBAL_ALERT_NOTIFICATION,
+        payload: {
+          type: 'error',
+          message: 'Sorry. we had an error to change password.',
+        },
+      });
+    }
+  };
+};
+
+export const updateUserProfile = (params: UpdateUserInformationParams): AppThunkAction => {
+  return async dispatch => {
+    try {
+      await AuthAPI.update({
+        affiliation_id: params.affiliation.id || null,
+        affiliation_name: params.affiliation.name,
+        first_name: params.firstName,
+        last_name: params.lastName,
+        profile_link: params.profileLink,
+      });
+      await dispatch(checkAuthStatus());
+      dispatch({
+        type: ACTION_TYPES.GLOBAL_ALERT_NOTIFICATION,
+        payload: {
+          type: 'success',
+          message: 'Successfully changed your profile.',
+        },
+      });
+    } catch (err) {
+      dispatch({
+        type: ACTION_TYPES.GLOBAL_ALERT_NOTIFICATION,
+        payload: {
+          type: 'error',
+          message: 'Sorry. we had an error to update your profile.',
+        },
+      });
+
+      throw err;
+    }
+  };
+};
