@@ -9,6 +9,7 @@ import {
   AUTHOR_SHOW_PATH,
   COLLECTION_SHOW_PATH,
   JOURNAL_SHOW_PATH,
+  COLLECTION_LIST_PATH,
 } from '../../constants/route';
 import ErrorPage from '../../pages/error/errorPage';
 import ArticleSpinner from '../spinner/articleSpinner';
@@ -97,6 +98,17 @@ export const routesMap: RouteMap[] = [
       const { fetchJournalShowPageData } = await import('../../pages/journalShow/sideEffect');
       await Promise.all([fetchJournalShowPageData(params)]);
     },
+  },
+  {
+    path: COLLECTION_LIST_PATH,
+    component: loadable(() => import('../../pages/collections'), {
+      fallback: <LoadingSpinner />,
+    }),
+    loadData: async (params: LoadDataParams<{ userId: string }>) => {
+      const { getCollections } = await import('../../pages/collections/sideEffect');
+      await Promise.all([getCollections(params)]);
+    },
+    exact: true,
   },
   { component: ErrorPage },
 ];

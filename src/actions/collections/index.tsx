@@ -14,6 +14,7 @@ import PlutoAxios from '@src/api/pluto';
 import alertToast from '@src/helpers/makePlutoToastAction';
 import { Collection } from '@src/model/collection';
 import { CommonError } from '@src/model/error';
+import { AppThunkAction } from '@src/store';
 
 export function savePaperToCollection(params: AddPaperToCollectionParams) {
   return async (dispatch: Dispatch<any>) => {
@@ -113,8 +114,8 @@ export function updatePaperNote(params: UpdatePaperNoteToCollectionParams) {
   };
 }
 
-export function getMember(memberId: number, cancelToken?: CancelToken) {
-  return async (dispatch: Dispatch<any>) => {
+export function getMember(memberId: number, cancelToken?: CancelToken): AppThunkAction {
+  return async dispatch => {
     dispatch(ActionCreators.startToGetMemberInCollectionsPage());
 
     try {
@@ -142,8 +143,8 @@ export function getMember(memberId: number, cancelToken?: CancelToken) {
   };
 }
 
-export function getCollections(memberId: number, cancelToken?: CancelToken, itsMe?: boolean) {
-  return async (dispatch: Dispatch<any>) => {
+export function getCollections(memberId: number, cancelToken?: CancelToken, itsMe?: boolean): AppThunkAction {
+  return async dispatch => {
     dispatch(ActionCreators.startToGetCollectionsInCollectionsPage());
 
     try {
