@@ -13,6 +13,7 @@ import { reducer as authorSearch } from '../reducers/authorSearch';
 import { reducer as authorShow } from '../reducers/authorShow';
 import { reducer as collectionShow } from '../reducers/collectionShow';
 import { reducer as userCollections } from '../reducers/userCollections';
+import { reducer as journalShow } from '../reducers/journalShow';
 import layout from '../reducers/layout';
 import currentUser from '../reducers/currentUser';
 import searchInput from '../reducers/searchInput';
@@ -47,6 +48,7 @@ const rootReducer = combineReducers({
   paperShow,
   authorSearch,
   authorShow,
+  journalShow,
   collectionShow,
   userCollections,
   entities,

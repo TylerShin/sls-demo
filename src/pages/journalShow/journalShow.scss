@@ -1,0 +1,322 @@
+$left_box_width: 691px;
+$right_box_width: 267px;
+
+.container {
+  position: relative;
+  margin: 0 auto;
+  width: $small-container-width;
+}
+
+.journalShowWrapper {
+  display: flex;
+  flex-direction: column;
+  margin-top: $navbar_height;
+  min-height: calc(100vh - #{$navbar_height});
+}
+
+.loadingContainer {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding-top: 250px;
+  align-items: center;
+  margin-top: $navbar_height;
+  min-height: 738.5px;
+
+  .loadingSpinner {
+    div {
+      background-color: $gray500;
+    }
+  }
+}
+
+.headSection {
+  background-color: $gray30;
+  padding: 48px 0;
+
+  .container {
+    display: flex;
+  }
+
+  .leftBox {
+    position: relative;
+    max-width: $left_box_width;
+    width: 100%;
+
+    .title {
+      display: flex;
+      align-items: center;
+      font-size: 24px;
+      font-weight: 500;
+      line-height: 1.38;
+      color: $black0;
+      margin-bottom: 8px;
+      max-width: 500px;
+    }
+  }
+
+  .rightBox {
+    flex: 1;
+  }
+}
+
+.infoWrapper {
+  position: absolute;
+  top: 0;
+  right: 0;
+
+  .subtitle {
+    font-size: 17px;
+    font-weight: 500;
+    line-height: 1.4;
+    color: $gray500;
+    min-width: 72px;
+    margin-bottom: 4px;
+  }
+
+  span {
+    display: inline-block;
+    vertical-align: top;
+  }
+
+  span + span {
+    margin-left: 22px;
+  }
+
+  strong {
+    display: inline-block;
+    vertical-align: top;
+    font-size: 26px;
+    line-height: 1.38;
+    color: $black0;
+    white-space: pre-wrap;
+    font-weight: 500;
+  }
+}
+
+.paperListContainer {
+  display: flex;
+  flex: 1;
+  margin: auto;
+
+  .container {
+    display: flex;
+    justify-content: center;
+  }
+
+  .leftBox {
+    width: $left_box_width;
+  }
+
+  .rightBox {
+    flex: 1;
+    margin-top: 24px;
+    margin-left: 20px;
+  }
+}
+
+.paperListBox {
+  margin-top: 24px;
+}
+
+.header {
+  position: relative;
+  display: flex;
+  align-items: center;
+  height: 40px;
+  margin-bottom: 21px;
+}
+
+.listTitle {
+  display: inline-block;
+  vertical-align: top;
+  font-size: 20px;
+  font-weight: bold;
+  line-height: 1.4;
+  color: $black0;
+
+  .paperCount {
+    margin-left: 8px;
+    font-size: 18px;
+    font-weight: bold;
+    line-height: 1.33;
+    color: $main_blue0;
+  }
+}
+
+.noPaperWrapper {
+  margin-top: 80px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  .ufoIcon {
+    display: inline-block;
+    vertical-align: top;
+    width: 64px;
+    height: 59px;
+
+    svg {
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  .noPaperDescription {
+    font-size: 18px;
+    color: $gray800;
+    margin-top: 24px;
+  }
+}
+
+.reloadIcon {
+  display: inline-flex;
+
+  svg {
+    width: 24px;
+    height: 24px;
+  }
+}
+
+.reloadBtn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 16px;
+  height: 40px;
+  padding: 4px 16px 4px 12px;
+  border-radius: 4px;
+  font-size: 14px;
+  font-weight: bold;
+  line-height: 1.43;
+  background-color: $main_blue1;
+  cursor: pointer;
+  color: white;
+
+  &:hover {
+    background-color: $main_blue_light0;
+    transition: $button-hover-transition;
+  }
+}
+
+.searchInputWrapper {
+  position: absolute;
+  top: 0;
+  right: 0px;
+  bottom: 0;
+  width: 291px;
+}
+
+.subHeader {
+  position: relative;
+  margin-bottom: 21px;
+}
+
+.sortBoxWrapper {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.resultPaperCount {
+  font-size: 14px;
+  line-height: 1.43;
+  color: $gray800;
+}
+
+.externalIconWrapper {
+  display: inline-flex;
+  width: 24px;
+  height: 24px;
+  justify-content: center;
+  vertical-align: middle;
+  margin-left: 12px;
+
+  i,
+  svg {
+    display: inline-block;
+    vertical-align: top;
+    width: 20px;
+    height: 20px;
+    color: $gray600;
+
+    &:hover {
+      color: $gray800;
+      transition: ease-in-out 0.2s;
+    }
+  }
+}
+
+.topFosTitle {
+  font-size: 20px;
+  font-weight: bold;
+  line-height: 1.4;
+  color: $black0;
+  margin: 8px 0;
+}
+
+@media (max-width: $tablet_width) {
+  .container {
+    width: 100%;
+    flex-direction: column-reverse;
+  }
+
+  .infoWrapper {
+    position: relative;
+  }
+
+  .paperListContainer {
+    .leftBox,
+    .container {
+      width: 100%;
+    }
+
+    .rightBox {
+      margin-left: 0;
+      border-bottom: 1px solid $gray300;
+      padding-bottom: 24px;
+    }
+  }
+
+  .headSection {
+    width: 100%;
+    padding: 36px 16px;
+  }
+
+  .header {
+    display: block;
+    margin-bottom: 20px;
+    height: auto;
+  }
+
+  .listTitle {
+    display: block;
+    margin-bottom: 10px;
+  }
+
+  .paperListContainer {
+    width: 100%;
+    padding: 0 16px;
+    display: flex;
+    justify-content: center;
+  }
+
+  .searchInputWrapper {
+    position: relative;
+  }
+}
+
+@media (max-width: $mobile_width) {
+  .sortBoxWrapper {
+    position: static;
+    margin-top: 20px;
+  }
+
+  .paperListContainer {
+    .leftBox,
+    .container {
+      width: 100%;
+    }
+  }
+}

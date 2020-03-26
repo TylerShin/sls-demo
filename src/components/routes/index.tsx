@@ -8,6 +8,7 @@ import {
   AUTHOR_SEARCH_RESULT_PATH,
   AUTHOR_SHOW_PATH,
   COLLECTION_SHOW_PATH,
+  JOURNAL_SHOW_PATH,
 } from '../../constants/route';
 import ErrorPage from '../../pages/error/errorPage';
 import ArticleSpinner from '../spinner/articleSpinner';
@@ -20,6 +21,7 @@ import {
 } from '@src/pages/paperShow/sideEffect';
 import { AuthorShowMatchParams } from '@src/pages/authorShow/types';
 import { CollectionShowMatchParams } from '@src/pages/collectionShow/types';
+import { JournalShowMatchParams } from '@src/pages/journalShow/types';
 
 interface RouteMap {
   path?: string;
@@ -84,6 +86,16 @@ export const routesMap: RouteMap[] = [
     loadData: async (params: LoadDataParams<CollectionShowMatchParams>) => {
       const { fetchCollectionShowData } = await import('../../pages/collectionShow/sideEffect');
       await Promise.all([fetchCollectionShowData(params)]);
+    },
+  },
+  {
+    path: JOURNAL_SHOW_PATH,
+    component: loadable(() => import('../../pages/journalShow'), {
+      fallback: <LoadingSpinner />,
+    }),
+    loadData: async (params: LoadDataParams<JournalShowMatchParams>) => {
+      const { fetchJournalShowPageData } = await import('../../pages/journalShow/sideEffect');
+      await Promise.all([fetchJournalShowPageData(params)]);
     },
   },
   { component: ErrorPage },

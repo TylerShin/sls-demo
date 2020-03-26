@@ -1,0 +1,17 @@
+.fosBtnWrapper {
+  display: inline-flex;
+  vertical-align: top;
+  padding: 8px 0;
+  margin-right: 8px;
+
+  &:last-of-type {
+    margin-right: 0;
+  }
+}
+
+.alertIcon {
+  svg {
+    width: 16px;
+    height: 16px;
+  }
+}
