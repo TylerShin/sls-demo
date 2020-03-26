@@ -1,6 +1,10 @@
 import axios, { CancelToken } from 'axios';
 import { Dispatch } from 'redux';
-import CollectionAPI, { RemovePapersFromCollectionParams, UpdatePaperNoteToCollectionParams } from '../../api/collection';
+import CollectionAPI, {
+  RemovePapersFromCollectionParams,
+  UpdatePaperNoteToCollectionParams,
+  GetCollectionsPapersParams,
+} from '../../api/collection';
 import MemberAPI from '../../api/member';
 import { ActionCreators, ACTION_TYPES } from '../../actions/actionTypes';
 import { AddPaperToCollectionParams } from '@src/api/collection';
@@ -9,6 +13,7 @@ import { getMyCollections } from '../paperShow';
 import PlutoAxios from '@src/api/pluto';
 import alertToast from '@src/helpers/makePlutoToastAction';
 import { Collection } from '@src/model/collection';
+import { CommonError } from '@src/model/error';
 
 export function savePaperToCollection(params: AddPaperToCollectionParams) {
   return async (dispatch: Dispatch<any>) => {
@@ -108,7 +113,6 @@ export function updatePaperNote(params: UpdatePaperNoteToCollectionParams) {
   };
 }
 
-
 export function getMember(memberId: number, cancelToken?: CancelToken) {
   return async (dispatch: Dispatch<any>) => {
     dispatch(ActionCreators.startToGetMemberInCollectionsPage());
@@ -162,6 +166,63 @@ export function getCollections(memberId: number, cancelToken?: CancelToken, itsM
           },
         });
         throw err;
+      }
+    }
+  };
+}
+
+export function getCollection(collectionId: number, cancelToken?: CancelToken) {
+  return async (dispatch: Dispatch<any>) => {
+    try {
+      dispatch(ActionCreators.startToGetCollectionInCollectionShow());
+      const res = await CollectionAPI.getCollection(collectionId, cancelToken);
+
+      dispatch(ActionCreators.addEntity(res));
+      dispatch(
+        ActionCreators.succeededToGetCollectionInCollectionShow({
+          collectionId: res.result,
+        })
+      );
+    } catch (err) {
+      if (!axios.isCancel(err)) {
+        const error = PlutoAxios.getGlobalError(err);
+        alertToast({
+          type: 'error',
+          message: `Failed to get collection information: ${error.message}`,
+        });
+        dispatch(
+          ActionCreators.failedToGetCollectionInCollectionShow({
+            statusCode: (error as CommonError).status,
+          })
+        );
+      }
+    }
+  };
+}
+
+export function getPapers(params: GetCollectionsPapersParams) {
+  return async (dispatch: Dispatch<any>) => {
+    try {
+      dispatch(ActionCreators.startToGetPapersInCollectionShow());
+
+      const paperResponse = await CollectionAPI.getPapers(params);
+
+      dispatch(ActionCreators.addEntity({ entities: paperResponse.entities, result: paperResponse.result }));
+      dispatch(
+        ActionCreators.succeededToGetPapersInCollectionShow({
+          paperResponse,
+          sort: params.sort,
+          query: params.query,
+        })
+      );
+    } catch (err) {
+      console.error(err);
+      if (!axios.isCancel(err)) {
+        alertToast({
+          type: 'error',
+          message: `Failed to get collection's papers: ${err}`,
+        });
+        dispatch(ActionCreators.failedToGetPapersInCollectionShow());
       }
     }
   };

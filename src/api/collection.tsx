@@ -4,7 +4,7 @@ import PlutoAxios from './pluto';
 import { Collection, collectionSchema } from '../model/collection';
 import { Paper } from '../model/paper';
 import { PaperInCollection, paperInCollectionSchema } from '../model/paperInCollection';
-import { PAPER_LIST_SORT_OPTIONS } from '@src/types/search';
+import { AUTHOR_PAPER_LIST_SORT_OPTIONS } from '@src/types/search';
 import { NormalizedDataWithPaginationV2, PaginationResponseV2 } from '@src/types/pagination';
 
 export interface UpdatePaperNoteToCollectionParams {
@@ -40,7 +40,7 @@ export interface RemovePapersFromCollectionParams {
 export interface GetCollectionsPapersParams {
   collectionId: number;
   page: number;
-  sort: PAPER_LIST_SORT_OPTIONS;
+  sort: AUTHOR_PAPER_LIST_SORT_OPTIONS;
   cancelToken?: CancelToken;
   query?: string;
   size?: number;

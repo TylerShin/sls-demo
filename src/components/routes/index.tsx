@@ -7,6 +7,7 @@ import {
   PAPER_SHOW_PATH,
   AUTHOR_SEARCH_RESULT_PATH,
   AUTHOR_SHOW_PATH,
+  COLLECTION_SHOW_PATH,
 } from '../../constants/route';
 import ErrorPage from '../../pages/error/errorPage';
 import ArticleSpinner from '../spinner/articleSpinner';
@@ -18,6 +19,7 @@ import {
   fetchRefCitedPaperDataAtServer as fetchRefCitedPaperData,
 } from '@src/pages/paperShow/sideEffect';
 import { AuthorShowMatchParams } from '@src/pages/authorShow/types';
+import { CollectionShowMatchParams } from '@src/pages/collectionShow/types';
 
 interface RouteMap {
   path?: string;
@@ -72,6 +74,16 @@ export const routesMap: RouteMap[] = [
     loadData: async (params: LoadDataParams<AuthorShowMatchParams>) => {
       const { fetchAuthorShowPageData } = await import('../../pages/authorShow/sideEffect');
       await Promise.all([fetchAuthorShowPageData(params)]);
+    },
+  },
+  {
+    path: COLLECTION_SHOW_PATH,
+    component: loadable(() => import('../../pages/collectionShow'), {
+      fallback: <LoadingSpinner />,
+    }),
+    loadData: async (params: LoadDataParams<CollectionShowMatchParams>) => {
+      const { fetchCollectionShowData } = await import('../../pages/collectionShow/sideEffect');
+      await Promise.all([fetchCollectionShowData(params)]);
     },
   },
   { component: ErrorPage },
