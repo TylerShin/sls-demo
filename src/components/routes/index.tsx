@@ -13,6 +13,11 @@ import {
   AUTH_PATH,
   USER_SETTINGS_PATH,
   KEYWORD_SETTINGS_PATH,
+  PROFILE_LANDING_ENQUIRY_PATH,
+  PROFILE_LANDING_PATH,
+  PROFILE_REGISTER_PATH,
+  PROFILE_EMAIL_VERIFY_PATH,
+  PROFILE_ONBOARDING_PATH,
 } from '../../constants/route';
 import ErrorPage from '../../pages/error/errorPage';
 import ArticleSpinner from '../spinner/articleSpinner';
@@ -128,6 +133,40 @@ export const routesMap: RouteMap[] = [
   {
     path: KEYWORD_SETTINGS_PATH,
     component: loadable(() => import('../../pages/keywordSettings'), {
+      fallback: <LoadingSpinner />,
+    }),
+  },
+  {
+    path: PROFILE_LANDING_ENQUIRY_PATH,
+    component: loadable(() => import('../../pages/profileLanding/enquiry'), {
+      fallback: <LoadingSpinner />,
+    }),
+    exact: true,
+  },
+  {
+    path: PROFILE_LANDING_PATH,
+    component: loadable(() => import('../../pages/profileLanding'), {
+      fallback: <LoadingSpinner />,
+    }),
+    exact: true,
+  },
+  {
+    path: PROFILE_REGISTER_PATH,
+    component: loadable(() => import('../../pages/profileRegister'), {
+      fallback: <LoadingSpinner />,
+    }),
+    exact: true,
+  },
+  {
+    path: PROFILE_EMAIL_VERIFY_PATH,
+    component: loadable(() => import('../../pages/profileVerifyEmail'), {
+      fallback: <LoadingSpinner />,
+    }),
+    exact: true,
+  },
+  {
+    path: PROFILE_ONBOARDING_PATH,
+    component: loadable(() => import('../../pages/profileOnboarding'), {
       fallback: <LoadingSpinner />,
     }),
   },
