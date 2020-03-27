@@ -18,6 +18,7 @@ import {
   PROFILE_REGISTER_PATH,
   PROFILE_EMAIL_VERIFY_PATH,
   PROFILE_ONBOARDING_PATH,
+  PROFILE_SHOW_PATH,
 } from '../../constants/route';
 import ErrorPage from '../../pages/error/errorPage';
 import ArticleSpinner from '../spinner/articleSpinner';
@@ -169,6 +170,16 @@ export const routesMap: RouteMap[] = [
     component: loadable(() => import('../../pages/profileOnboarding'), {
       fallback: <LoadingSpinner />,
     }),
+  },
+  {
+    path: PROFILE_SHOW_PATH,
+    component: loadable(() => import('../../pages/profileShow'), {
+      fallback: <div>loading ...</div>,
+    }),
+    loadData: async (params: LoadDataParams<{ profileSlug: string }>) => {
+      const { fetchAuthorShowPageData } = await import('../../pages/profileShow/sideEffects');
+      await Promise.all([fetchAuthorShowPageData(params)]);
+    },
   },
   { component: ErrorPage },
 ];

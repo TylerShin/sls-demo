@@ -13,7 +13,7 @@ import FullPaperItem from '@src/components/paperItem/fullPaperItem';
 import { getAuthorPapers } from '@src/actions/author';
 import { DEFAULT_AUTHOR_PAPERS_SIZE } from '@src/api/author';
 import ArticleSpinner from '@src/components/spinner/articleSpinner';
-import CoAuthor from './components/coAuthor';
+import CoAuthor from '@src/components/coAuthor';
 import { InputField } from '@pluto_network/pluto-design-elements';
 import { LayoutState, UserDevice } from '@src/reducers/layout';
 import AuthorShowHeader from './components/authorShowHeader';

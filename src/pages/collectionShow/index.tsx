@@ -22,7 +22,7 @@ import { getCollections } from '@src/actions/collections';
 import RelatedPaperInCollectionShow from './components/relatedPaperInCollectionShow';
 import Footer from '@src/components/footer';
 import { withStyles } from '@src/helpers/withStyles';
-import PageHelmet from '@src/components/helmet/collectionShowHelmet';
+import PageHelmet from '@src/components/helmet/collectionShow';
 import CollectionShareButton from './components/collectionShareButton';
 import CollectionPaperList from './components/collectionPaperList';
 import { ACTION_TYPES } from '@src/actions/actionTypes';

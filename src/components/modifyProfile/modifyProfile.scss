@@ -1,0 +1,139 @@
+.dialogPaper {
+  width: 596px;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px 0 rgba(12, 0, 51, 0.1);
+  padding: 16px;
+  margin: 16px;
+}
+
+.dialogHeader {
+  position: relative;
+  padding-bottom: 16px;
+  border-bottom: solid 1px $gray500;
+  margin-bottom: 24px;
+  line-height: 1.4;
+
+  .mainTitle {
+    font-size: 20px;
+    font-weight: bold;
+    color: $black0;
+  }
+  .subtitle {
+    font-size: 14px;
+    line-height: 1.43;
+    color: $gray800;
+  }
+}
+
+.closeButton {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: 0px;
+  right: 0px;
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+
+  .closeIcon {
+    display: inline-block;
+    vertical-align: top;
+    width: 20px;
+    height: 20px;
+    color: $gray600;
+  }
+}
+
+.inputForm {
+  @extend %base-input-style;
+
+  &:disabled {
+    background-color: $gray100;
+    border-color: $gray400;
+    color: $gray500;
+    cursor: not-allowed;
+  }
+}
+
+.contentSection {
+  min-height: 314px;
+  margin-bottom: 16px;
+
+  .formControl {
+    display: flex;
+
+    .inlineInput {
+      flex: 1;
+    }
+
+    .inlineInput + .inlineInput {
+      margin-left: 8px;
+    }
+  }
+
+  label {
+    display: block;
+    font-size: 15px;
+    color: $gray800;
+    margin-bottom: 8px;
+  }
+
+  .bioWrapper {
+    margin: 24px 0;
+  }
+}
+
+.footer {
+  position: relative;
+  height: 40px;
+}
+
+.buttonsWrapper {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.checkboxField {
+  position: relative;
+  display: inline-flex;
+  margin-top: 8px;
+  align-items: center;
+  height: 24px;
+}
+
+.checkBox {
+  margin-right: 8px;
+  width: 15px;
+  height: 15px;
+  padding: 0;
+
+  svg {
+    font-size: 16px;
+  }
+
+  &:checked {
+    background-color: $main_blue0 !important;
+  }
+}
+
+.checkboxInfo {
+  width: 168px;
+  height: 20px;
+  font-size: 13px;
+  line-height: 1.54;
+  color: $gray800;
+}
+
+@media (max-width: $mobile_width) {
+  .contentSection {
+    .formControl {
+      flex-direction: column;
+
+      .inlineInput + .inlineInput {
+        margin: 8px 0 0 0;
+      }
+    }
+  }
+}

@@ -24,6 +24,8 @@ import {
 import { AppThunkAction } from '@src/store';
 import { PaginationResponseV2 } from '@src/types/pagination';
 import { ImportedPaperListResponse, ProfileParams } from '@src/api/profile';
+import { getAxiosInstance } from '@src/api/axios';
+import { ProfileInfo } from '@src/model/profileInfo';
 
 interface FetchProfilePaperListParams {
   profileSlug: string;
@@ -302,4 +304,15 @@ export function unMarkRepresentativePaper(paperId: string, profileSlug: string):
       throw err;
     }
   };
+}
+
+export async function getProfileCVInformation(profileSlug: string) {
+  // WARN: working at client side only
+  const axios = getAxiosInstance();
+  try {
+    const res = await axios.get(`/profiles/${profileSlug}/information`);
+    return res.data.data.content as ProfileInfo;
+  } catch (err) {
+    // TODO: handle error state
+  }
 }
