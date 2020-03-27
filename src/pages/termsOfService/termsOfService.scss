@@ -1,0 +1,34 @@
+.termsOfServiceContainer {
+  max-width: $small_container_width;
+  margin: $navbar_height auto 40px auto;
+  text-align: left;
+  padding-top: 56px;
+}
+
+.title {
+  color: $black0;
+  font-size: 24px;
+  font-weight: 600;
+  margin-bottom: 32px;
+}
+
+.subtitle {
+  color: $black0;
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 16px;
+}
+
+.contents {
+  color: $gray800;
+  font-size: 14px;
+  line-height: 20px;
+  margin-bottom: 40px;
+}
+
+.bulletPoint {
+  color: $gray800;
+  font-size: 14px;
+  line-height: 24px;
+  margin: -24px 0px 16px 0px;
+}

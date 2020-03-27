@@ -19,6 +19,8 @@ import {
   PROFILE_EMAIL_VERIFY_PATH,
   PROFILE_ONBOARDING_PATH,
   PROFILE_SHOW_PATH,
+  TERMS_OF_SERVICE_PATH,
+  PRIVACY_POLICY_PATH,
 } from '../../constants/route';
 import ErrorPage from '../../pages/error/errorPage';
 import ArticleSpinner from '../spinner/articleSpinner';
@@ -174,12 +176,26 @@ export const routesMap: RouteMap[] = [
   {
     path: PROFILE_SHOW_PATH,
     component: loadable(() => import('../../pages/profileShow'), {
-      fallback: <div>loading ...</div>,
+      fallback: <LoadingSpinner />,
     }),
     loadData: async (params: LoadDataParams<{ profileSlug: string }>) => {
       const { fetchAuthorShowPageData } = await import('../../pages/profileShow/sideEffects');
       await Promise.all([fetchAuthorShowPageData(params)]);
     },
+  },
+  {
+    path: TERMS_OF_SERVICE_PATH,
+    component: loadable(() => import('../../pages/termsOfService'), {
+      fallback: <LoadingSpinner />,
+    }),
+    exact: true,
+  },
+  {
+    path: PRIVACY_POLICY_PATH,
+    component: loadable(() => import('../../pages/privacyPolicy'), {
+      fallback: <LoadingSpinner />,
+    }),
+    exact: true,
   },
   { component: ErrorPage },
 ];
