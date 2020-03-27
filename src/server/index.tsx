@@ -1,6 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 import React from 'react';
+import { parse } from 'cookie';
 import { AzureFunction, Context, HttpRequest } from '@azure/functions';
 import ReactDOMServer from 'react-dom/server';
 import { StaticRouter, matchPath } from 'react-router-dom';
@@ -17,6 +18,7 @@ import { routesMap } from '@src/components/routes';
 import getQueryParamsObject from '@src/helpers/getQueryParamsObject';
 import { ACTION_TYPES } from '@src/actions/actionTypes';
 import PlutoAxios from '@src/api/pluto';
+import { SignInResult } from '@src/api/types/auth';
 const StyleContext = require('isomorphic-style-loader/StyleContext');
 
 const STAGE = process.env['NODE_ENV'] || 'development';
@@ -55,6 +57,30 @@ const httpTrigger: AzureFunction = async function(context: Context, req: HttpReq
   });
 
   const store = getServerStore({ axios });
+
+  // Get the latest JWT
+  const cookies = parse(headers.cookie || '');
+  let setCookies = '';
+  if (cookies['pluto_jwt']) {
+    try {
+      const res = await axios.get('/auth/login');
+      const signInResult: SignInResult = res.data;
+
+      if (signInResult.loggedIn) {
+        setCookies = res.headers['set-cookie'];
+        store.dispatch({
+          type: ACTION_TYPES.AUTH_SUCCEEDED_TO_CHECK_LOGGED_IN,
+          payload: {
+            user: signInResult.member,
+            loggedIn: signInResult.loggedIn,
+            oauthLoggedIn: signInResult.oauthLoggedIn,
+          },
+        });
+      }
+    } catch (err) {
+      console.log('Failed to get logged in user when even token existed: ', err);
+    }
+  }
 
   // Load data from API server
   const promises: Promise<any>[] = [];
@@ -130,7 +156,7 @@ const httpTrigger: AzureFunction = async function(context: Context, req: HttpReq
   });
 
   context.res = {
-    headers: { 'Content-Type': 'text/html; charset=utf-8' },
+    headers: { 'Content-Type': 'text/html; charset=utf-8', 'Set-Cookie': setCookies },
     body: html,
   };
 };
