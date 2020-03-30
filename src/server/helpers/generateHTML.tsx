@@ -1,6 +1,5 @@
 import { HelmetData } from 'react-helmet';
 import { AppState } from '../../store/rootReducer';
-import { FACEBOOK_APP_ID } from '@src/constants/auth';
 const sprite = require('svg-sprite-loader/runtime/sprite.build');
 
 interface Params {

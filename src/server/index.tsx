@@ -19,6 +19,7 @@ import getQueryParamsObject from '@src/helpers/getQueryParamsObject';
 import { ACTION_TYPES } from '@src/actions/actionTypes';
 import PlutoAxios from '@src/api/pluto';
 import { SignInResult } from '@src/api/types/auth';
+import getRobotTxt from './helpers/getRobotTxt';
 const StyleContext = require('isomorphic-style-loader/StyleContext');
 
 const STAGE = process.env['NODE_ENV'] || 'development';
@@ -34,7 +35,7 @@ try {
 const publicPath = STAGE === 'local' ? process.env.ASSET_PATH : `assets/${STAGE}/${version}`;
 const extractor = new ChunkExtractor({ statsFile, publicPath });
 
-const httpTrigger: AzureFunction = async function(context: Context, req: HttpRequest): Promise<void> {
+const httpTrigger: AzureFunction = async function(_context: Context, req: HttpRequest) {
   const url = new URL(req.url);
 
   // normalize header keys
@@ -44,6 +45,18 @@ const httpTrigger: AzureFunction = async function(context: Context, req: HttpReq
     if (newKey && req.headers[key]) {
       headers[newKey] = req.headers[key] as string;
     }
+  }
+
+  if (url.pathname === '/robots.txt') {
+    const body = getRobotTxt(headers.host === 'scinapse.io');
+    return {
+      headers: {
+        'Cache-Control': 'max-age=100',
+        'Content-Type': 'text/plain',
+        'Access-Control-Allow-Origin': '*',
+      },
+      body,
+    };
   }
 
   const axios = getAxiosInstance({
@@ -60,7 +73,7 @@ const httpTrigger: AzureFunction = async function(context: Context, req: HttpReq
 
   // Get the latest JWT
   const cookies = parse(headers.cookie || '');
-  let setCookies = '';
+  let setCookies = 'abc=def';
   if (cookies['pluto_jwt']) {
     try {
       const res = await axios.get('/auth/login');
@@ -144,7 +157,7 @@ const httpTrigger: AzureFunction = async function(context: Context, req: HttpReq
   const muiCss = sheets.toString();
   const preloadedState = store.getState();
 
-  const html: string = await generateHTML({
+  const html = generateHTML({
     jsx: jsxHTML,
     linkTags,
     styleTags,
@@ -155,7 +168,9 @@ const httpTrigger: AzureFunction = async function(context: Context, req: HttpReq
     plutoCss: [...plutoCss].join(''),
   });
 
-  context.res = {
+  console.log(html);
+
+  return {
     headers: { 'Content-Type': 'text/html; charset=utf-8', 'Set-Cookie': setCookies },
     body: html,
   };

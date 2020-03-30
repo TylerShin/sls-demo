@@ -21,6 +21,6 @@
       "@src/*": ["src/*"]
     }
   },
-  "include": ["src/**/*"],
+  "include": ["src/**/*", "script-dist/**/*"],
   "exclude": ["node_modules/**/*", "temp/**/*"]
 }
