@@ -161,8 +161,6 @@ const httpTrigger: AzureFunction = async function(_context: Context, req: HttpRe
     plutoCss: [...plutoCss].join(''),
   });
 
-  console.log(html);
-
   return {
     headers: { 'Content-Type': 'text/html; charset=utf-8', 'Set-Cookie': setCookies },
     body: html,

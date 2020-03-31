@@ -5,7 +5,7 @@
   "sideEffects": false,
   "scripts": {
     "clean": "rimraf dist && rimraf scripts-dist",
-    "start": "concurrently 'func start' 'npm:watch-*'",
+    "start": "concurrently 'func start --port 3000' 'npm:watch-*'",
     "watch-client": "NODE_ENV=local webpack-dev-server",
     "watch-server": "NODE_ENV=local webpack -w --config webpack.server.js",
     "build": "npm run clean && webpack && webpack --config webpack.server.js",
@@ -146,6 +146,7 @@
     "@pluto_network/pluto-design-elements": "0.0.24",
     "@pluto_network/scinapse-feedback": "0.0.7",
     "@reduxjs/toolkit": "1.2.5",
+    "@sentry/browser": "^5.15.4",
     "@types/react-truncate": "2.3.3",
     "acorn-dynamic-import": "4.0.0",
     "ajv": "6.5.4",

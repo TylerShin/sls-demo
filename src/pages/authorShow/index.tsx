@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 import DesktopPagination from '@src/components/desktopPagination';
 import MobilePagination from '@src/components/mobilePagination';
 import { withStyles } from '@src/helpers/withStyles';
-import { AuthorShowState as AuthorShowGlobalState } from '@src/reducers/authorSHow';
+import { AuthorShowState as AuthorShowGlobalState } from '@src/reducers/authorShow';
 import { Configuration } from '@src/reducers/configuration';
 import { Author, authorSchema } from '@src/model/author/author';
 import FullPaperItem from '@src/components/paperItem/fullPaperItem';

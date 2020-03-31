@@ -10,13 +10,12 @@ const s = require('./authButtons.scss');
 interface AuthButtonsProps {
   handleClickFBLogin: () => void;
   handleClickGoogleLogin: (values: OAuthCheckParams) => void;
-  FBIsLoading: boolean;
   isLoading: boolean;
 }
 
 const AuthButtons: React.FC<AuthButtonsProps> = props => {
   useStyles(s);
-  const { handleClickFBLogin, handleClickGoogleLogin, FBIsLoading, isLoading } = props;
+  const { handleClickFBLogin, handleClickGoogleLogin, isLoading } = props;
 
   return (
     <>
@@ -27,7 +26,6 @@ const AuthButtons: React.FC<AuthButtonsProps> = props => {
           aria-label="Facebook oauth button"
           style={{ backgroundColor: '#3859ab', borderColor: '#3859ab' }}
           onClick={handleClickFBLogin}
-          disabled={FBIsLoading}
           isLoading={isLoading}
           fullWidth
         >
@@ -44,7 +42,6 @@ const AuthButtons: React.FC<AuthButtonsProps> = props => {
           elementType="button"
           aria-label="ORCID oauth button"
           style={{ backgroundColor: '#a5d027', borderColor: '#a5d027' }}
-          disabled={FBIsLoading}
           isLoading={isLoading}
           onClick={handleClickORCIDBtn}
           fullWidth

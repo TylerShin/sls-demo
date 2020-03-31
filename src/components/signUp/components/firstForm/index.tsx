@@ -11,7 +11,6 @@ import AuthGuideContext from '@src/components/authGuideContext';
 import AuthContextText from '@src/components/authContextText';
 import { signInWithSocial, signInWithEmail } from '@src/actions/auth';
 import ActionTicketManager from '@src/helpers/actionTicketManager';
-import useFBIsLoading from '@src/hooks/FBisLoadingHook';
 import AuthButtons from '../../../authButton/authButtons';
 import { ActionTagType } from '@src/constants/actionTicket';
 import { OAUTH_VENDOR, MINIMUM_PASSWORD_LENGTH } from '@src/constants/auth';
@@ -53,7 +52,6 @@ const FirstForm: React.FunctionComponent<FirstFormProps> = props => {
   const { dispatch, dialogState, initialEmail } = props;
   const [isLoading, setIsLoading] = React.useState(false);
   const [networkError, setNetworkError] = React.useState('');
-  const FBIsLoading = useFBIsLoading();
 
   async function onSubmit(values: FormValues) {
     const { email, password } = values;
@@ -203,7 +201,6 @@ const FirstForm: React.FunctionComponent<FirstFormProps> = props => {
             <AuthButtons
               handleClickFBLogin={handleClickFBLogin}
               handleClickGoogleLogin={props.onSignUpWithSocial}
-              FBIsLoading={FBIsLoading}
               isLoading={isLoading}
             />
           </div>

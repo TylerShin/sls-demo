@@ -1,5 +1,6 @@
 import { HelmetData } from 'react-helmet';
 import { AppState } from '../../store/rootReducer';
+import { FACEBOOK_APP_ID } from '@src/constants/auth';
 const sprite = require('svg-sprite-loader/runtime/sprite.build');
 
 interface Params {
@@ -37,6 +38,16 @@ export function generateHTML({
     <style>${plutoCss}</style>
   </head>
   <body>
+    <script>
+      window.fbAsyncInit = function() {
+        FB.init({
+          appId: ${FACEBOOK_APP_ID},
+          autoLogAppEvents: true,
+          xfbml: true,
+          version: 'v6.0',
+        });
+      };
+    </script>
     <script async defer src="https://connect.facebook.net/en_US/sdk.js"></script>
     ${sprite.stringify()}
     <script>window.__INITIAL_STATE__=${JSON.stringify(preloadedState).replace(/</g, '\\u003c')}</script>

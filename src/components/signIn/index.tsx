@@ -16,7 +16,6 @@ import { ActionCreators } from '@src/actions/actionTypes';
 import { SIGN_UP_STEP } from '../signUp/types';
 import ActionTicketManager from '@src/helpers/actionTicketManager';
 import { checkOAuthStatus } from '@src/actions/auth';
-import useFBIsLoading from '@src/hooks/FBisLoadingHook';
 import { MINIMUM_PASSWORD_LENGTH } from '@src/constants/auth';
 import AuthButtons from '../authButton/authButtons';
 import { GLOBAL_DIALOG_TYPE } from '@src/reducers/globalDialog/types';
@@ -64,7 +63,6 @@ const SignIn: React.FunctionComponent<SignInProps & RouteComponentProps<any>> = 
   const { dispatch } = props;
 
   const isDialog = !!props.handleChangeDialogType;
-  const FBIsLoading = useFBIsLoading();
 
   function handleClickFBLogin() {
     FB.login(
@@ -219,7 +217,6 @@ const SignIn: React.FunctionComponent<SignInProps & RouteComponentProps<any>> = 
                   })
                 );
               }}
-              FBIsLoading={FBIsLoading}
               isLoading={isLoading}
             />
           </div>
