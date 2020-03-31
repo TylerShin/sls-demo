@@ -3,10 +3,8 @@ const webpack = require('webpack');
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 const cpuLength = require('os').cpus().length;
 
-const ASSET_PATH =
-  process.env.NODE_ENV === 'local'
-    ? 'https://localhost:8080/'
-    : 'https://scinapsewebclientassets.azureedge.net/client-assets/';
+const STAGE = process.env['NODE_ENV'] || 'development';
+const ASSET_PATH = process.env.NODE_ENV === 'local' ? 'https://localhost:8080/' : `assets/${STAGE}/`;
 
 module.exports = {
   mode: 'development',
@@ -15,7 +13,6 @@ module.exports = {
     libraryTarget: 'commonjs2',
     path: path.resolve(__dirname, 'dist'),
     filename: '[name].js',
-    publicPath: ASSET_PATH,
   },
   devtool: false,
   resolve: {

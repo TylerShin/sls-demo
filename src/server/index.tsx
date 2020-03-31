@@ -1,4 +1,3 @@
-import fs from 'fs';
 import path from 'path';
 import React from 'react';
 import { parse } from 'cookie';
@@ -25,14 +24,8 @@ const StyleContext = require('isomorphic-style-loader/StyleContext');
 const STAGE = process.env['NODE_ENV'] || 'development';
 
 const statsFile = path.resolve(__dirname, 'assets', 'loadable-stats.json');
-let version = '';
-try {
-  version = fs.readFileSync('./dist/version').toString();
-} catch (err) {
-  version = '';
-}
 
-const publicPath = STAGE === 'local' ? process.env.ASSET_PATH : `assets/${STAGE}/${version}`;
+const publicPath = STAGE === 'local' ? process.env.ASSET_PATH : `assets/${STAGE}/`;
 const extractor = new ChunkExtractor({ statsFile, publicPath });
 
 const httpTrigger: AzureFunction = async function(_context: Context, req: HttpRequest) {
@@ -73,7 +66,7 @@ const httpTrigger: AzureFunction = async function(_context: Context, req: HttpRe
 
   // Get the latest JWT
   const cookies = parse(headers.cookie || '');
-  let setCookies = 'abc=def';
+  let setCookies = '';
   if (cookies['pluto_jwt']) {
     try {
       const res = await axios.get('/auth/login');
