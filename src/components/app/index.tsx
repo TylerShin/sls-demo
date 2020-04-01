@@ -7,6 +7,7 @@ import DeviceDetector from '../deviceDetector';
 import LocationListener from '../locationListener';
 import FeedbackButton from '../feedbackButton';
 import CookieConsentBanner from '../cookieConsentBanner';
+import Snackbar from '../snackbar';
 const useStyles = require('isomorphic-style-loader/useStyles');
 const s = require('../../assets/root.scss');
 
@@ -22,6 +23,7 @@ const App: FC = () => {
       <DeviceDetector />
       <LocationListener />
       <FeedbackButton />
+      <Snackbar />
       <CookieConsentBanner />
     </>
   );
