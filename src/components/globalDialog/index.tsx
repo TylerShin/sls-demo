@@ -77,6 +77,7 @@ class DialogComponent extends React.PureComponent<DialogContainerProps, {}> {
         >
           <CollectionDialog
             currentUser={currentUser}
+            isLoading={dialogState.isLoadingMyCollections}
             myCollections={myCollections}
             handleCloseDialogRequest={this.closeCollectionDialog}
             getMyCollections={this.getMyCollections}

@@ -13,10 +13,12 @@ import { withStyles } from '@src/helpers/withStyles';
 import alertToast from '@src/helpers/makePlutoToastAction';
 import { CurrentUser } from '@src/model/currentUser';
 import { Collection } from '@src/model/collection';
+import ArticleSpinner from '../spinner/articleSpinner';
 const styles = require('./collection.scss');
 
 interface CollectionDialogProps {
   currentUser: CurrentUser;
+  isLoading: boolean;
   myCollections: Collection[];
   collectionDialogPaperId: string;
   getMyCollections: (cancelToken: CancelToken) => void;
@@ -121,11 +123,20 @@ class CollectionDialog extends React.PureComponent<CollectionDialogProps, Collec
 
   private getCollectionItems = () => {
     const {
+      isLoading,
       myCollections,
       collectionDialogPaperId,
       handleAddingPaperToCollections,
       handleRemovingPaperFromCollection,
     } = this.props;
+
+    if (isLoading) {
+      return (
+        <div style={{ height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+          <ArticleSpinner />
+        </div>
+      );
+    }
 
     if (!myCollections || myCollections.length === 0) {
       return (
