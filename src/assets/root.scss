@@ -9,6 +9,7 @@
 }
 
 body {
+  opacity: 0;
   padding-bottom: 0;
 }
 
@@ -21,8 +22,15 @@ body {
   overflow-anchor: none;
 }
 
+:global(.wf-inactive) {
+  body: {
+    opacity: 1;
+  }
+}
+
 :global(.wf-active) {
   body {
+    opacity: 1;
     font-family: 'Roboto', 'sans-serif';
   }
 }
