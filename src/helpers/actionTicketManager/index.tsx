@@ -1,12 +1,8 @@
-import axios from "axios";
-import uuid from "uuid/v4";
-import store from "store";
-import expirePlugin from "store/plugins/expire";
-import EnvChecker from "../envChecker";
-import ActionTicket, {
-  ActionTicketParams,
-  FinalActionTicket
-} from "./actionTicket";
+import axios from 'axios';
+import uuid from 'uuid/v4';
+import store from 'store';
+import EnvChecker from '../envChecker';
+import ActionTicket, { ActionTicketParams, FinalActionTicket } from './actionTicket';
 import {
   DEAD_LETTER_QUEUE_KEY,
   DESTINATION_URL,
@@ -18,9 +14,9 @@ import {
   SESSION_COUNT_KEY,
   SESSION_ID_INITIALIZED_KEY,
   SESSION_ID_KEY,
-  TIME_INTERVAL_TO_SEND_TICKETS
-} from "../../constants/actionTicket";
-import { trackEvent } from "../handleGA";
+  TIME_INTERVAL_TO_SEND_TICKETS,
+} from '../../constants/actionTicket';
+import { trackEvent } from '../handleGA';
 
 class ActionTicketManager {
   public queue: ActionTicket[] = [];
@@ -28,10 +24,10 @@ class ActionTicketManager {
 
   public constructor() {
     if (!EnvChecker.isOnServer()) {
-      window.addEventListener("beforeunload", () => {
+      window.addEventListener('beforeunload', () => {
         this.sendTicketsBeforeSessionClosed();
       });
-      window.addEventListener("unload", () => {
+      window.addEventListener('unload', () => {
         this.sendTicketsBeforeSessionClosed();
       });
 
@@ -47,11 +43,11 @@ class ActionTicketManager {
     const ticket = new ActionTicket(params);
     this.addToQueue([ticket]);
 
-    if (params.actionType === "fire") {
+    if (params.actionType === 'fire') {
       trackEvent({
-        category: params.actionArea || "",
+        category: params.actionArea || '',
         action: params.actionTag,
-        label: params.actionLabel || ""
+        label: params.actionLabel || '',
       });
     }
 
@@ -79,9 +75,7 @@ class ActionTicketManager {
         this.addToDeadLetterQueue(deadTickets);
 
         const retryTickets = targetTickets.filter(
-          ticket =>
-            !ticket.errorCount ||
-            (ticket.errorCount && ticket.errorCount <= MAXIMUM_RETRY_COUNT)
+          ticket => !ticket.errorCount || (ticket.errorCount && ticket.errorCount <= MAXIMUM_RETRY_COUNT)
         );
         this.addToQueue(retryTickets);
       }
@@ -94,10 +88,7 @@ class ActionTicketManager {
 
   private addToDeadLetterQueue(tickets: ActionTicket[]) {
     const deadQueue = store.get(DEAD_LETTER_QUEUE_KEY) || [];
-    store.set(DEAD_LETTER_QUEUE_KEY, [
-      ...deadQueue,
-      ...tickets.map(ticket => ticket.getTicketWithoutMeta())
-    ]);
+    store.set(DEAD_LETTER_QUEUE_KEY, [...deadQueue, ...tickets.map(ticket => ticket.getTicketWithoutMeta())]);
   }
 
   private addToQueue(tickets: ActionTicket[]) {
@@ -120,49 +111,36 @@ class ActionTicketManager {
     const currentTime = currentDate.getTime();
 
     if (!sessionKey) {
-      (store as any).set(
-        SESSION_ID_KEY,
-        uuid(),
-        currentTime + LIVE_SESSION_LENGTH
-      );
+      (store as any).set(SESSION_ID_KEY, uuid(), currentTime + LIVE_SESSION_LENGTH);
       (store as any).set(SESSION_ID_INITIALIZED_KEY, true);
       (store as any).set(SESSION_COUNT_KEY, ++sessionCount);
     } else {
-      (store as any).set(
-        SESSION_ID_KEY,
-        sessionKey,
-        currentTime + LIVE_SESSION_LENGTH
-      );
+      (store as any).set(SESSION_ID_KEY, sessionKey, currentTime + LIVE_SESSION_LENGTH);
     }
   }
 
   private async postTickets(tickets: ActionTicket[]) {
     await axios.post(
       DESTINATION_URL,
-      encodeURIComponent(
-        JSON.stringify(tickets.map(ticket => ticket.getTicketWithoutMeta()))
-      ),
+      encodeURIComponent(JSON.stringify(tickets.map(ticket => ticket.getTicketWithoutMeta()))),
       {
         headers: {
-          "Content-Type": "text/plain;charset=UTF-8"
-        }
+          'Content-Type': 'text/plain;charset=UTF-8',
+        },
       }
     );
   }
 
   private async tryToSendDeadTickets() {
-    const rawDeadTickets: FinalActionTicket[] | undefined = store.get(
-      DEAD_LETTER_QUEUE_KEY
-    );
+    const rawDeadTickets: FinalActionTicket[] | undefined = store.get(DEAD_LETTER_QUEUE_KEY);
 
-    const deadTickets =
-      rawDeadTickets && rawDeadTickets.map(ticket => new ActionTicket(ticket));
+    const deadTickets = rawDeadTickets && rawDeadTickets.map(ticket => new ActionTicket(ticket));
     if (deadTickets && deadTickets.length > 0) {
       try {
         await this.postTickets(deadTickets);
         store.set(DEAD_LETTER_QUEUE_KEY, []);
       } catch (err) {
-        console.error("FAILED TO SEND DEAD TICKETS", err);
+        console.error('FAILED TO SEND DEAD TICKETS', err);
       }
     }
   }
@@ -172,9 +150,7 @@ class ActionTicketManager {
       return;
     }
 
-    const encodedTickets = encodeURIComponent(
-      JSON.stringify(this.queue.map(ticket => ticket.getTicketWithoutMeta()))
-    );
+    const encodedTickets = encodeURIComponent(JSON.stringify(this.queue.map(ticket => ticket.getTicketWithoutMeta())));
 
     if (typeof navigator !== undefined && navigator.sendBeacon) {
       const success = navigator.sendBeacon(DESTINATION_URL, encodedTickets);
@@ -182,8 +158,8 @@ class ActionTicketManager {
     } else {
       // This is needed for IE
       const xhr = new XMLHttpRequest();
-      xhr.open("POST", DESTINATION_URL, false);
-      xhr.setRequestHeader("Content-Type", "text/plain;charset=UTF-8");
+      xhr.open('POST', DESTINATION_URL, false);
+      xhr.setRequestHeader('Content-Type', 'text/plain;charset=UTF-8');
       xhr.send(encodedTickets);
       if (xhr.status === 200) {
         this.sentLastTickets = true;
@@ -192,7 +168,6 @@ class ActionTicketManager {
   }
 }
 
-store.addPlugin(expirePlugin);
 const actionTicketManager = new ActionTicketManager();
 
 if (!EnvChecker.isOnServer()) {

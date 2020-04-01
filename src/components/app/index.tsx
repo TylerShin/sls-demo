@@ -6,6 +6,7 @@ import DialogComponent from '../globalDialog';
 import DeviceDetector from '../deviceDetector';
 import LocationListener from '../locationListener';
 import FeedbackButton from '../feedbackButton';
+import CookieConsentBanner from '../cookieConsentBanner';
 const useStyles = require('isomorphic-style-loader/useStyles');
 const s = require('../../assets/root.scss');
 
@@ -14,13 +15,14 @@ const App: FC = () => {
 
   return (
     <>
-      <Header />
       <DefaultHelmet />
+      <Header />
       <Routes />
       <DialogComponent />
       <DeviceDetector />
       <LocationListener />
       <FeedbackButton />
+      <CookieConsentBanner />
     </>
   );
 };

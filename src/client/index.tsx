@@ -1,5 +1,7 @@
 import 'intersection-observer';
 import raf from 'raf';
+import StoreLib from 'store';
+import expirePlugin from 'store/plugins/expire';
 import React, { FC, useEffect } from 'react';
 import { loadableReady } from '@loadable/component';
 import * as Sentry from '@sentry/browser';
@@ -22,6 +24,8 @@ const StyleContext = require('isomorphic-style-loader/StyleContext');
 if (EnvChecker.isProdBrowser()) {
   Sentry.init({ dsn: 'https://90218bd0404f4e8e97fbb17279974c23@sentry.io/1306012' });
 }
+
+StoreLib.addPlugin(expirePlugin);
 
 // Prevent IE/Edge's Clicking SVG problem
 // https://stackoverflow.com/questions/38648307/add-blur-method-to-svg-elements-in-ie-edge
