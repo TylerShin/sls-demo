@@ -19,6 +19,7 @@ import { ACTION_TYPES } from '@src/actions/actionTypes';
 import PlutoAxios from '@src/api/pluto';
 import { SignInResult } from '@src/api/types/auth';
 import getRobotTxt from './helpers/getRobotTxt';
+import { setUserDevice } from './helpers/setUserDevice';
 const StyleContext = require('isomorphic-style-loader/StyleContext');
 
 const STAGE = process.env['NODE_ENV'] || 'development';
@@ -63,6 +64,8 @@ const httpTrigger: AzureFunction = async function(_context: Context, req: HttpRe
   });
 
   const store = getServerStore({ axios });
+
+  setUserDevice({ dispatch: store.dispatch, userAgent: headers['user-agent'] || '' });
 
   // Get the latest JWT
   const cookies = parse(headers.cookie || '');
