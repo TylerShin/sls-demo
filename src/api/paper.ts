@@ -104,7 +104,6 @@ class PaperAPI extends PlutoAxios {
 
   public async getSources(paperIds: string[]): Promise<PaperSource[]> {
     const res = await this.get('/papers/sources', {
-      headers: { 'Proxy-Trace-Enabled': true },
       params: {
         paper_ids: paperIds.join(','),
       },
