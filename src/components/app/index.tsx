@@ -4,6 +4,7 @@ import DefaultHelmet from '../helmet';
 import Header from '@src/components/header';
 import DialogComponent from '../globalDialog';
 import DeviceDetector from '../deviceDetector';
+import LocationListener from '../locationListener';
 const useStyles = require('isomorphic-style-loader/useStyles');
 const s = require('../../assets/root.scss');
 
@@ -17,6 +18,7 @@ const App: FC = () => {
       <Routes />
       <DialogComponent />
       <DeviceDetector />
+      <LocationListener />
     </>
   );
 };
