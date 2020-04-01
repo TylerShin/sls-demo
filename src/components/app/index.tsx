@@ -5,6 +5,7 @@ import Header from '@src/components/header';
 import DialogComponent from '../globalDialog';
 import DeviceDetector from '../deviceDetector';
 import LocationListener from '../locationListener';
+import FeedbackButton from '../feedbackButton';
 const useStyles = require('isomorphic-style-loader/useStyles');
 const s = require('../../assets/root.scss');
 
@@ -19,6 +20,7 @@ const App: FC = () => {
       <DialogComponent />
       <DeviceDetector />
       <LocationListener />
+      <FeedbackButton />
     </>
   );
 };
