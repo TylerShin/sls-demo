@@ -8,5 +8,6 @@
     "http": {
       "routePrefix": ""
     }
-  }
+  },
+  "functionTimeout": "00:01:00"
 }
