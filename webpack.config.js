@@ -7,7 +7,10 @@ const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 const cpuLength = require('os').cpus().length;
 
 const STAGE = process.env['NODE_ENV'] || 'development';
-const ASSET_PATH = process.env.NODE_ENV === 'local' ? 'https://localhost:8080/' : `assets/${STAGE}/`;
+const ASSET_PATH =
+  process.env.NODE_ENV === 'local'
+    ? 'https://localhost:8080/'
+    : `https://scinapse-assets.azureedge.net/client-assets/${STAGE}/`;
 
 module.exports = {
   mode: process.env.NODE_ENV === 'production' ? 'production' : 'development',

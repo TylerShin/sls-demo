@@ -26,7 +26,8 @@ const STAGE = process.env['NODE_ENV'] || 'development';
 
 const statsFile = path.resolve(__dirname, 'assets', 'loadable-stats.json');
 
-const publicPath = STAGE === 'local' ? process.env.ASSET_PATH : `assets/${STAGE}/`;
+const publicPath =
+  STAGE === 'local' ? process.env.ASSET_PATH : `https://scinapse-assets.azureedge.net/client-assets/${STAGE}/`;
 const extractor = new ChunkExtractor({ statsFile, publicPath });
 
 const httpTrigger: AzureFunction = async function(_context: Context, req: HttpRequest) {
